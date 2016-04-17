@@ -1,311 +1,1340 @@
 {{extend 'layout.html'}}
 {{=BEAUTIFY(response._vars)}}
+<style>
+{{if request.args(0)=='1':}}
+#JSFiddle div.block p {
+    line-height: 1.4em;
+    margin: 0 0 .6em
+}
+
+#JSFiddle div.block p.sub-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-where {
+    font-size: 1.1em;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-dates {
+    font-size: 1em;
+    color: #555;
+    margin: 0 0 .5em
+}
+
+#JSFiddle div.block p.person {
+    font-size: 4em;
+    margin-bottom: 0;
+    line-height: 1.2em;
+    margin-top: -.2em
+}
+
+#JSFiddle div.block p.jobtitle {
+    font-size: 1.2em;
+    margin: 0
+}
+
+#JSFiddle div.block p.location {
+    font-size: 1em;
+    color: #555
+}
+
+#JSFiddle div.block span.company {
+    color: #555;
+    font-weight: bold
+}
+
+#JSFiddle div.block p.title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: .5em;
+    background: #eee;
+    padding: .2em .5em
+}
+
+#JSFiddle div.block.person {
+    margin: 0;
+}
+
+#JSFiddle table.wide {
+    width: 100%;
+    border-collapse: collapse
+}
+
+#JSFiddle td.left {
+    width: 30%;
+    vertical-align: top
+}
+
+#JSFiddle td.right {
+    width: 70%;
+    vertical-align: top
+}
+{{pass}}
 
 
-    <div class="form" id="JSFiddle">
-        <style>
-            #JSFiddle div.block p {
-                line-height: 1.4em;
-                margin: 0 0 .6em
-            }
 
-            #JSFiddle div.block p.sub-title {
-                font-size: 1.2em;
-                font-weight: bold;
-                margin: 0
-            }
+{{if request.args(0)=='2':}}
+#JSFiddle div.block p {
+    line-height: 1.4em;
+    margin: 0 0 .6em
+}
 
-            #JSFiddle div.block p.sub-where {
-                font-size: 1.1em;
-                margin: 0
-            }
+#JSFiddle div.blocks * {
+    line-height: 1.4em
+}
 
-            #JSFiddle div.block p.sub-dates {
-                font-size: 1em;
-                color: #555;
-                margin: 0 0 .5em
-            }
+#JSFiddle div.block p.person {
+    font-size: 3em;
+    margin-bottom: 0;
+    padding: 0 .2em;
+    line-height: 1em
+}
 
-            #JSFiddle div.block p.person {
-                font-size: 4em;
-                margin-bottom: 0;
-                line-height: 1.2em;
-                margin-top: -.2em;
-            }
+#JSFiddle div.block p.jobtitle {
+    font-size: 1.2em;
+    margin: .5em 0 0;
+    border-top: 1px solid #a77;
+    padding: .3em 10px 0 0
+}
 
-            #JSFiddle div.block p.jobtitle {
-                font-size: 1.2em;
-                margin: 0
-            }
+#JSFiddle div.block p.location {
+    font-size: 1em;
+    color: #fff;
+    padding-right: 10px
+}
 
-            #JSFiddle div.block p.location {
-                font-size: 1em;
-                color: #555;
-                margin: 0
-            }
+#JSFiddle div.block p.title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: .5em;
+    color: #800
+}
 
-            #JSFiddle div.block span.company {
-                color: #555;
-                font-weight: bold
-            }
+#JSFiddle div.block p.sub-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0
+}
 
-            #JSFiddle div.block p.title {
-                font-size: 1.3em;
-                font-weight: bold;
-                margin: 0 0 .5em 0;
-                padding: 0 .5em .1em;
-                text-transform: uppercase;
-                background: #ddd; <!--for color change-->
-                border: 1px solid #ddd;
-                -moz-border-radius: 0 0 1.3em 0;
-                -webkit-border-radius: 0 0 1.3em 0;
-                border-radius: 0 0 1.3em 0;
-                border-bottom-right-radius: 1.3em
-            }
+#JSFiddle div.block p.sub-where {
+    font-size: 1.1em;
+    margin: 0
+}
 
-            #JSFiddle div.blocks {
-                margin-top: 1em
-            }
+#JSFiddle div.block p.sub-dates {
+    font-size: 1em;
+    color: #555;
+    margin: 0 0 .5em
+}
 
-            #JSFiddle div.block-inner {
-                margin-left: 2em
-            }
+#JSFiddle div.block span.company {
+    color: #555;
+    font-weight: bold
+}
 
-            #JSFiddle td.block-title {
-                width: 50%;
-                padding: 0;
-                border-top: .2em solid #ddd <!-- for border color-->
-            }
+#JSFiddle div.blocks {
+    padding-top: 13em
+}
 
-            #JSFiddle table.wide {
-                width: 100%;
-                border-collapse: collapse
-            }
+#JSFiddle div.block.person {
+    margin-top: 15mm;
+    text-align: right;
+    border-color: transparent
+}
 
-            #JSFiddle table.wide.title {
-                page-break-inside: avoid;
-                page-break-after: avoid
-            }
+#JSFiddle div.block.contact {
+    margin: 15mm 8.13953488372093% 0 1em !important;
+    border-color: transparent;
+    font-size: 1.2em;
+    color: #555
+}
 
-            #JSFiddle td.left {
-                width: 65%;
-                vertical-align: top
-            }
+#JSFiddle table.wide {
+    position: absolute;
+    width: 210mm;
+    border-collapse: collapse;
+    margin: -15mm -8.13953488372093% 0 -8.13953488372093%
+}
 
-            #JSFiddle td.right {
-                width: 35%;
-                vertical-align: top;
-                text-align: right
-            }
-        </style>
-        <table class="wide">
-            <tbody>
-                <tr>
-                    <td class="left">
-                        <div class="block person" data-category="person" style="font-family: 'Roboto Condensed'; margin-bottom: 1em;">
-                            <p class="person" class="nam1" id="nam">Your Name</p>
-                        </div>
-                    </td>
-                    <td class="right">
-                        <div class="block contact" data-category="contact" style="margin-bottom: 1em;">
-                            <div class="html-content" class="e1" id="emai">your.name@example.com</div>
-                                <br>
-                                <span class="html-content" class="ph1" id="ph">111-222-3333</span>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="blocks">
-            <div class="block" data-category="text" data-children="" data-id="0" style="margin-bottom: 1em;">
-                <table class="wide title" cellspacing="0">
-                    <tbody>
-                        <tr>
-                            <td class="block-title">
-                                <p class="title" style="font-family: 'Roboto Condensed';" >Summary</p>
-                            </td>
-                            <td class="block-title"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="block-inner">
-                    <div class="html-content" class="sum1" id="su1" >List here your top selling points, including your most relevant strengths, skills and core competencies.</div>
-                </div>
-            </div>
-            <div class="block" data-category="experience" data-children="2" data-id="1" style="margin-bottom: 1em;">
-                <table class="wide title" cellspacing="0">
-                    <tbody>
-                        <tr>
-                            <td class="block-title">
-                                <p class="title" style="font-family: 'Roboto Condensed';">Work Experience</p>
-                            </td>
-                            <td class="block-title"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="block-inner">
-                    <div class="child" data-id="1c0" data-category="experience" style="margin-bottom: 1em;">
-                        <div class="html-content" class="work1" id="wo1">Describe your job responsibilities, accomplishments and technologies you have used. It is highly recommended that you use bullet points to describe your experience.</div><br>
-                        <div class="html-content"><b>Skill Set -</b><span class="html-content" class="work2" id="wo2">Mention your skills -- programming , sports , etc..</span></div>
+#JSFiddle table.wide > tbody {
+    display: inline-table;
+    width: 210mm;
+    padding-left: 8.13953488372093%;
+    padding-right: 8.13953488372093%
+}
+
+#JSFiddle td.left {
+    width: 50%;
+    vertical-align: top;
+    background: #800;
+    border-right: 4px solid #000;
+    color: #fff;
+    padding-left: 7%;
+    padding-bottom: 2em
+}
+
+#JSFiddle td.right {
+    width: 50%;
+    vertical-align: top;
+    background: #eee;
+    border-left: 4px solid #000;
+    line-height: 2em
+}
+
+#JSFiddle div.blocks {
+    padding-top: 175.65px
+}
+{{pass}}
+
+
+
+{{if request.args(0)=='3':}}
+#JSFiddle table.person {
+    margin-left: -0.3em
+}
+
+#JSFiddle td.firstname {
+    font-size: 3em;
+    height: .5em;
+    padding: 0
+}
+
+#JSFiddle td.lastname {
+    font-size: 5em;
+    height: 1em;
+    padding: .05em 0;
+    line-height: 1em
+}
+
+#JSFiddle div.block p {
+    line-height: 1.2em;
+    margin: 0 0 .6em
+}
+
+#JSFiddle div.block p.person {
+    font-size: 4em;
+    margin-bottom: 0
+}
+
+#JSFiddle div.block p.sub-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 0 .2em
+}
+
+#JSFiddle div.block p.sub-where {
+    font-size: 1.1em;
+    margin: 0 0 .2em
+}
+
+#JSFiddle div.block p.sub-dates {
+    font-size: 1em;
+    color: #555;
+    margin: 0 0 .5em
+}
+
+#JSFiddle div.block p.jobtitle {
+    font-size: 1.2em;
+    margin: .6em 0 .2em
+}
+
+#JSFiddle div.block p.location {
+    font-size: 1em;
+    color: #555
+}
+
+#JSFiddle div.block span.company {
+    color: #555;
+    font-weight: bold
+}
+
+#JSFiddle div.block p.title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: .5em;
+    padding-bottom: .2em;
+    border-bottom: .2em solid #ddd
+}
+
+#JSFiddle div.blocks * {
+    line-height: 1.4em;
+}
+
+#JSFiddle table.wide {
+    width: 100%;
+    border-collapse: collapse
+}
+
+#JSFiddle td.left {
+    width: 65%;
+    vertical-align: top
+}
+
+#JSFiddle td.right {
+    width: 35%;
+    vertical-align: top;
+    text-align: right
+}
+{{pass}}
+
+
+
+{{if request.args(0)=='4':}}
+#JSFiddle div.block p {
+    line-height: 1.4em;
+    margin: 0 0 .6em
+}
+
+#JSFiddle div.block p.sub-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-where {
+    font-size: 1.1em;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-dates {
+    font-size: 1em;
+    color: #555;
+    margin: 0 0 .5em
+}
+
+#JSFiddle div.block p.person {
+    font-size: 4em;
+    margin-bottom: 0;
+    line-height: 1.2em;
+    margin-top: -.2em;
+}
+
+#JSFiddle div.block p.jobtitle {
+    font-size: 1.2em;
+    margin: 0
+}
+
+#JSFiddle div.block p.location {
+    font-size: 1em;
+    color: #555;
+    margin: 0
+}
+
+#JSFiddle div.block span.company {
+    color: #555;
+    font-weight: bold
+}
+
+#JSFiddle div.block p.title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0 0 .5em 0;
+    padding: .2em;
+    text-transform: uppercase;
+    border-top: .2em dotted #aaa
+}
+
+#JSFiddle div.blocks {
+    margin-top: 1em
+}
+
+#JSFiddle div.block-inner {
+    margin-left: 2em
+}
+
+#JSFiddle table.wide {
+    width: 100%;
+    border-collapse: collapse
+}
+
+#JSFiddle td.left {
+    width: 65%;
+    vertical-align: top
+}
+
+#JSFiddle td.right {
+    width: 35%;
+    vertical-align: top;
+    text-align: right
+}
+{{pass}}
+
+
+
+{{if request.args(0)=='5':}}
+#JSFiddle div.block p {
+    line-height: 1.4em;
+    margin: 0 0 .6em
+}
+
+#JSFiddle div.block p.sub-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-where {
+    font-size: 1.1em;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-dates {
+    font-size: 1em;
+    color: #555;
+    margin: 0 0 .5em
+}
+
+#JSFiddle div.block p.person {
+    font-size: 4em;
+    margin-bottom: 0;
+    line-height: 1.2em;
+    margin-top: -.2em;
+}
+
+#JSFiddle div.block p.jobtitle {
+    font-size: 1.2em;
+    margin: 0
+}
+
+#JSFiddle div.block p.location {
+    font-size: 1em;
+    color: #555;
+    margin: 0
+}
+
+#JSFiddle div.block span.company {
+    color: #555;
+    font-weight: bold
+}
+
+#JSFiddle div.block p.title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0 0 .5em 0;
+    padding: .2em;
+    text-transform: uppercase;
+    border-bottom: .25em solid #bbb
+}
+
+#JSFiddle div.blocks {
+    margin-top: 1em
+}
+
+#JSFiddle div.block-inner {
+    margin-left: 2em
+}
+
+#JSFiddle table.wide {
+    width: 100%;
+    border-collapse: collapse
+}
+
+#JSFiddle td.left {
+    width: 65%;
+    vertical-align: top
+}
+
+#JSFiddle td.right {
+    width: 35%;
+    vertical-align: top;
+    text-align: right
+}
+{{pass}}
+
+
+
+{{if request.args(0)=='6':}}
+#JSFiddle div.block p {
+    line-height: 1.4em;
+    margin: 0 0 .6em
+}
+
+#JSFiddle div.block p.sub-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-where {
+    font-size: 1.1em;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-dates {
+    font-size: 1em;
+    color: #555;
+    margin: 0 0 .5em
+}
+
+#JSFiddle div.block p.person {
+    font-size: 4em;
+    margin-bottom: 0;
+    line-height: 1.2em;
+    margin-top: -.2em;
+}
+
+#JSFiddle div.block p.jobtitle {
+    font-size: 1.2em;
+    margin: 0
+}
+
+#JSFiddle div.block p.location {
+    font-size: 1em;
+    color: #555;
+    margin: 0
+}
+
+#JSFiddle div.block span.company {
+    color: #555;
+    font-weight: bold
+}
+
+#JSFiddle div.block p.title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0 0 .5em 0;
+    padding: 0 .5em .1em;
+    text-transform: uppercase;
+    background: #ddd;
+    border: 1px solid #ddd;
+    -moz-border-radius: 0 0 1.3em 0;
+    -webkit-border-radius: 0 0 1.3em 0;
+    border-radius: 0 0 1.3em 0;
+    border-bottom-right-radius: 1.3em
+}
+
+#JSFiddle div.blocks {
+    margin-top: 1em
+}
+
+#JSFiddle div.block-inner {
+    margin-left: 2em
+}
+
+#JSFiddle td.block-title {
+    width: 50%;
+    padding: 0;
+    border-top: .2em solid #ddd
+}
+
+#JSFiddle table.wide {
+    width: 100%;
+    border-collapse: collapse
+}
+
+#JSFiddle table.wide.title {
+    page-break-inside: avoid;
+    page-break-after: avoid
+}
+
+#JSFiddle td.left {
+    width: 65%;
+    vertical-align: top
+}
+
+#JSFiddle td.right {
+    width: 35%;
+    vertical-align: top;
+    text-align: right
+}
+{{pass}}
+
+
+
+{{if request.args(0)=='7':}}
+#JSFiddle div.block p {
+    line-height: 1.4em;
+    margin: .5em 0 .6em
+}
+
+#JSFiddle div.block p.sub-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-where {
+    font-size: 1.1em;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-dates {
+    font-size: 1em;
+    color: #555;
+    margin: 0 0 .5em
+}
+
+#JSFiddle div.block p.person {
+    font-size: 4em;
+    margin-bottom: 0;
+    line-height: 1.2em;
+    margin-top: -.2em;
+}
+
+#JSFiddle div.block p.jobtitle {
+    font-size: 1.2em;
+    margin: 0
+}
+
+#JSFiddle div.block p.location {
+    font-size: 1em;
+    color: #555;
+    margin: 0
+}
+
+#JSFiddle div.block span.company {
+    color: #555;
+    font-weight: bold
+}
+
+#JSFiddle div.block p.title {
+    font-size: 140%;
+    font-weight: bold;
+    margin: 0 0 .5em 0;
+    padding: .2em 0;
+    text-transform: uppercase
+}
+
+#JSFiddle div.blocks {
+    margin-top: 1em
+}
+
+#JSFiddle table.wide {
+    width: 100%;
+    border-collapse: collapse
+}
+
+#JSFiddle td.left {
+    width: 65%;
+    vertical-align: top
+}
+
+#JSFiddle td.right {
+    width: 35%;
+    vertical-align: top;
+    text-align: right
+}
+
+#JSFiddle td.left0 {
+    width: 35%;
+    vertical-align: top
+}
+
+#JSFiddle td.right0 {
+    width: 65%;
+    vertical-align: top
+}
+{{pass}}
+
+
+
+{{if request.args(0)=='8':}}
+#JSFiddle div.block p {
+    line-height: 1.4em;
+    margin: 0 0 .6em
+}
+
+#JSFiddle div.block p.sub-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-where {
+    font-size: 1.1em;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-dates {
+    font-size: 1em;
+    color: #555;
+    margin: 0 0 .5em
+}
+
+#JSFiddle div.block p.person {
+    font-size: 4em;
+    margin-bottom: 0;
+    line-height: 1.2em;
+    margin-top: -.2em;
+}
+
+#JSFiddle div.block p.jobtitle {
+    font-size: 1.2em;
+    margin: 0
+}
+
+#JSFiddle div.block p.location {
+    font-size: 1em;
+    color: #555;
+    margin: 0
+}
+
+#JSFiddle div.block span.company {
+    color: #555;
+    font-weight: bold
+}
+
+#JSFiddle div.block p.title {
+    font-size: 140%;
+    font-weight: bold;
+    margin: 0 0 .5em 0;
+    padding: .2em .5em;
+    text-transform: uppercase;
+    border-bottom: .4em solid #ddd
+}
+
+#JSFiddle div.blocks {
+    margin-top: 1em
+}
+
+#JSFiddle table.wide {
+    width: 100%;
+    border-collapse: collapse
+}
+
+#JSFiddle td.left {
+    width: 65%;
+    vertical-align: top
+}
+
+#JSFiddle td.right {
+    width: 35%;
+    vertical-align: top;
+    text-align: right
+}
+
+#JSFiddle td.left0 {
+    width: 35%;
+    vertical-align: top;
+    padding: 0
+}
+
+#JSFiddle td.right0 {
+    width: 65%;
+    vertical-align: top;
+    border-left: .5em solid #ddd;
+    padding-left: .8em
+}
+{{pass}}
+
+
+
+{{if request.args(0)=='9':}}
+#JSFiddle div.block p {
+    line-height: 1.4em;
+    margin: .5em 0 .6em
+}
+
+#JSFiddle div.block p.sub-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-where {
+    font-size: 1.1em;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-dates {
+    font-size: 1em;
+    color: #555;
+    margin: 0 0 .5em
+}
+
+#JSFiddle div.block p.person {
+    font-size: 4em;
+    margin-bottom: 0;
+    line-height: 1.2em;
+    margin-top: -.2em;
+}
+
+#JSFiddle div.block p.jobtitle {
+    font-size: 1.2em;
+    margin: 0
+}
+
+#JSFiddle div.block p.location {
+    font-size: 1em;
+    color: #555;
+    margin: 0
+}
+
+#JSFiddle div.block span.company {
+    color: #555;
+    font-weight: bold
+}
+
+#JSFiddle div.block p.title {
+    font-size: 140%;
+    font-weight: bold;
+    margin: 0 0 .5em 0;
+    padding: .2em .5em;
+    text-transform: uppercase;
+    background: #ddd
+}
+
+#JSFiddle div.blocks {
+    margin-top: 1em
+}
+
+#JSFiddle table.wide {
+    width: 100%;
+    border-collapse: collapse
+}
+
+#JSFiddle td.left {
+    width: 65%;
+    vertical-align: top
+}
+
+#JSFiddle td.right {
+    width: 35%;
+    vertical-align: top;
+    text-align: right
+}
+
+#JSFiddle td.left0 {
+    width: 35%;
+    vertical-align: top;
+    padding: 0
+}
+
+#JSFiddle td.right0 {
+    width: 65%;
+    vertical-align: top;
+    border-left: .5em solid #ddd;
+    padding-left: .8em
+}
+{{pass}}
+
+
+
+{{if request.args(0)=='10':}}
+#JSFiddle div.block p {
+    line-height: 1.4em;
+    margin: 0 0 .6em
+}
+
+#JSFiddle div.block p.sub-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-where {
+    font-size: 1.1em;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-dates {
+    font-size: 1em;
+    color: #555;
+    margin: 0 0 .5em
+}
+
+#JSFiddle div.block p.person {
+    font-size: 4em;
+    margin-bottom: 0;
+    line-height: 1.2em;
+    margin-top: -.2em;
+}
+
+#JSFiddle div.block p.jobtitle {
+    font-size: 1.2em;
+    margin: 0
+}
+
+#JSFiddle div.block p.location {
+    font-size: 1em;
+    color: #555;
+    margin: 0
+}
+
+#JSFiddle div.block span.company {
+    color: #555;
+    font-weight: bold
+}
+
+#JSFiddle div.block p.title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0 0 .5em 0;
+    padding: .1em .5em;
+    text-transform: uppercase;
+    background: #ddd;
+    border-left: .2em solid #999;
+    -moz-border-radius: .5em;
+    -webkit-border-radius: .5em;
+    border-radius: .5em;
+    border-top-left-radius: .5em;
+    border-top-right-radius: .5em;
+    border-bottom-right-radius: .5em;
+    border-bottom-left-radius: .5em
+}
+
+#JSFiddle div.blocks {
+    margin-top: 1em
+}
+
+#JSFiddle div.child {
+    border-bottom: .2em dotted #bbb;
+    padding-bottom: 1em
+}
+
+#JSFiddle div.last-child {
+    border-bottom: none;
+    padding-bottom: 0
+}
+
+#JSFiddle div.block-inner {
+    margin-left: 2em
+}
+
+#JSFiddle table.wide {
+    width: 100%;
+    border-collapse: collapse
+}
+
+#JSFiddle td.left {
+    width: 65%;
+    vertical-align: top
+}
+
+#JSFiddle td.right {
+    width: 35%;
+    vertical-align: top;
+    text-align: right
+}
+{{pass}}
+
+
+
+{{if request.args(0)=='11':}}
+#JSFiddle div.block p {
+    line-height: 1.4em;
+    margin: 0 0 .6em
+}
+
+#JSFiddle div.block p.sub-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-where {
+    font-size: 1.1em;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-dates {
+    font-size: 1em;
+    color: #555;
+    margin: 0 0 .5em
+}
+
+#JSFiddle div.block p.person {
+    font-size: 4em;
+    margin-bottom: 0;
+    line-height: 1.2em;
+    margin-top: -.2em;
+}
+
+#JSFiddle div.block p.jobtitle {
+    font-size: 1.2em;
+    margin: 0
+}
+
+#JSFiddle div.block p.location {
+    font-size: 1em;
+    color: #555;
+    margin: 0
+}
+
+#JSFiddle div.block span.company {
+    color: #555;
+    font-weight: bold
+}
+
+#JSFiddle div.block p.title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0 0 .5em 0;
+    padding: .1em .3em;
+    text-transform: uppercase;
+    border-top: .2em solid #bbb
+}
+
+#JSFiddle div.blocks {
+    margin-top: 1em
+}
+
+#JSFiddle div.child {
+    padding-left: 1.5em;
+    border-left: .2em dotted #bbb
+}
+
+#JSFiddle div.last-child {
+    padding-left: 1.5em;
+    border-left: .2em dotted #bbb
+}
+
+#JSFiddle div.circle {
+    border: .1px solid #659AD3;
+    background: #659AD3;
+    width: 1.2em;
+    height: 1.2em;
+    float: left;
+    margin-top: .3em;
+    margin-left: -2.2em;
+    -moz-border-radius: .6em;
+    -webkit-border-radius: .6em;
+    border-radius: .6em;
+    border-top-left-radius: .6em;
+    border-top-right-radius: .6em;
+    border-bottom-right-radius: .6em;
+    border-bottom-left-radius: .6em
+}
+
+#JSFiddle div.block-inner {
+    margin-left: 2em
+}
+
+#JSFiddle table.wide {
+    width: 100%;
+    border-collapse: collapse
+}
+
+#JSFiddle td.left {
+    width: 65%;
+    vertical-align: top
+}
+
+#JSFiddle td.right {
+    width: 35%;
+    vertical-align: top;
+    text-align: right
+}
+{{pass}}
+
+
+
+{{if request.args(0)=='12':}}
+#JSFiddle div.block p {
+    line-height: 1.4em;
+    margin: 0 0 .6em
+}
+
+#JSFiddle div.block p.sub-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-where {
+    font-size: 1.1em;
+    margin: 0
+}
+
+#JSFiddle div.block p.sub-dates {
+    font-size: 1em;
+    color: #555;
+    margin: 0 0 .5em
+}
+
+#JSFiddle div.block p.person {
+    font-size: 4em;
+    margin-bottom: 0;
+    line-height: 1.2em;
+    margin-top: -.2em;
+}
+
+#JSFiddle div.block p.jobtitle {
+    font-size: 1.2em;
+    margin: 0
+}
+
+#JSFiddle div.block p.location {
+    font-size: 1em;
+    color: #555;
+    margin: 0
+}
+
+#JSFiddle div.block span.company {
+    color: #555;
+    font-weight: bold
+}
+
+#JSFiddle div.block p.title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0 0 .5em 0;
+    padding: .1em .3em;
+    text-transform: uppercase;
+    background: #eee
+}
+
+#JSFiddle div.blocks {
+    margin-top: 1em
+}
+
+#JSFiddle div.block-inner {
+    margin-left: 2em
+}
+
+#JSFiddle td.sub-left {
+    width: 35%;
+    text-align: right;
+    vertical-align: top;
+    padding-right: 2em
+}
+
+#JSFiddle td.sub-right {
+    width: 65%;
+    padding: .3em 0;
+    vertical-align: top
+}
+
+#JSFiddle div.child {
+    border-bottom: .2em solid #bbb;
+    padding-bottom: .7em
+}
+
+#JSFiddle div.last-child {
+    border: none;
+    padding-bottom: 0
+}
+
+#JSFiddle table.wide {
+    width: 100%;
+    border-collapse: collapse
+}
+
+#JSFiddle td.left {
+    width: 65%;
+    vertical-align: top
+}
+
+#JSFiddle td.right {
+    width: 35%;
+    vertical-align: top;
+    text-align: right
+}
+{{pass}}
+</style>
+<div class="form" id="JSFiddle">
+    <table class="wide">
+        <tbody>
+            <tr>
+                <td class="left">
+                    <div class="block person" data-category="person" style="font-family: 'Roboto Condensed'; margin-bottom: 1em;">
+                        <p class="person nam1" id="nam">Your Name</p>
                     </div>
-                </div>
-            </div>
-            <div class="block" data-category="education" data-children="1" data-id="2" style="margin-bottom: 1em;">
-                <table class="wide title" cellspacing="0">
-                    <tbody>
-                        <tr>
-                            <td class="block-title">
-                                <p class="title" style="font-family: 'Roboto Condensed';">Education</p>
-                            </td>
-                            <td class="block-title"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="block-inner">
-                    <div class="last-child" data-id="2c0" data-category="education" style="margin-bottom: 1em;">
-                        <div class="html-content" class="edu1" id="ed1">(Optional) GPA, Awards, Honors</div>
+                </td>
+                <td class="right">
+                    <div class="block contact" data-category="contact" style="margin-bottom: 1em;">
+                        <div class="html-content e1" id="emai">your.name@example.com</div>
                         <br>
-                        <div class="html-content">Your GPA -<b><span class="html-content" class="edu2" id="ed2">10.0</span></b></div>
+                        <span class="html-content ph1" id="ph">111-222-3333</span>
                     </div>
-                </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="blocks">
+        <div class="block" data-category="text" data-children="" data-id="0" style="margin-bottom: 1em;">
+            <table class="wide title" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td class="block-title">
+                            <p class="title" style="font-family: 'Roboto Condensed';">Summary</p>
+                        </td>
+                        <td class="block-title"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="block-inner">
+                <div class="html-content sum1" id="su1">List here your top selling points, including your most relevant strengths, skills and core competencies.</div>
             </div>
-            <div class="block" data-category="text" data-children="" data-id="3" style="margin-bottom: 1em;">
-                <table class="wide title" cellspacing="0">
-                    <tbody>
-                        <tr>
-                            <td class="block-title">
-                                <p class="title" style="font-family: 'Roboto Condensed';">Additional Information</p>
-                            </td>
-                            <td class="block-title"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="block-inner">
-                    <div class="html-content"class="add1" id="ad1">Include other relevant information that employers should know about. This may include activities, experiences and interests that you have that relate to the position you are trying to get.</div>
+        </div>
+        <div class="block" data-category="experience" data-children="2" data-id="1" style="margin-bottom: 1em;">
+            <table class="wide title" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td class="block-title">
+                            <p class="title" style="font-family: 'Roboto Condensed';">Work Experience</p>
+                        </td>
+                        <td class="block-title"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="block-inner">
+                <div class="child" data-id="1c0" data-category="experience" style="margin-bottom: 1em;">
+                    <div class="html-content work1" id="wo1">Describe your job responsibilities, accomplishments and technologies you have used. It is highly recommended that you use bullet points to describe your experience.</div>
+                    <br>
+                    <div class="html-content"><b>Skill Set -</b><span class="html-content work2" id="wo2">Mention your skills -- programming , sports , etc..</span></div>
                 </div>
             </div>
         </div>
+        <div class="block" data-category="education" data-children="1" data-id="2" style="margin-bottom: 1em;">
+            <table class="wide title" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td class="block-title">
+                            <p class="title" style="font-family: 'Roboto Condensed';">Education</p>
+                        </td>
+                        <td class="block-title"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="block-inner">
+                <div class="last-child" data-id="2c0" data-category="education" style="margin-bottom: 1em;">
+                    <div class="html-content edu1" id="ed1">(Optional) GPA, Awards, Honors</div>
+                    <br>
+                    <div class="html-content">Your GPA -<b><span class="html-content edu2" id="ed2">10.0</span></b></div>
+                </div>
+            </div>
+        </div>
+        <div class="block" data-category="text" data-children="" data-id="3" style="margin-bottom: 1em;">
+            <table class="wide title" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td class="block-title">
+                            <p class="title" style="font-family: 'Roboto Condensed';">Additional Information</p>
+                        </td>
+                        <td class="block-title"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="block-inner">
+                <div class="html-content add1" id="ad1">Include other relevant information that employers should know about. This may include activities, experiences and interests that you have that relate to the position you are trying to get.</div>
+            </div>
+        </div>
     </div>
-
-   
-    <div class="formname">
-        <form id="formname" class="panel">
-        <input name='name' id="chname" type="text" onkeyup=changes("chname","nam")>
-                <a href="#">back</a><br>
-            </form>
-    </div>
-      <div class="formemail">
-        <form id="formemail" class="panel">
-        <input name='email' id="chemail" type="text" onkeyup=changes("chemail","emai")>
-            <a href="#">back</a>
-    </form>
-    </div>
-      <div class="formph">
-        <form id="formph" class="panel">
-        <input name='phone' id="cheph" type="text" onkeyup=changes("cheph","ph")>
-            <a href="#">back</a>
-    </form>
-    </div>
-         <div class="formsumm">
-         <form id="formsumm" class="panel">
-             <textarea name='summ' id="chesumm" type="text" onkeyup=changes("chesumm","su1")></textarea>
-             <a href="#">back</a>
-    </form>
-    </div>
-         <div class="formwo">
-         <form id="formwo" class="panel">
-             <textarea name="works" id="chewo" type="text" onkeyup=changes("chewo","wo1")></textarea>
-             <a href="#">back</a>
-    </form>
-    </div>
-           <div class="formwo2">
-         <form id="formwo2" class="panel">
-             <textarea name="works2" id="chewo2" type="text" onkeyup=changes("chewo2","wo2")></textarea>
-             <a href="#">back</a>
-               </form>
 </div>
-         <div class="formed">
-     <form id="formed" class="panel">
-             <textarea name="edu" id="cheed" type="text" onkeyup=changes("cheed","ed1")></textarea>
-         <a href="#">back</a>
-    </form>
-    </div>
-         <div class="formad">
-      <form id="formad" class="panel">
-             <textarea name="addinfo" id="chead" type="text" onkeyup=changes("chead","ad1")></textarea>
-          <a href="#">back</a>
-    </form>
-                      <div class="formed2">
-      <form id="formed2" class="panel">
-             <textarea name="edu2" id="cheed2" type="text" onkeyup=changes("cheed2","ed2")></textarea>
-          <a href="#">back</a>
-          
-    </form>
-    </div>
-<a href="#formname">My Name</a></li>
-<a href="#formemail">My Email</a></li>
-<a href="#formph">My Phone</a></li>
-<a href="#formsumm">My Summary</a></li>
-<a href="#formwo">My Work</a></li>
-<a href="#formwo2">My Skills</a></li>
-<a href="#formed">My Education</a></li>
-<a href="#formad">My Additional Info</a></li>
-<a href="#formed2">My GPA</a></li>
-  <button id="sav" onclick="myFunction();">Save</button><br>
 
-       <script>
-           document.getElementById('cheph').value=document.getElementById('ph').innerHTML;
-           document.getElementById('chname').value=document.getElementById('nam').innerHTML;
-           document.getElementById('chemail').value=document.getElementById('emai').innerHTML;
-           document.getElementById('chesumm').value=document.getElementById('su1').innerHTML;
-           document.getElementById('chewo').value=document.getElementById('wo1').innerHTML;
-           document.getElementById('chewo2').value=document.getElementById('wo2').innerHTML;
-           document.getElementById('cheed').value=document.getElementById('ed1').innerHTML;
-           document.getElementById('chead').value=document.getElementById('ad1').innerHTML;
-           document.getElementById('cheed2').value=document.getElementById('ed2').innerHTML;
-           function changes(str1, str2)
-           {
-               var a = document.getElementById(str1).value;
-               if (a)
-               {
-                   document.getElementById(str2).innerHTML=a;
-               }
-               else 
-               {
-                    document.getElementById(str2).innerHTML="Not Provided";
-               }
-           }
-       </script>
-    <style>
-.panel {  
-    padding-top: 5vh;
-    font-size: 3vh;
-    position: absolute;
-    top: 5vh;
-    background-color: aqua;
-    height: 80vh;
-    width: 90vw;
-    margin-left: -150%;
-    -webkit-transition: all .8s ease-in-out;
-    -moz-transition: all .8s ease-in-out;
-    -o-transition: all .8s ease-in-out;
-    transition: all .8s ease-in-out;
-}
-.panel:target {
-    margin-left: 0;
-}
-    </style>
+
+<div class="formname">
+    <form id="formname" class="panel">
+        <input name='name' id="chname" type="text" onkeyup=changes("chname","nam")>
+        <a href="#">back</a>
+        <br>
+    </form>
+</div>
+<div class="formemail">
+    <form id="formemail" class="panel">
+        <input name='email' id="chemail" type="text" onkeyup=changes("chemail","emai")>
+        <a href="#">back</a>
+    </form>
+</div>
+<div class="formph">
+    <form id="formph" class="panel">
+        <input name='phone' id="cheph" type="text" onkeyup=changes("cheph","ph")>
+        <a href="#">back</a>
+    </form>
+</div>
+<div class="formsumm">
+    <form id="formsumm" class="panel">
+        <textarea name='summ' id="chesumm" type="text" onkeyup=changes("chesumm","su1")></textarea>
+        <a href="#">back</a>
+    </form>
+</div>
+<div class="formwo">
+    <form id="formwo" class="panel">
+        <textarea name="works" id="chewo" type="text" onkeyup=changes("chewo","wo1")></textarea>
+        <a href="#">back</a>
+    </form>
+</div>
+<div class="formwo2">
+    <form id="formwo2" class="panel">
+        <textarea name="works2" id="chewo2" type="text" onkeyup=changes("chewo2","wo2")></textarea>
+        <a href="#">back</a>
+    </form>
+</div>
+<div class="formed">
+    <form id="formed" class="panel">
+        <textarea name="edu" id="cheed" type="text" onkeyup=changes("cheed","ed1")></textarea>
+        <a href="#">back</a>
+    </form>
+</div>
+<div class="formad">
+    <form id="formad" class="panel">
+        <textarea name="addinfo" id="chead" type="text" onkeyup=changes("chead","ad1")></textarea>
+        <a href="#">back</a>
+    </form>
+</div>
+<div class="formed2">
+    <form id="formed2" class="panel">
+        <textarea name="edu2" id="cheed2" type="text" onkeyup=changes("cheed2","ed2")></textarea>
+        <a href="#">back</a>
+
+    </form>
+</div>
+<a href="#formname">My Name</a>
+<a href="#formemail">My Email</a>
+<a href="#formph">My Phone</a>
+<a href="#formsumm">My Summary</a>
+<a href="#formwo">My Work</a>
+<a href="#formwo2">My Skills</a>
+<a href="#formed">My Education</a>
+<a href="#formad">My Additional Info</a>
+<a href="#formed2">My GPA</a>
+<button id="sav" onclick="myFunction();">Save</button>
+<br>
+
+<script>
+    document.getElementById('cheph').value = document.getElementById('ph').innerHTML;
+    document.getElementById('chname').value = document.getElementById('nam').innerHTML;
+    document.getElementById('chemail').value = document.getElementById('emai').innerHTML;
+    document.getElementById('chesumm').value = document.getElementById('su1').innerHTML;
+    document.getElementById('chewo').value = document.getElementById('wo1').innerHTML;
+    document.getElementById('chewo2').value = document.getElementById('wo2').innerHTML;
+    document.getElementById('cheed').value = document.getElementById('ed1').innerHTML;
+    document.getElementById('chead').value = document.getElementById('ad1').innerHTML;
+    document.getElementById('cheed2').value = document.getElementById('ed2').innerHTML;
+
+    function changes(str1, str2) {
+        var a = document.getElementById(str1).value;
+        if (a) {
+            document.getElementById(str2).innerHTML = a;
+        } else {
+            document.getElementById(str2).innerHTML = "Not Provided";
+        }
+    }
+</script>
+<style>
+    .panel {
+        padding-top: 5vh;
+        font-size: 3vh;
+        position: absolute;
+        top: 5vh;
+        background-color: aqua;
+        height: 80vh;
+        width: 90vw;
+        margin-left: -150%;
+        -webkit-transition: all .8s ease-in-out;
+        -moz-transition: all .8s ease-in-out;
+        -o-transition: all .8s ease-in-out;
+        transition: all .8s ease-in-out;
+    }
+
+    .panel:target {
+        margin-left: 0;
+    }
+</style>
 
 <script type="text/javascript">
-  function myFunction()
-  {
-        ajax('{{=URL('default', 'my_action')}}', ['name','addinfo','works','edu','summ','email','works2','phone','edu2'],'target');
-  }
+    function myFunction() {
+        ajax('{{=URL('default', 'my_action')}}', ['name', 'addinfo', 'works', 'edu', 'summ', 'email', 'works2', 'phone', 'edu2'], 'target');
+    }
 </script>
 
 <div id="target"></div>
 
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>	    
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="http://www.cloudformatter.com/Resources/Pages/CSS2Pdf/Script/xepOnline.jqPlugin.js"></script>
 <div id="buttons">
     <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>

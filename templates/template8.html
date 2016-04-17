@@ -1,102 +1,111 @@
-<style>
-    #JSFiddle div.block p {
-        line-height: 1.4em;
-        margin: 0 0 .6em
-    }
+<div class="form" id="JSFiddle">
+    <style>
+        #JSFiddle div.block p {
+            line-height: 1.4em;
+            margin: 0 0 .6em
+        }
 
-    #JSFiddle div.block p.sub-title {
-        font-size: 1.2em;
-        font-weight: bold;
-        margin: 0
-    }
+        #JSFiddle div.block p.sub-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 0
+        }
 
-    #JSFiddle div.block p.sub-where {
-        font-size: 1.1em;
-        margin: 0
-    }
+        #JSFiddle div.block p.sub-where {
+            font-size: 1.1em;
+            margin: 0
+        }
 
-    #JSFiddle div.block p.sub-dates {
-        font-size: 1em;
-        color: #555;
-        margin: 0 0 .5em
-    }
+        #JSFiddle div.block p.sub-dates {
+            font-size: 1em;
+            color: #555;
+            margin: 0 0 .5em
+        }
 
-    #JSFiddle div.block p.person {
-        font-size: 4em;
-        margin-bottom: 0;
-        line-height: 1.2em;
-        margin-top: -.2em;
-    }
+        #JSFiddle div.block p.person {
+            font-size: 4em;
+            margin-bottom: 0;
+            line-height: 1.2em;
+            margin-top: -.2em;
+        }
 
-    #JSFiddle div.block p.jobtitle {
-        font-size: 1.2em;
-        margin: 0
-    }
+        #JSFiddle div.block p.jobtitle {
+            font-size: 1.2em;
+            margin: 0
+        }
 
-    #JSFiddle div.block p.location {
-        font-size: 1em;
-        color: #555;
-        margin: 0
-    }
+        #JSFiddle div.block p.location {
+            font-size: 1em;
+            color: #555;
+            margin: 0
+        }
 
-    #JSFiddle div.block span.company {
-        color: #555;
-        font-weight: bold
-    }
+        #JSFiddle div.block span.company {
+            color: #555;
+            font-weight: bold
+        }
 
-    #JSFiddle div.block p.title {
-        font-size: 1.3em;
-        font-weight: bold;
-        margin: 0 0 .5em 0;
-        padding: .2em;
-        text-transform: uppercase;
-        border-top: .2em dotted #aaa
-    }
+        #JSFiddle div.block p.title {
+            font-size: 140%;
+            font-weight: bold;
+            margin: 0 0 .5em 0;
+            padding: .2em .5em;
+            text-transform: uppercase;
+            border-bottom: .4em solid #ddd
+        }
 
-    #JSFiddle div.blocks {
-        margin-top: 1em
-    }
+        #JSFiddle div.blocks {
+            margin-top: 1em
+        }
 
-    #JSFiddle div.block-inner {
-        margin-left: 2em
-    }
+        #JSFiddle table.wide {
+            width: 100%;
+            border-collapse: collapse
+        }
 
-    #JSFiddle table.wide {
-        width: 100%;
-        border-collapse: collapse
-    }
+        #JSFiddle td.left {
+            width: 65%;
+            vertical-align: top
+        }
 
-    #JSFiddle td.left {
-        width: 65%;
-        vertical-align: top
-    }
+        #JSFiddle td.right {
+            width: 35%;
+            vertical-align: top;
+            text-align: right
+        }
 
-    #JSFiddle td.right {
-        width: 35%;
-        vertical-align: top;
-        text-align: right
-    }
-</style>
-<div id="JSFiddle" class="form">
+        #JSFiddle td.left0 {
+            width: 35%;
+            vertical-align: top;
+            padding: 0
+        }
+
+        #JSFiddle td.right0 {
+            width: 65%;
+            vertical-align: top;
+            border-left: .5em solid #ddd;
+            padding-left: .8em
+        }
+    </style>
     <table class="wide">
         <tbody>
             <tr>
                 <td class="left">
-                    <div class="block person" data-category="person" style="font-family: 'Roboto Condensed'; margin-bottom: 1em;">
-                        <div id="section-toolbar" class="section-toolbar" style="display: none; width: 433px; margin-top: -22.4px; margin-right: 234px; right: 0px; left: 1px;">
-                            <button class="btn btn-mini btn-default edit">Edit</button>
-                            <button class="btn btn-mini btn-default rename" style="display: none;">Edit Title</button>
-                            <button class="btn btn-mini btn-default add-new" style="display: none;">Add Subsection</button>
-                            <button class="btn btn-mini btn-default move-section" style="display: none;">Move</button>
-                            <button class="btn btn-mini btn-default delete" style="display: none;"><i class="icon-remove"></i></button>
+                    <div style="font-family: Roboto Condensed; margin-bottom: 1em;" class="block person" data-category="person">
+                        <div style="display: none; width: 433px; margin-top: -22.4px; margin-right: 234px; right: 0px; left: 1px;" id="section-toolbar" class="section-toolbar">
+                            <button style="display: inline-block;" class="btn btn-mini btn-default edit">Edit</button>
+                            <button style="display: none;" class="btn btn-mini btn-default rename">Edit Title</button>
+                            <button style="display: none;" class="btn btn-mini btn-default add-new">Add Subsection</button>
+                            <button style="display: none;" class="btn btn-mini btn-default move-section">Move</button>
+                            <button style="display: none;" class="btn btn-mini btn-default delete"><i class="icon-remove"></i></button>
                         </div>
-                        <p class="person">dc sa</p>
-                        <p class="jobtitle">ew</p>
-                        <p class="location">qwqwqw</p>
+                        <p class="person">Your Name</p>
+                        <p class="jobtitle">Recent Job</p>
+                        <p class="location">Location</p>
                     </div>
                 </td>
                 <td class="right">
-                    <div class="block contact" data-category="contact" style="margin-bottom: 1em;">
+                    <div style="margin-bottom: 1em;" class="block contact" data-category="contact">
                         <div class="html-content">your.name@example.com
                             <br>111-222-3333
                             <br>www.your-website.com</div>
@@ -106,45 +115,85 @@
         </tbody>
     </table>
     <div class="blocks">
-        <div class="block" data-category="text" data-children="" data-id="0" style="margin-bottom: 1em;">
-            <p class="title" style="font-family: 'Roboto Condensed';">Summary</p>
-            <div class="block-inner">
-                <div class="html-content">List here your top selling points, including your most relevant strengths, skills and core competencies.</div>
-            </div>
+        <div style="margin-bottom: 1em;" class="block" data-category="text" data-children="" data-id="0">
+            <table class="wide">
+                <tbody>
+                    <tr>
+                        <td class="left0">
+                            <p style="font-family: Roboto Condensed;" class="title">Summary</p>
+                        </td>
+                        <td class="right0">
+                            <div class="block-inner">
+                                <div class="html-content">List here your top selling points, including your most relevant strengths, skills and core competencies.</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="block" data-category="experience" data-children="2" data-id="1" style="margin-bottom: 1em;">
-            <p class="title" style="font-family: 'Roboto Condensed';">Work Experience</p>
-            <div class="block-inner">
-                <div class="child" data-id="1c0" data-category="experience" style="margin-bottom: 1em;">
-                    <p class="sub-title" style="font-family: 'Roboto Condensed';">Job Title</p>
-                    <p class="sub-where"><span class="company">Company Name</span>, Location</p>
-                    <p class="sub-dates">Jan 2013 – Dec 2013</p>
-                    <div class="html-content">Describe your job responsibilities, accomplishments and technologies you have used. It is highly recommended that you use bullet points to describe your experience.</div>
-                </div>
-                <div class="last-child" data-id="1c1" data-category="experience" style="margin-bottom: 1em;">
-                    <p class="sub-title" style="font-family: 'Roboto Condensed';">Job Title</p>
-                    <p class="sub-where"><span class="company">Company Name</span>, Location</p>
-                    <p class="sub-dates">Jan 2014 – Dec 2014</p>
-                    <div class="html-content">Describe your job responsibilities, accomplishments and technologies you have used. It is highly recommended that you use bullet points to describe your experience.</div>
-                </div>
-            </div>
+        <div style="margin-bottom: 1em;" class="block" data-category="experience" data-children="2" data-id="1">
+            <table class="wide">
+                <tbody>
+                    <tr>
+                        <td class="left0">
+                            <p style="font-family: Roboto Condensed;" class="title">Work Experience</p>
+                        </td>
+                        <td class="right0">
+                            <div class="block-inner">
+                                <div style="margin-bottom: 1em;" class="child" data-id="1c0" data-category="experience">
+                                    <p style="font-family: Roboto Condensed;" class="sub-title">Job Title</p>
+                                    <p class="sub-where"><span class="company">Company Name</span>, Location</p>
+                                    <p class="sub-dates">Jan 2013 – Dec 2013</p>
+                                    <div class="html-content">Describe your job responsibilities, accomplishments and technologies you have used. It is highly recommended that you use bullet points to describe your experience.</div>
+                                </div>
+                                <div style="margin-bottom: 1em;" class="last-child" data-id="1c1" data-category="experience">
+                                    <p style="font-family: Roboto Condensed;" class="sub-title">Job Title</p>
+                                    <p class="sub-where"><span class="company">Company Name</span>, Location</p>
+                                    <p class="sub-dates">Jan 2014 – Dec 2014</p>
+                                    <div class="html-content">Describe your job responsibilities, accomplishments and technologies you have used. It is highly recommended that you use bullet points to describe your experience.</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="block" data-category="education" data-children="1" data-id="2" style="margin-bottom: 1em;">
-            <p class="title" style="font-family: 'Roboto Condensed';">Education</p>
-            <div class="block-inner">
-                <div class="last-child" data-id="2c0" data-category="education" style="margin-bottom: 1em;">
-                    <p class="sub-title" style="font-family: 'Roboto Condensed';">Degree</p>
-                    <p class="sub-where">School Name, Location</p>
-                    <p class="sub-dates">2013 – 2013</p>
-                    <div class="html-content">(Optional) GPA, Awards, Honors</div>
-                </div>
-            </div>
+        <div style="margin-bottom: 1em;" class="block" data-category="education" data-children="1" data-id="2">
+            <table class="wide">
+                <tbody>
+                    <tr>
+                        <td class="left0">
+                            <p style="font-family: Roboto Condensed;" class="title">Education</p>
+                        </td>
+                        <td class="right0">
+                            <div class="block-inner">
+                                <div style="margin-bottom: 1em;" class="last-child" data-id="2c0" data-category="education">
+                                    <p style="font-family: Roboto Condensed;" class="sub-title">Degree</p>
+                                    <p class="sub-where">School Name, Location</p>
+                                    <p class="sub-dates">2013 – 2013</p>
+                                    <div class="html-content">(Optional) GPA, Awards, Honors</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="block" data-category="text" data-children="" data-id="3" style="margin-bottom: 1em;">
-            <p class="title" style="font-family: 'Roboto Condensed';">Additional Information</p>
-            <div class="block-inner">
-                <div class="html-content">Include other relevant information that employers should know about. This may include activities, experiences and interests that you have that relate to the position you are trying to get.</div>
-            </div>
+        <div style="margin-bottom: 1em;" class="block" data-category="text" data-children="" data-id="3">
+            <table class="wide">
+                <tbody>
+                    <tr>
+                        <td class="left0">
+                            <p style="font-family: Roboto Condensed;" class="title">Additional Information</p>
+                        </td>
+                        <td class="right0">
+                            <div class="block-inner">
+                                <div class="html-content">Include other relevant information that employers should know about. This may include activities, experiences and interests that you have that relate to the position you are trying to get.</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

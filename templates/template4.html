@@ -1,91 +1,91 @@
-<style>
-    #JSFiddle div.block p {
-        line-height: 1.4em;
-        margin: 0 0 .6em
-    }
-
-    #JSFiddle div.block p.sub-title {
-        font-size: 1.2em;
-        font-weight: bold;
-        margin: 0
-    }
-
-    #JSFiddle div.block p.sub-where {
-        font-size: 1.1em;
-        margin: 0
-    }
-
-    #JSFiddle div.block p.sub-dates {
-        font-size: 1em;
-        color: #555;
-        margin: 0 0 .5em
-    }
-
-    #JSFiddle div.block p.person {
-        font-size: 4em;
-        margin-bottom: 0;
-        line-height: 1.2em;
-        margin-top: -.2em;
-    }
-
-    #JSFiddle div.block p.jobtitle {
-        font-size: 1.2em;
-        margin: 0
-    }
-
-    #JSFiddle div.block p.location {
-        font-size: 1em;
-        color: #555;
-        margin: 0
-    }
-
-    #JSFiddle div.block span.company {
-        color: #555;
-        font-weight: bold
-    }
-
-    #JSFiddle div.block p.title {
-        font-size: 1.3em;
-        font-weight: bold;
-        margin: 0 0 .5em 0;
-        padding: .2em;
-        text-transform: uppercase;
-        border-top: .2em dotted #aaa
-    }
-
-    #JSFiddle div.blocks {
-        margin-top: 1em
-    }
-
-    #JSFiddle div.block-inner {
-        margin-left: 2em
-    }
-
-    #JSFiddle table.wide {
-        width: 100%;
-        border-collapse: collapse
-    }
-
-    #JSFiddle td.left {
-        width: 65%;
-        vertical-align: top
-    }
-
-    #JSFiddle td.right {
-        width: 35%;
-        vertical-align: top;
-        text-align: right
-    }
-</style>
 <div id="JSFiddle" class="form">
+    <style>
+        #JSFiddle div.block p {
+            line-height: 1.4em;
+            margin: 0 0 .6em
+        }
+
+        #JSFiddle div.block p.sub-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 0
+        }
+
+        #JSFiddle div.block p.sub-where {
+            font-size: 1.1em;
+            margin: 0
+        }
+
+        #JSFiddle div.block p.sub-dates {
+            font-size: 1em;
+            color: #555;
+            margin: 0 0 .5em
+        }
+
+        #JSFiddle div.block p.person {
+            font-size: 4em;
+            margin-bottom: 0;
+            line-height: 1.2em;
+            margin-top: -.2em;
+        }
+
+        #JSFiddle div.block p.jobtitle {
+            font-size: 1.2em;
+            margin: 0
+        }
+
+        #JSFiddle div.block p.location {
+            font-size: 1em;
+            color: #555;
+            margin: 0
+        }
+
+        #JSFiddle div.block span.company {
+            color: #555;
+            font-weight: bold
+        }
+
+        #JSFiddle div.block p.title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 0 0 .5em 0;
+            padding: .2em;
+            text-transform: uppercase;
+            border-top: .2em dotted #aaa
+        }
+
+        #JSFiddle div.blocks {
+            margin-top: 1em
+        }
+
+        #JSFiddle div.block-inner {
+            margin-left: 2em
+        }
+
+        #JSFiddle table.wide {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        #JSFiddle td.left {
+            width: 65%;
+            vertical-align: top
+        }
+
+        #JSFiddle td.right {
+            width: 35%;
+            vertical-align: top;
+            text-align: right
+        }
+    </style>
     <table class="wide">
         <tbody>
             <tr>
                 <td class="left">
                     <div class="block person" data-category="person" style="font-family: 'Roboto Condensed'; margin-bottom: 1em;">
-                        <p class="person">dc sa</p>
-                        <p class="jobtitle">ew</p>
-                        <p class="location">qwqwqw</p>
+                        <p class="person">Your Name</p>
+                        <p class="jobtitle">Job</p>
+                        <p class="location">Location</p>
                     </div>
                 </td>
                 <td class="right">
@@ -100,19 +100,19 @@
     </table>
     <div class="blocks">
         <div class="block" data-category="text" data-children="" data-id="0" style="margin-bottom: 1em;">
+            <div id="section-toolbar" class="section-toolbar" style="display: none; width: 674px; margin-top: -21.7px; margin-right: -6px; right: 0px; left: 0px;">
+                <button class="btn btn-mini btn-default edit" style="display: inline-block;">Edit</button>
+                <button class="btn btn-mini btn-default rename" style="display: none;">Edit Title</button>
+                <button class="btn btn-mini btn-default add-new" style="display: none;">Add Subsection</button>
+                <button class="btn btn-mini btn-default move-section" style="display: inline-block;">Move</button>
+                <button class="btn btn-mini btn-default delete" style="display: inline-block;"><i class="icon-remove"></i></button>
+            </div>
             <p class="title" style="font-family: 'Roboto Condensed';">Summary</p>
             <div class="block-inner">
                 <div class="html-content">List here your top selling points, including your most relevant strengths, skills and core competencies.</div>
             </div>
         </div>
         <div class="block" data-category="experience" data-children="2" data-id="1" style="margin-bottom: 1em;">
-            <div id="section-toolbar" class="section-toolbar" style="display: none; width: 674px; margin-top: -22.4px; margin-right: -6px; right: 0px; left: 0px;">
-                <button class="btn btn-mini btn-default edit" style="display: none;">Edit</button>
-                <button class="btn btn-mini btn-default rename" style="display: inline-block;">Edit Title</button>
-                <button class="btn btn-mini btn-default add-new" style="display: inline-block;">Add Subsection</button>
-                <button class="btn btn-mini btn-default move-section" style="display: inline-block;">Move</button>
-                <button class="btn btn-mini btn-default delete" style="display: inline-block;"><i class="icon-remove"></i></button>
-            </div>
             <p class="title" style="font-family: 'Roboto Condensed';">Work Experience</p>
             <div class="block-inner">
                 <div class="child" data-id="1c0" data-category="experience" style="margin-bottom: 1em;">
