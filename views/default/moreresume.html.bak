@@ -1,0 +1,43 @@
+{{extend 'layout.html'}}
+<h1>This is the default/moreresume.html template</h1>
+
+<table>
+        <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Summary</th>
+        <th>Works</th>
+        <th>Education</th>
+        <th>Add Info</th>
+    </tr>
+    {{for i in f:}}
+    <tr>
+        <td>{{=i.name}}</td>
+        <td>{{=i.email}}</td>
+        <td>{{=i.summary}}</td>
+        <td>{{=i.works}}</td>
+        <td>{{=i.education}}</td>
+        <td>{{=i.addinfo}}</td>
+    </tr>
+     {{more=i.id}}
+    <tr><td>{{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-default")}}</td></tr>
+    {{pass}}
+</table>
+<br>
+{{ if commenta:}}
+<h3>Comments</h3>
+<br>
+{{ for i in commenta:}}
+    <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> :
+  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id]))}} {{pass}}<br> 
+{{pass}}
+{{pass}}
+<br>
+<h3>Post A Comment: </h3>
+{{=form}}
+<div id="change" style="visibility:hidden"></div>
+<style>
+    table,td,th,tr{
+        padding:15px;
+    }
+</style>

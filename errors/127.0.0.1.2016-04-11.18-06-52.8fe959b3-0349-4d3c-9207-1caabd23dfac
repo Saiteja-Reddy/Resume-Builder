@@ -1,0 +1,798 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.NameError'> name 'COUNTRIES' is not defined"
+p3
+sS'layer'
+p4
+S'/home/saiteja/Desktop/web2py/applications/resume/models/db.py'
+p5
+sS'code'
+p6
+S'# -*- coding: utf-8 -*-\n\n#########################################################################\n## This scaffolding model makes your app work on Google App Engine too\n## File is released under public domain and you can use without limitations\n#########################################################################\n\n## if SSL/HTTPS is properly configured and you want all HTTP requests to\n## be redirected to HTTPS, uncomment the line below:\n# request.requires_https()\n## app configuration made easy. Look inside private/appconfig.ini\nfrom gluon.contrib.appconfig import AppConfig\n## once in production, remove reload=True to gain full speed\nmyconf = AppConfig(reload=True)\n\n\nif not request.env.web2py_runtime_gae:\n    ## if NOT running on Google App Engine use SQLite or other DB\n    db = DAL(myconf.take(\'db.uri\'), pool_size=myconf.take(\'db.pool_size\', cast=int), check_reserved=[\'all\'])\nelse:\n    ## connect to Google BigTable (optional \'google:datastore://namespace\')\n    db = DAL(\'google:datastore+ndb\')\n    ## store sessions and tickets there\n    session.connect(request, response, db=db)\n    ## or store session in Memcache, Redis, etc.\n    ## from gluon.contrib.memdb import MEMDB\n    ## from google.appengine.api.memcache import Client\n    ## session.connect(request, response, db = MEMDB(Client()))\n\n## by default give a view/generic.extension to all actions from localhost\n## none otherwise. a pattern can be \'controller/function.extension\'\nresponse.generic_patterns = [\'*\'] if request.is_local else []\n## choose a style for forms\nresponse.formstyle = myconf.take(\'forms.formstyle\')  # or \'bootstrap3_stacked\' or \'bootstrap2\' or other\nresponse.form_label_separator = myconf.take(\'forms.separator\')\n\n\n## (optional) optimize handling of static files\n# response.optimize_css = \'concat,minify,inline\'\n# response.optimize_js = \'concat,minify,inline\'\n## (optional) static assets folder versioning\n# response.static_version = \'0.0.0\'\n#########################################################################\n## Here is sample code if you need for\n## - email capabilities\n## - authentication (registration, login, logout, ... )\n## - authorization (role based authorization)\n## - services (xml, csv, json, xmlrpc, jsonrpc, amf, rss)\n## - old style crud actions\n## (more options discussed in gluon/tools.py)\n#########################################################################\n\nfrom gluon.tools import Auth, Service, PluginManager\n\nauth = Auth(db)\nservice = Service()\nplugins = PluginManager()\n\n## create all tables needed by auth if not custom tables\nGENDER=(\'Male\',\'Female\',\'Others\')\n\nauth.settings.extra_fields[\'auth_user\']= [  Field(\'Account_Type\',\'list:string\',requires=IS_IN_SET(GENDER)) , Field(\'gender\',\'list:string\',requires=IS_IN_SET(GENDER)) ,Field("Date_of_Birth",\'date\') , Field("Contact_Number",\'string\',length=10) , Field("Profile_Photo",\'upload\') , Field("Nationality",\'list:string\',requires=IS_IN_SET(COUNTRIES))]\n\nauth.define_tables(username=False, signature=False)\n\n## configure email\nmail = auth.settings.mailer\nmail.settings.server = \'logging\' if request.is_local else myconf.take(\'smtp.server\')\nmail.settings.sender = myconf.take(\'smtp.sender\')\nmail.settings.login = myconf.take(\'smtp.login\')\n\n## configure auth policy\nauth.settings.registration_requires_verification = False\nauth.settings.registration_requires_approval = False\nauth.settings.reset_password_requires_verification = True\n\n#########################################################################\n## Define your tables below (or better in another model file) for example\n##\n## >>> db.define_table(\'mytable\',Field(\'myfield\',\'string\'))\n##\n## Fields can be \'string\',\'text\',\'password\',\'integer\',\'double\',\'boolean\'\n##       \'date\',\'time\',\'datetime\',\'blob\',\'upload\', \'reference TABLENAME\'\n## There is an implicit \'id integer autoincrement\' field\n## Consult manual for more options, validators, etc.\n##\n## More API examples for controllers:\n##\n## >>> db.mytable.insert(myfield=\'value\')\n## >>> rows=db(db.mytable.myfield==\'value\').select(db.mytable.ALL)\n## >>> for row in rows: print row.id, row.myfield\n#########################################################################\n\n## after defining tables, uncomment below to enable auditing\n# auth.enable_record_versioning(db)\n\ndb.define_table(\'namess\',Field(\'name\',\'string\'),Field(\'email\',\'string\'),Field(\'summary\',\'text\'),Field(\'works\',\'text\'),Field(\'education\',\'text\'),Field(\'addinfo\',\'text\'),Field(\'uploadedby\',\'integer\'));\n\ndb.define_table(\'mark\',Field(\'resumeid\',\'integer\'),Field(\'userid\',\'integer\'));\n\ndb.define_table(\'comments\',Field(\'body\',\'text\'),Field(\'userid\',\'integer\'),Field(\'resumeid\',\'integer\'))\n\n\n\nCOUNTRIES=(\'United States\', \'Afghanistan\', \'Albania\', \'Algeria\', \'Andorra\', \'Angola\', \'Antigua and Barbuda\', \'Argentina\', \'Armenia\', \'Australia\', \'Austria\', \'Azerbaijan\', \'Bahamas\', \'Bahrain\', \'Bangladesh\', \'Barbados\', \'Belarus\', \'Belgium\', \'Belize\', \'Benin\', \'Bhutan\', \'Bolivia\', \'Bosnia and Herzegovina\', \'Botswana\', \'Brazil\', \'Brunei\', \'Bulgaria\', \'Burkina Faso\', \'Burundi\', \'Cambodia\', \'Cameroon\', \'Canada\', \'Cape Verde\', \'Central African Republic\', \'Chad\', \'Chile\', \'China\', \'Colombia\', \'Comoros\', \'Congo\', \'Costa Rica\', \'Croatia\', \'Cuba\', \'Cyprus\', \'Czech Republic\', \'Denmark\', \'Djibouti\', \'Dominica\', \'Dominican Republic\', \'East Timor\', \'Ecuador\', \'Egypt\', \'El Salvador\', \'Equatorial Guinea\', \'Eritrea\', \'Estonia\', \'Ethiopia\', \'Fiji\', \'Finland\', \'France\', \'Gabon\', \'Gambia\', \'Georgia\', \'Germany\', \'Ghana\', \'Greece\', \'Grenada\', \'Guatemala\', \'Guinea\', \'Guinea-Bissau\', \'Guyana\', \'Haiti\', \'Honduras\', \'Hong Kong\', \'Hungary\', \'Iceland\', \'India\', \'Indonesia\', \'Iran\', \'Iraq\', \'Ireland\', \'Israel\', \'Italy\', \'Jamaica\', \'Japan\', \'Jordan\', \'Kazakhstan\', \'Kenya\', \'Kiribati\', \'North Korea\',\'South Korea\', \'Kuwait\', \'Kyrgyzstan\', \'Laos\', \'Latvia\', \'Lebanon\', \'Lesotho\', \'Liberia\', \'Libya\', \'Liechtenstein\', \'Lithuania\', \'Luxembourg\', \'FYROM\', \'Madagascar\', \'Malawi\', \'Malaysia\', \'Maldives\', \'Mali\', \'Malta\', \'Marshall Islands\', \'Mauritania\', \'Mauritius\', \'Mexico\', \'Micronesia\', \'Moldova\', \'Monaco\', \'Mongolia\', \'Montenegro\', \'Morocco\', \'Mozambique\', \'Myanmar\', \'Namibia\', \'Nauru\', \'Nepal\', \'Netherlands\', \'New Zealand\', \'Nicaragua\', \'Niger\', \'Nigeria\', \'Norway\', \'Oman\', \'Pakistan\', \'Palau\', \'Palestine\', \'Panama\', \'Papua New Guinea\', \'Paraguay\', \'Peru\', \'Philippines\', \'Poland\', \'Portugal\', \'Puerto Rico\', \'Qatar\', \'Romania\', \'Russia\', \'Rwanda\', \'Saint Kitts and Nevis\', \'Saint Lucia\', \'Saint Vincent and the Grenadines\', \'Samoa\', \'San Marino\', \'Sao Tome and Principe\', \'Saudi Arabia\', \'Senegal\', \'Serbia and Montenegro\', \'Seychelles\', \'Sierra Leone\', \'Singapore\', \'Slovakia\', \'Slovenia\', \'Solomon Islands\', \'Somalia\', \'South Africa\', \'Spain\', \'Sri Lanka\', \'Sudan\', \'Suriname\', \'Swaziland\', \'Sweden\', \'Switzerland\', \'Syria\', \'Taiwan\', \'Tajikistan\', \'Tanzania\', \'Thailand\', \'Togo\', \'Tonga\', \'Trinidad and Tobago\', \'Tunisia\', \'Turkey\', \'Turkmenistan\', \'Tuvalu\', \'Uganda\', \'Ukraine\', \'United Arab Emirates\', \'United Kingdom\', \'Uruguay\', \'Uzbekistan\', \'Vanuatu\', \'Vatican City\', \'Venezuela\', \'Vietnam\', \'Yemen\', \'Zambia\', \'Zimbabwe\')\n'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__hash__'
+p12
+S"<method-wrapper '__hash__' of exceptions.NameError object>"
+p13
+sS'__setattr__'
+p14
+S"<method-wrapper '__setattr__' of exceptions.NameError object>"
+p15
+sS'__reduce_ex__'
+p16
+S'<built-in method __reduce_ex__ of exceptions.NameError object>'
+p17
+sS'__getslice__'
+p18
+S"<method-wrapper '__getslice__' of exceptions.NameError object>"
+p19
+sS'__getitem__'
+p20
+S"<method-wrapper '__getitem__' of exceptions.NameError object>"
+p21
+sS'__setstate__'
+p22
+S'<built-in method __setstate__ of exceptions.NameError object>'
+p23
+sS'args'
+p24
+S'("name \'COUNTRIES\' is not defined",)'
+p25
+sS'__reduce__'
+p26
+S'<built-in method __reduce__ of exceptions.NameError object>'
+p27
+sS'__str__'
+p28
+S"<method-wrapper '__str__' of exceptions.NameError object>"
+p29
+sS'__format__'
+p30
+S'<built-in method __format__ of exceptions.NameError object>'
+p31
+sS'__getattribute__'
+p32
+S"<method-wrapper '__getattribute__' of exceptions.NameError object>"
+p33
+sS'__class__'
+p34
+S"<type 'exceptions.NameError'>"
+p35
+sS'__unicode__'
+p36
+S'<built-in method __unicode__ of exceptions.NameError object>'
+p37
+sS'__delattr__'
+p38
+S"<method-wrapper '__delattr__' of exceptions.NameError object>"
+p39
+sS'__subclasshook__'
+p40
+S'<built-in method __subclasshook__ of type object>'
+p41
+sS'__repr__'
+p42
+S"<method-wrapper '__repr__' of exceptions.NameError object>"
+p43
+sS'__dict__'
+p44
+S'{}'
+p45
+sS'__sizeof__'
+p46
+S'<built-in method __sizeof__ of exceptions.NameError object>'
+p47
+sS'__doc__'
+p48
+S"'Name not found globally.'"
+p49
+sS'__init__'
+p50
+S"<method-wrapper '__init__' of exceptions.NameError object>"
+p51
+sS'__new__'
+p52
+S'<built-in method __new__ of type object>'
+p53
+ssS'evalue'
+p54
+S"name 'COUNTRIES' is not defined"
+p55
+sS'request'
+p56
+cgluon.html
+XML_unpickle
+p57
+(S's\xf5g\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">ajax</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">application</td><td style="vertical-align:top;">:</td><td><div>resume</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">args</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>register</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cid</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">controller</td><td style="vertical-align:top;">:</td><td><div>default</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_admin</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-ad41086e-0058-479b-af59-567691a71ec4<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_myrecipes</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-04b0e71e-3407-41b3-a605-b32b2a50eb12<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_recipes</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-09287904-ba37-451c-9f2d-d60e71f1614e<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_resume</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-efa7994d-7429-4f2f-bae9-ee4280a3e4ce<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_welcome</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-2474f0df-f6ba-4fcb-9dd3-fb21816b7134<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">env</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_ENCODING</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_LANGUAGE</td><td style="vertical-align:top;">:</td><td><div>en-US,en;q=0.5</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CACHE_CONTROL</td><td style="vertical-align:top;">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CONNECTION</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_COOKIE</td><td style="vertical-align:top;">:</td><td><div>session_id_myrecipes=127.0.0.1-04b0e71e-3407-41b3-a605-b32b2a50eb12; session_id_welcome=127.0.0.1-2474f0df-f6ba-4fcb-9dd3-fb21816b7134; session_id_admin=127.0.0.1-ad41086e-0058-479b-af59-567691a71ec4; session_id_resume=127.0.0.1-efa7994d-7429-4f2f-bae9-ee4280a3e4ce; session_id_recipes=127.0.0.1-09287904-ba37-451c-9f2d-d60e71f1614e</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_HOST</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_REFERER</td><td style="vertical-align:top;">:</td><td><div>http://127.0.0.1:8000/resume/default/user/login?_next=/resume/default/index</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_USER_AGENT</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_INFO</td><td style="vertical-align:top;">:</td><td><div>/resume/default/user/register</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">QUERY_STRING</td><td style="vertical-align:top;">:</td><td><div>_next=%2Fresume%2Fdefault%2Findex</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_ADDR</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_PORT</td><td style="vertical-align:top;">:</td><td><div>36402</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_METHOD</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_NAME</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_NAME</td><td style="vertical-align:top;">:</td><td><div>saiteja-Vostro-3558</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PORT</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PROTOCOL</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_SOFTWARE</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/saiteja/Desktop/web2py/applications/resume/&#x27;, &#x27;/home/saiteja/Desktop/web2py/applications/admin/&#x27;, &#x27;/home/saiteja/Desktop/web2py/applications/welcome/&#x27;, &#x27;/home/saiteja/Desktop/web2py/applications/recipes/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/saiteja/Desktop/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x7fc5a5bb21b8: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;ips&#x27;: [&#x27;127.0.1.1&#x27;], &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;scheduler_groups&#x27;: None, &#x27;port&#x27;: 8000, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;saiteja-Vostro-3558&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;print_errors&#x27;: False, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;/home/saiteja/Desktop/web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;&lt;ask&gt;&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/saiteja/Desktop/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_encoding</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_language</td><td style="vertical-align:top;">:</td><td><div>en-US,en;q=0.5</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cache_control</td><td style="vertical-align:top;">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_connection</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cookie</td><td style="vertical-align:top;">:</td><td><div>session_id_myrecipes=127.0.0.1-04b0e71e-3407-41b3-a605-b32b2a50eb12; session_id_welcome=127.0.0.1-2474f0df-f6ba-4fcb-9dd3-fb21816b7134; session_id_admin=127.0.0.1-ad41086e-0058-479b-af59-567691a71ec4; session_id_resume=127.0.0.1-efa7994d-7429-4f2f-bae9-ee4280a3e4ce; session_id_recipes=127.0.0.1-09287904-ba37-451c-9f2d-d60e71f1614e</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_host</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_referer</td><td style="vertical-align:top;">:</td><td><div>http://127.0.0.1:8000/resume/default/user/login?_next=/resume/default/index</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_user_agent</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>::1</div></td></tr><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>127.0.0.1</div></td></tr><tr><td><div>saiteja-Vostro-3558</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_info</td><td style="vertical-align:top;">:</td><td><div>/resume/default/user/register</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">query_string</td><td style="vertical-align:top;">:</td><td><div>_next=%2Fresume%2Fdefault%2Findex</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_addr</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_port</td><td style="vertical-align:top;">:</td><td><div>36402</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_method</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_uri</td><td style="vertical-align:top;">:</td><td><div>/resume/default/user/register?_next=%2Fresume%2Fdefault%2Findex</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_name</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_name</td><td style="vertical-align:top;">:</td><td><div>saiteja-Vostro-3558</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_port</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_protocol</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_software</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_path</td><td style="vertical-align:top;">:</td><td><div>/home/saiteja/Desktop/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.13.4-stable+timestamp.2015.12.26.04.59.39</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x7fc5aa1e41e0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x7fc5a5acd940&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x7fc56e0ec2d0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x7fc5aa1e41e0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x7fc5a5acd940&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x7fc56e0ec2d0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">extension</td><td style="vertical-align:top;">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">folder</td><td style="vertical-align:top;">:</td><td><div>/home/saiteja/Desktop/web2py/applications/resume/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">function</td><td style="vertical-align:top;">:</td><td><div>user</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">global_settings</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/saiteja/Desktop/web2py/applications/resume/&#x27;, &#x27;/home/saiteja/Desktop/web2py/applications/admin/&#x27;, &#x27;/home/saiteja/Desktop/web2py/applications/welcome/&#x27;, &#x27;/home/saiteja/Desktop/web2py/applications/recipes/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/saiteja/Desktop/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x7fc5a5bb21b8: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;ips&#x27;: [&#x27;127.0.1.1&#x27;], &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;scheduler_groups&#x27;: None, &#x27;port&#x27;: 8000, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;saiteja-Vostro-3558&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;print_errors&#x27;: False, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;/home/saiteja/Desktop/web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;&lt;ask&gt;&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/saiteja/Desktop/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>::1</div></td></tr><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>127.0.0.1</div></td></tr><tr><td><div>saiteja-Vostro-3558</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.13.4-stable+timestamp.2015.12.26.04.59.39</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_https</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_local</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_restful</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_scheduler</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_shell</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">now</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2016, 4, 11, 18, 6, 52, 699386)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_args</td><td style="vertical-align:top;">:</td><td><div>register</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_extension</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">url</td><td style="vertical-align:top;">:</td><td><div>/resume/default/user/register</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">utcnow</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2016, 4, 11, 12, 36, 52, 699420)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi</td><td style="vertical-align:top;">:</td><td><div>&lt;gluon.main.LazyWSGI object at 0x7fc56cf3edd0&gt;</div></td></tr></table></div>'
+tRp58
+sS'frames'
+p59
+(lp60
+(dp61
+S'file'
+p62
+S'/home/saiteja/Desktop/web2py/gluon/restricted.py'
+p63
+sS'dump'
+p64
+(dp65
+S'environment'
+p66
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, ...}"
+p67
+sS'ccode'
+p68
+S'<code object <module> at 0x7fc590459e30, file "/...eb2py/applications/resume/models/db.py", line 12>'
+p69
+ssS'lnum'
+p70
+I227
+sS'lines'
+p71
+(dp72
+I224
+S'            ccode = code'
+p73
+sI225
+S'        else:'
+p74
+sI226
+S'            ccode = compile2(code, layer)'
+p75
+sI227
+S'        exec ccode in environment'
+p76
+sI228
+S'    except HTTP:'
+p77
+sI229
+S'        raise'
+p78
+sI230
+S'    except RestrictedError:'
+p79
+sI231
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p80
+sI222
+S'    try:'
+p81
+sI223
+S'        if isinstance(code, types.CodeType):'
+p82
+ssS'call'
+p83
+S'(code="# -*- coding: utf-8 -*-\\n\\n#######################...uela\', \'Vietnam\', \'Yemen\', \'Zambia\', \'Zimbabwe\')\\n", environment={\'A\': <class \'gluon.html.A\'>, \'ANY_OF\': <class \'gluon.validators.ANY_OF\'>, \'ASSIGNJS\': <function ASSIGNJS>, \'AppConfig\': <function AppConfig>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'BUTTON\': <class \'gluon.html.BUTTON\'>, ...}, layer=\'/home/saiteja/Desktop/web2py/applications/resume/models/db.py\')'
+p84
+sS'func'
+p85
+S'restricted'
+p86
+sa(dp87
+g62
+S'/home/saiteja/Desktop/web2py/applications/resume/models/db.py'
+p88
+sg64
+(dp89
+S'COUNTRIES'
+p90
+S'undefined'
+p91
+sS'GENDER'
+p92
+S"('Male', 'Female', 'Others')"
+p93
+sS'IS_IN_SET'
+p94
+S"<class 'gluon.validators.IS_IN_SET'>"
+p95
+sS'auth'
+p96
+S'<gluon.tools.Auth object>'
+p97
+sS'Field'
+p98
+S"<class 'pydal.objects.Field'>"
+p99
+sS'auth.settings'
+p100
+S"<Storage {'verify_email_onaccept': [], 'register...etrieve_username_next': '/resume/default/index'}>"
+p101
+sS'auth.settings.extra_fields'
+p102
+g45
+sS'length'
+p103
+g91
+sS'requires'
+p104
+g91
+ssg70
+I62
+sg71
+(dp105
+I64
+S'auth.define_tables(username=False, signature=False)'
+p106
+sI65
+S''
+sI66
+S'## configure email'
+p107
+sI57
+S'plugins = PluginManager()'
+p108
+sI58
+S''
+sI59
+S'## create all tables needed by auth if not custom tables'
+p109
+sI60
+S"GENDER=('Male','Female','Others')"
+p110
+sI61
+S''
+sI62
+S'auth.settings.extra_fields[\'auth_user\']= [  Field(\'Account_Type\',\'list:string\',requires=IS_IN_SET(GENDER)) , Field(\'gender\',\'list:string\',requires=IS_IN_SET(GENDER)) ,Field("Date_of_Birth",\'date\') , Field("Contact_Number",\'string\',length=10) , Field("Profile_Photo",\'upload\') , Field("Nationality",\'list:string\',requires=IS_IN_SET(COUNTRIES))]'
+p111
+sI63
+S''
+ssg83
+S'()'
+p112
+sg85
+S'<module>'
+p113
+sasS'pyver'
+p114
+S'Python 2.7.6: /usr/bin/python (prefix: /usr)'
+p115
+sS'session'
+p116
+g57
+(S's\x98\x00\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div>'
+tRp117
+sS'etype'
+p118
+S"<type 'exceptions.NameError'>"
+p119
+sS'date'
+p120
+S'Mon Apr 11 18:06:52 2016'
+p121
+sS'response'
+p122
+g57
+(S's\xfd\x17\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">body</td><td style="vertical-align:top;">:</td><td><div>&lt;cStringIO.StringO object at 0x7fc56ccabed8&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_resume</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-efa7994d-7429-4f2f-bae9-ee4280a3e4ce<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">delimiters</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">files</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">form_label_separator</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">formstyle</td><td style="vertical-align:top;">:</td><td><div>bootstrap3_inline</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generic_patterns</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>*</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">headers</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">X-Powered-By</td><td style="vertical-align:top;">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">menu</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">meta</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">models_to_run</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^default/\\w+\\.py$</div></td></tr><tr><td><div>^default/user/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">postprocessing</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_compression_level</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_expires</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_key</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_data_name</td><td style="vertical-align:top;">:</td><td><div>session_data_resume</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_file</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;/home/saiteja/Desktop/web2py/applications/resume/sessions/18d/1ed/127.0.0.1-efa7994d-7429-4f2f-bae9-ee4280a3e4ce&#x27;, mode &#x27;rb+&#x27; at 0x7fc56d1d9f60&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_filename</td><td style="vertical-align:top;">:</td><td><div>/home/saiteja/Desktop/web2py/applications/resume/sessions/127.0.0.1-efa7994d-7429-4f2f-bae9-ee4280a3e4ce</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_hash</td><td style="vertical-align:top;">:</td><td><div>50db6fbf91953d6055a447456081586f</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-efa7994d-7429-4f2f-bae9-ee4280a3e4ce</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_name</td><td style="vertical-align:top;">:</td><td><div>session_id_resume</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_locked</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_masterapp</td><td style="vertical-align:top;">:</td><td><div>resume</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_new</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_storage_type</td><td style="vertical-align:top;">:</td><td><div>file</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">status</td><td style="vertical-align:top;">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">view</td><td style="vertical-align:top;">:</td><td><div>default/user.html</div></td></tr></table></div>'
+tRp123
+sS'locals'
+p124
+(dp125
+S'Service'
+p126
+S"<class 'gluon.tools.Service'>"
+p127
+sS'OBJECT'
+p128
+S"<class 'gluon.html.OBJECT'>"
+p129
+sS'SQLDB'
+p130
+S"<class 'pydal.base.DAL'>"
+p131
+sg116
+S"<Storage {'_auth_next': '/resume/default/index',...1ab02', '7f59cd1e-1d56-48d2-a7eb-23bddc09b01b']}>"
+p132
+sS'LINK'
+p133
+S"<class 'gluon.html.LINK'>"
+p134
+sS'BR'
+p135
+S"<class 'gluon.html.BR'>"
+p136
+sS'local_import'
+p137
+S'<function <lambda>>'
+p138
+sS'OPTGROUP'
+p139
+S"<class 'gluon.html.OPTGROUP'>"
+p140
+sS'__package__'
+p141
+S'None'
+p142
+sS'PRE'
+p143
+S"<class 'gluon.html.PRE'>"
+p144
+sS'IS_INT_IN_RANGE'
+p145
+S"<class 'gluon.validators.IS_INT_IN_RANGE'>"
+p146
+sS'IS_LOWER'
+p147
+S"<class 'gluon.validators.IS_LOWER'>"
+p148
+sS'IS_STRONG'
+p149
+S"<class 'gluon.validators.IS_STRONG'>"
+p150
+sS'cache'
+p151
+S'<gluon.cache.Cache object>'
+p152
+sS'IS_IN_DB'
+p153
+S"<class 'gluon.validators.IS_IN_DB'>"
+p154
+sS'TAG'
+p155
+S'<gluon.html.__TAG__ object>'
+p156
+sS'SQLField'
+p157
+S"<class 'pydal.objects.Field'>"
+p158
+sS'BODY'
+p159
+S"<class 'gluon.html.BODY'>"
+p160
+sS'IS_DATE_IN_RANGE'
+p161
+S"<class 'gluon.validators.IS_DATE_IN_RANGE'>"
+p162
+sS'TH'
+p163
+S"<class 'gluon.html.TH'>"
+p164
+sS'URL'
+p165
+S'<function URL>'
+p166
+sS'__file__'
+p167
+S"'/home/saiteja/Desktop/web2py/applications/resume/models/db.py'"
+p168
+sS'db'
+p169
+S'<DAL uri="sqlite://storage.sqlite">'
+p170
+sS'auth'
+p171
+S'<gluon.tools.Auth object>'
+p172
+sS'P'
+S"<class 'gluon.html.P'>"
+p173
+sS'TFOOT'
+p174
+S"<class 'gluon.html.TFOOT'>"
+p175
+sS'XHTML'
+p176
+S"<class 'gluon.html.XHTML'>"
+p177
+sS'ON'
+p178
+S'True'
+p179
+sS'OL'
+p180
+S"<class 'gluon.html.OL'>"
+p181
+sS'TEXTAREA'
+p182
+S"<class 'gluon.html.TEXTAREA'>"
+p183
+sS'MENU'
+p184
+S"<class 'gluon.html.MENU'>"
+p185
+sS'LOAD'
+p186
+S'<function LOAD>'
+p187
+sS'CODE'
+p188
+S"<class 'gluon.html.CODE'>"
+p189
+sS'HTTP'
+p190
+S"<class 'gluon.http.HTTP'>"
+p191
+sS'HR'
+p192
+S"<class 'gluon.html.HR'>"
+p193
+sS'IS_DATETIME'
+p194
+S"<class 'gluon.validators.IS_DATETIME'>"
+p195
+sS'HEAD'
+p196
+S"<class 'gluon.html.HEAD'>"
+p197
+sS'LABEL'
+p198
+S"<class 'gluon.html.LABEL'>"
+p199
+sS'CLEANUP'
+p200
+S"<class 'gluon.validators.CLEANUP'>"
+p201
+sS'plugins'
+p202
+S'<gluon.tools.PluginManager object>'
+p203
+sS'SELECT'
+p204
+S"<class 'gluon.html.SELECT'>"
+p205
+sS'CENTER'
+p206
+S"<class 'gluon.html.CENTER'>"
+p207
+sS'Auth'
+p208
+S"<class 'gluon.tools.Auth'>"
+p209
+sS'__builtins__'
+p210
+S"{'ArithmeticError': <type 'exceptions.ArithmeticError'>, 'AssertionError': <type 'exceptions.AssertionError'>, 'AttributeError': <type 'exceptions.AttributeError'>, 'BaseException': <type 'exceptions.BaseException'>, 'BufferError': <type 'exceptions.BufferError'>, 'BytesWarning': <type 'exceptions.BytesWarning'>, 'DeprecationWarning': <type 'exceptions.DeprecationWarning'>, 'EOFError': <type 'exceptions.EOFError'>, 'Ellipsis': Ellipsis, 'EnvironmentError': <type 'exceptions.EnvironmentError'>, ...}"
+p211
+sS'HTML'
+p212
+S"<class 'gluon.html.HTML'>"
+p213
+sS'SQLFORM'
+p214
+S"<class 'gluon.sqlhtml.SQLFORM'>"
+p215
+sS'EM'
+p216
+S"<class 'gluon.html.EM'>"
+p217
+sS'redirect'
+p218
+S'<function redirect>'
+p219
+sS'FIELDSET'
+p220
+S"<class 'gluon.html.FIELDSET'>"
+p221
+sS'IS_EQUAL_TO'
+p222
+S"<class 'gluon.validators.IS_EQUAL_TO'>"
+p223
+sS'embed64'
+p224
+S'<function embed64>'
+p225
+sS'IS_LIST_OF'
+p226
+S"<class 'gluon.validators.IS_LIST_OF'>"
+p227
+sS'__name__'
+p228
+S"'__restricted__'"
+p229
+sS'EMBED'
+p230
+S"<class 'gluon.html.EMBED'>"
+p231
+sS'FORM'
+p232
+S"<class 'gluon.html.FORM'>"
+p233
+sS'myconf'
+p234
+S"{'forms': {'formstyle': 'bootstrap3_inline', 'se...'you@gmail.com', 'server': 'smtp.gmail.com:587'}}"
+p235
+sS'H2'
+p236
+S"<class 'gluon.html.H2'>"
+p237
+sS'H3'
+p238
+S"<class 'gluon.html.H3'>"
+p239
+sS'AppConfig'
+p240
+S'<function AppConfig>'
+p241
+sS'H1'
+p242
+S"<class 'gluon.html.H1'>"
+p243
+sS'H6'
+p244
+S"<class 'gluon.html.H6'>"
+p245
+sS'H4'
+p246
+S"<class 'gluon.html.H4'>"
+p247
+sS'H5'
+p248
+S"<class 'gluon.html.H5'>"
+p249
+sS'UL'
+p250
+S"<class 'gluon.html.UL'>"
+p251
+sS'IS_UPPER'
+p252
+S"<class 'gluon.validators.IS_UPPER'>"
+p253
+sS'xmlescape'
+p254
+S'<function xmlescape>'
+p255
+sS'IS_TIME'
+p256
+S"<class 'gluon.validators.IS_TIME'>"
+p257
+sS'OPTION'
+p258
+S"<class 'gluon.html.OPTION'>"
+p259
+sS'TITLE'
+p260
+S"<class 'gluon.html.TITLE'>"
+p261
+sS'CRYPT'
+p262
+S"<class 'gluon.validators.CRYPT'>"
+p263
+sS'IS_EMPTY_OR'
+p264
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p265
+sS'MARKMIN'
+p266
+S"<class 'gluon.html.MARKMIN'>"
+p267
+sS'INPUT'
+p268
+S"<class 'gluon.html.INPUT'>"
+p269
+sS'STRONG'
+p270
+S"<class 'gluon.html.STRONG'>"
+p271
+sS'COL'
+p272
+S"<class 'gluon.html.COL'>"
+p273
+sS'service'
+p274
+S'<gluon.tools.Service object>'
+p275
+sS'SCRIPT'
+p276
+S"<class 'gluon.html.SCRIPT'>"
+p277
+sS'GENDER'
+p278
+S"('Male', 'Female', 'Others')"
+p279
+sS'TABLE'
+p280
+S"<class 'gluon.html.TABLE'>"
+p281
+sS'IS_IPV4'
+p282
+S"<class 'gluon.validators.IS_IPV4'>"
+p283
+sS'IS_LENGTH'
+p284
+S"<class 'gluon.validators.IS_LENGTH'>"
+p285
+sS'IS_IPV6'
+p286
+S"<class 'gluon.validators.IS_IPV6'>"
+p287
+sS'XML'
+p288
+S"<class 'gluon.html.XML'>"
+p289
+sS'B'
+S"<class 'gluon.html.B'>"
+p290
+sS'IMG'
+p291
+S"<class 'gluon.html.IMG'>"
+p292
+sS'SQLTABLE'
+p293
+S"<class 'gluon.sqlhtml.SQLTABLE'>"
+p294
+sS'IS_MATCH'
+p295
+S"<class 'gluon.validators.IS_MATCH'>"
+p296
+sS'IS_ALPHANUMERIC'
+p297
+S"<class 'gluon.validators.IS_ALPHANUMERIC'>"
+p298
+sS'SPAN'
+p299
+S"<class 'gluon.html.SPAN'>"
+p300
+sS'IS_JSON'
+p301
+S"<class 'gluon.validators.IS_JSON'>"
+p302
+sS'IS_IPADDRESS'
+p303
+S"<class 'gluon.validators.IS_IPADDRESS'>"
+p304
+sS'IS_SLUG'
+p305
+S"<class 'gluon.validators.IS_SLUG'>"
+p306
+sS'BEAUTIFY'
+p307
+S"<class 'gluon.html.BEAUTIFY'>"
+p308
+sS'META'
+p309
+S"<class 'gluon.html.META'>"
+p310
+sS'BUTTON'
+p311
+S"<class 'gluon.html.BUTTON'>"
+p312
+sS'IS_DATE'
+p313
+S"<class 'gluon.validators.IS_DATE'>"
+p314
+sS'IS_EMAIL'
+p315
+S"<class 'gluon.validators.IS_EMAIL'>"
+p316
+sS'IS_NOT_EMPTY'
+p317
+S"<class 'gluon.validators.IS_NOT_EMPTY'>"
+p318
+sS'IS_FLOAT_IN_RANGE'
+p319
+S"<class 'gluon.validators.IS_FLOAT_IN_RANGE'>"
+p320
+sS'TBODY'
+p321
+S"<class 'gluon.html.TBODY'>"
+p322
+sS'CAT'
+p323
+S"<class 'gluon.html.CAT'>"
+p324
+sS'Field'
+p325
+S"<class 'pydal.objects.Field'>"
+p326
+sS'IS_LIST_OF_EMAILS'
+p327
+S"<class 'gluon.validators.IS_LIST_OF_EMAILS'>"
+p328
+sS'DIV'
+p329
+S"<class 'gluon.html.DIV'>"
+p330
+sS'LEGEND'
+p331
+S"<class 'gluon.html.LEGEND'>"
+p332
+sS'COLGROUP'
+p333
+S"<class 'gluon.html.COLGROUP'>"
+p334
+sS'DAL'
+p335
+S"<class 'pydal.base.DAL'>"
+p336
+sS'ASSIGNJS'
+p337
+S'<function ASSIGNJS>'
+p338
+sS'TR'
+p339
+S"<class 'gluon.html.TR'>"
+p340
+sS'LI'
+p341
+S"<class 'gluon.html.LI'>"
+p342
+sS'IFRAME'
+p343
+S"<class 'gluon.html.IFRAME'>"
+p344
+sS'TD'
+p345
+S"<class 'gluon.html.TD'>"
+p346
+sS'PluginManager'
+p347
+S"<class 'gluon.tools.PluginManager'>"
+p348
+sS'IS_URL'
+p349
+S"<class 'gluon.validators.IS_URL'>"
+p350
+sS'A'
+S"<class 'gluon.html.A'>"
+p351
+sS'STYLE'
+p352
+S"<class 'gluon.html.STYLE'>"
+p353
+sS'IS_DATETIME_IN_RANGE'
+p354
+S"<class 'gluon.validators.IS_DATETIME_IN_RANGE'>"
+p355
+sS'IS_IMAGE'
+p356
+S"<class 'gluon.validators.IS_IMAGE'>"
+p357
+sS'I'
+S"<class 'gluon.html.I'>"
+p358
+sS'IS_NOT_IN_DB'
+p359
+S"<class 'gluon.validators.IS_NOT_IN_DB'>"
+p360
+sg122
+S"<Storage {'body': <cStringIO.StringO object at 0...at 0x7fc56d35f0c8>, 'view': 'default/user.html'}>"
+p361
+sS'THEAD'
+p362
+S"<class 'gluon.html.THEAD'>"
+p363
+sS'ANY_OF'
+p364
+S"<class 'gluon.validators.ANY_OF'>"
+p365
+sS'IS_NULL_OR'
+p366
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p367
+sg56
+S"<Storage {'_vars': None, 'function': 'user', 'co...me/saiteja/Desktop/web2py/applications/resume/'}>"
+p368
+sS'IS_EXPR'
+p369
+S"<class 'gluon.validators.IS_EXPR'>"
+p370
+sS'IS_IN_SET'
+p371
+S"<class 'gluon.validators.IS_IN_SET'>"
+p372
+sS'IS_UPLOAD_FILENAME'
+p373
+S"<class 'gluon.validators.IS_UPLOAD_FILENAME'>"
+p374
+sS'IS_DECIMAL_IN_RANGE'
+p375
+S"<class 'gluon.validators.IS_DECIMAL_IN_RANGE'>"
+p376
+sS'TT'
+p377
+S"<class 'gluon.html.TT'>"
+p378
+sS'T'
+S'<gluon.languages.translator object>'
+p379
+sssS'traceback'
+p380
+S'Traceback (most recent call last):\n  File "/home/saiteja/Desktop/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/home/saiteja/Desktop/web2py/applications/resume/models/db.py", line 62, in <module>\n    auth.settings.extra_fields[\'auth_user\']= [  Field(\'Account_Type\',\'list:string\',requires=IS_IN_SET(GENDER)) , Field(\'gender\',\'list:string\',requires=IS_IN_SET(GENDER)) ,Field("Date_of_Birth",\'date\') , Field("Contact_Number",\'string\',length=10) , Field("Profile_Photo",\'upload\') , Field("Nationality",\'list:string\',requires=IS_IN_SET(COUNTRIES))]\nNameError: name \'COUNTRIES\' is not defined\n'
+p381
+s.

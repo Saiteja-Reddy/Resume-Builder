@@ -1,0 +1,60 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'layout.html'}}
+
+{{block header}}
+    <header class="container-fluid background">
+      <div class="jumbotron text-center">
+        <h1>Search For A Resume</h1>
+      </div>
+    </header>
+{{end}}
+<h2>Enter Your Desired Details: </h2>
+<hr>
+{{if 'message' in globals():}}
+<!--<h2 class="middle">{{=message}}</h2>-->
+<h2>Your Liked Recipes</h2>
+<hr>
+{{elif 'content' in globals():}}
+{{=content}}
+{{else:}}
+
+<form>
+    <table>
+        <tr>
+            <th>By Name</th>
+            <th>By Email:</th>
+        </tr>
+        <tr>
+            <td><input type='text' id='keyword' name='keyword' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','task'],'target');" ></td>
+            <td><input type='text' id='keyword1' name='keyword1' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','task'],'target');" ></td>
+            <td><a onclick="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','task'],'target');">Sort Ascending</a></td>
+            <td><a onclick="document.getElementById('task').value='des' ; ajax('callback',['keyword','keyword1','task'],'target');">Sort Descending</a></td>
+        </tr>
+    </table>
+</form>
+<input type='text' id="task" name='task' >
+<div id="target">
+    
+</div>
+{{pass}}
+
+{{block right_sidebar}}
+
+{{end}}
+<style>
+      body{
+         background-color:   #FFF8DC;
+    }
+    hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid black;
+    margin: 1em 0;
+    padding: 0; 
+}
+    table,tr,td 
+    {
+     padding:5px;
+    }
+</style>

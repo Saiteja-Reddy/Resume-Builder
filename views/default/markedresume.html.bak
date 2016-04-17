@@ -1,0 +1,27 @@
+{{extend 'layout.html'}}
+<h1>This is the default/markedresume.html template</h1>
+
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Summary</th>
+        <th>More Info</th>
+        <th>Remove Mark</th>
+    </tr>
+    {{for i in f:}}
+    <tr>
+        <td>{{=i.name}}</td>
+        <td>{{=i.email}}</td>
+        <td>{{=i.summary}}</td>
+        <td>{{=A("MORE", _href=URL('moreresume', args=[ i.id ]))}}</td>
+        <td>{{=A('UNmark Resume',_href=URL('unmark',args=[i.id]))}}</td>
+    </tr>
+    {{pass}}
+</table>
+<style>
+    table,td,th,tr{
+        padding:15px;
+    }
+</style>

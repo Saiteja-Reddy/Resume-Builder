@@ -1,0 +1,96 @@
+{{extend 'layout.html'}}
+{{=BEAUTIFY(response._vars)}}
+<link rel="stylesheet" href="{{=URL('static', 'css/w3.css')}}">
+<style>
+        div
+        {
+            text-align:center;
+        }
+    </style>
+<div class="w3-container w3-teal">
+<h1>Choose a template</h1>
+</div>
+<div style="background-color:lightgray;">
+<br>
+<br>
+<div class="w3-row-padding w3-margin-top">
+
+<a href="{{=URL('default', 'uploadresume')}}">
+<div class="w3-third" style="text-align:center">
+<div class="w3-hover-shadow" style="width:90%">
+<img src="{{=URL('static', 'images/T3.png')}}" style="width:100%">
+<div class="w3-container" style="background-color:white;">
+<h4>Template 1</h4>
+</div>
+</div>
+</div>
+</a>
+
+<a href="{{=URL('default', 'uploadresume')}}">
+<div class="w3-third">
+<div class="w3-hover-shadow" style="width:90%">
+<img src="{{=URL('static', 'images/T5.png')}}" style="width:100%">
+<div class="w3-container" style="background-color:white;">
+<h4>Template 2</h4>
+</div>
+</div>
+</div>
+</a>
+
+<a href="{{=URL('default', 'uploadresume')}}">
+<div class="w3-third">
+<div class="w3-hover-shadow" style="width:90%">
+<img src="{{=URL('static', 'images/T6.png')}}" style="width:100%">
+<div class="w3-container" style="background-color:white;">
+<h4>Template 3</h4>
+</div>
+</div>
+</div>
+</a>
+
+
+</div>
+<br>
+<br>
+<div class="w3-row-padding w3-margin-top">
+
+<a href="{{=URL('default', 'uploadresume')}}">
+<div class="w3-third">
+<div class="w3-hover-shadow" style="width:90%">
+<img src="{{=URL('static', 'images/T8.png')}}" style="width:100%">
+<div class="w3-container" style="background-color:white;">
+<h4>Template 4</h4>
+</div>
+</div>
+</div>
+</a>
+
+
+<a href="{{=URL('default', 'uploadresume')}}">
+<div class="w3-third">
+<div class="w3-hover-shadow" style="width:90%">
+<img src="{{=URL('static', 'images/T9.png')}}" style="width:100%">
+<div class="w3-container" style="background-color:white;">
+<h4>Template 5</h4>
+</div>
+</div>
+</div>
+</a>
+
+
+<a href="{{=URL('default', 'uploadresume')}}">
+<div class="w3-third">
+<div class="w3-hover-shadow" style="width:90%">
+<img src="{{=URL('static', 'images/T10.png')}}" style="width:100%">
+<div class="w3-container" style="background-color:white;">
+<h4>Template 6</h4>
+</div>
+</div>
+</div>
+</a>
+
+
+</div>
+<br>
+<br>
+</div>
