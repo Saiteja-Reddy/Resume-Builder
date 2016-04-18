@@ -144,6 +144,10 @@ def findresume():
 
 def templates():
         return locals()
+    
+def templates1():
+        return locals()
+        
 
 @auth.requires_login()
 def callback():
@@ -173,3 +177,18 @@ def info():
     dat=db( db.auth_user.id ==  request.args(0)  ).select()
     response.flash = T("Requested Profile")
     return dict(message=T('Viewing requested Profile!'),dat=dat)
+
+def moreresume1():
+    f=db(db.namess.id==request.args(0)).select(db.namess.ALL);
+    commenta=db(db.comments.resumeid==request.args(0)).select()
+    db.comments.userid.default=auth.user.id
+    db.comments.resumeid.default=request.args(0)
+    db.comments.userid.readable=False
+    db.comments.userid.writable=False
+    db.comments.resumeid.readable=False
+    db.comments.resumeid.writable=False
+    form = SQLFORM(db.comments)
+    if form.process().accepted:
+        response.flash="response recorded"
+        redirect(URL('moreresume1',args=request.args(0)))
+    return dict(message=T('More Info'),f=f,commenta=commenta,form=form)

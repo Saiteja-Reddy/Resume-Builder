@@ -8,6 +8,7 @@
         <th>Email</th>
         <th>Summary</th>
         <th>More Info</th>
+        <th>More Info(beta)</th>
         <th>Remove Mark</th>
     </tr>
     {{for i in f:}}
@@ -16,6 +17,7 @@
         <td>{{=i.email}}</td>
         <td>{{=i.summary}}</td>
         <td>{{=A("MORE", _href=URL('moreresume', args=[ i.id ]))}}</td>
+        <td>{{=A("MORE", _href=URL('templates1', args=[ i.id ]))}}</td>
         <td>{{=A('UNmark Resume',_href=URL('unmark',args=[i.id]))}}</td>
     </tr>
     {{pass}}

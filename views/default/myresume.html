@@ -8,6 +8,7 @@
         <th>Email</th>
         <th>Summary</th>
         <th>More Info</th>
+        <th>More Info(beta)</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -17,6 +18,7 @@
         <td>{{=i.email}}</td>
         <td>{{=i.summary}}</td>
         <td>{{=A("MORE", _href=URL('moreresume', args=[ i.id ]))}}</td>
+        <td>{{=A("MORE", _href=URL('templates1', args=[ i.id ]))}}</td>
         <td>{{=A("EDIT", _href=URL('editresume', args=[ i.id ]))}}</td>
         <td>{{=A("DELETE", _href=URL('deleteresume', args=[ i.id ]))}}</td>
     </tr>
