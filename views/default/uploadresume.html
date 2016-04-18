@@ -154,14 +154,14 @@
 
 #JSFiddle table.wide {
     position: absolute;
-    width: 210mm;
+    width: 340mm;
     border-collapse: collapse;
-    margin: -15mm -8.13953488372093% 0 -8.13953488372093%
+    margin: -1.8mm -1.13953488372093% 0 -2.4%
 }
 
 #JSFiddle table.wide > tbody {
     display: inline-table;
-    width: 210mm;
+    width: 340mm;
     padding-left: 8.13953488372093%;
     padding-right: 8.13953488372093%
 }
@@ -1125,6 +1125,156 @@
 }
 {{pass}}
 </style>
+{{if request.args(0)=='2':}}
+<div class="form" id="JSFiddle">
+<table class="wide">
+    <tbody>
+        <tr>
+            <td class="left">
+                <div style="font-family: Roboto Condensed; margin-bottom: 1em;" class="block person" data-category="person">
+                    <p class="person nam1" id="nam" style="text-align:left;">Your Name</p>
+                </div>
+            </td>
+            <td class="right">
+                <div style="margin-bottom: 1em;" class="block contact" data-category="contact">
+                    <div class="html-content e1" id="emai">your.name@example.com</div>
+                        <br><span class="html-content ph1" id="ph">111-222-3333</span>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="blocks">
+    <div style="margin-bottom: 1em;" class="block" data-category="text" data-children="" data-id="0">
+        <p style="font-family: Roboto Condensed;" class="title">Summary</p>
+        <div class="block-inner">
+            <div class="html-content sum1" id="su1">List here your top selling points, including your most relevant strengths, skills and core competencies.</div>
+        </div>
+    </div>
+    <div style="margin-bottom: 1em;" class="block" data-category="experience" data-children="2" data-id="1">
+        <p style="font-family: Roboto Condensed;" class="title">Work Experience</p>
+        <div class="block-inner">
+            <div style="margin-bottom: 1em;" class="child" data-id="1c0" data-category="experience">
+                <div class="html-content work1" id="wo1">Describe your job responsibilities, accomplishments and technologies you have used. It is highly recommended that you use bullet points to describe your experience.</div>
+            </div>
+            <div class="html-content"><b>Skill Set -</b><span class="html-content work2" id="wo2">Mention your skills -- programming , sports , etc..</span></div>
+        </div>
+    </div>
+    <div style="margin-bottom: 1em;" class="block" data-category="education" data-children="1" data-id="2">
+        <p style="font-family: Roboto Condensed;" class="title">Education</p>
+        <div class="block-inner">
+            <div style="margin-bottom: 1em;" class="last-child" data-id="2c0" data-category="education">
+                <div class="html-content edu1" id="ed1">(Optional) GPA, Awards, Honors</div>
+                <br>
+                <div class="html-content">
+                Your GPA -<b><span class="html-content edu2" id="ed2">10.0</span></b>
+            </div>
+        </div>
+    </div>
+    <div style="margin-bottom: 1em;" class="block" data-category="text" data-children="" data-id="3">
+        <p style="font-family: Roboto Condensed;" class="title">Additional Information</p>
+        <div class="block-inner">
+            <div class="html-content add1" id="ad1">Include other relevant information that employers should know about. This may include activities, experiences and interests that you have that relate to the position you are trying to get.</div>
+        </div>
+    </div>
+</div>
+</div>
+{{elif request.args(0)=='7' or request.args(0)=='8' or request.args(0)=='9':}}
+<div class="form" id="JSFiddle">
+<table class="wide">
+        <tbody>
+            <tr>
+                <td class="left">
+                    <div style="font-family: Roboto Condensed; margin-bottom: 1em;" class="block person" data-category="person">
+                        <p class="person nam1" id="nam">Your Name</p>
+                    </div>
+                </td>
+                <td class="right">
+                    <div style="margin-bottom: 1em;" class="block contact" data-category="contact">
+                        <div class="html-content e1" id="emai">your.name@example.com</div>
+                        <br>
+                        <span class="html-content ph1" id="ph">111-222-3333</span>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="blocks">
+        <div style="margin-bottom: 1em;" class="block" data-category="text" data-children="" data-id="0">
+            <table class="wide">
+                <tbody>
+                    <tr>
+                        <td class="left0">
+                            <p style="font-family: Roboto Condensed;" class="title">Summary</p>
+                        </td>
+                        <td class="right0">
+                            <div class="block-inner">
+                                <div class="html-content sum1" id="su1">List here your top selling points, including your most relevant strengths, skills and core competencies.</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-bottom: 1em;" class="block" data-category="experience" data-children="2" data-id="1">
+            <table class="wide">
+                <tbody>
+                    <tr>
+                        <td class="left0">
+                            <p style="font-family: Roboto Condensed;" class="title">Work Experience</p>
+                        </td>
+                        <td class="right0">
+                            <div class="block-inner">
+                                <div class="html-content work1" id="wo1">Describe your job responsibilities, accomplishments and technologies you have used. It is highly recommended that you use bullet points to describe your experience.</div>
+                    <br>
+                    <div class="html-content"><b>Skill Set -</b><span class="html-content work2" id="wo2">Mention your skills -- programming , sports , etc..</span></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-bottom: 1em;" class="block" data-category="education" data-children="1" data-id="2">
+            <table class="wide">
+                <tbody>
+                    <tr>
+                        <td class="left0">
+                            <p style="font-family: Roboto Condensed;" class="title">Education</p>
+                        </td>
+                        <td class="right0">
+                            <div class="block-inner">
+                                <div class="html-content edu1" id="ed1">(Optional) GPA, Awards, Honors</div>
+                    <br>
+                    <div class="html-content">Your GPA -<b><span class="html-content edu2" id="ed2">10.0</span></b></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-bottom: 1em;" class="block" data-category="text" data-children="" data-id="3">
+            <table class="wide">
+                <tbody>
+                    <tr>
+                        <td class="left0">
+                            <p style="font-family: Roboto Condensed;" class="title">Additional Information</p>
+                        </td>
+                        <td class="right0">
+                            <div class="block-inner">
+                                <div class="html-content add1" id="ad1">Include other relevant information that employers should know about. This may include activities, experiences and interests that you have that relate to the position you are trying to get.</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    
+    
+{{else:}}
+    
+    
 <div class="form" id="JSFiddle">
     <table class="wide">
         <tbody>
@@ -1215,8 +1365,8 @@
         </div>
     </div>
 </div>
-
-
+{{pass}}
+</div>
 <div class="formname">
     <form id="formname" class="panel">
         <input name='name' id="chname" type="text" onkeyup=changes("chname","nam")>
