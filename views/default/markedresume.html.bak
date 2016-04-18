@@ -11,7 +11,7 @@
         <th>More Info(beta)</th>
         <th>Remove Mark</th>
     </tr>
-    {{for i in f:}}
+    {{for i in dat:}}
     <tr>
         <td>{{=i.name}}</td>
         <td>{{=i.email}}</td>
@@ -22,6 +22,15 @@
     </tr>
     {{pass}}
 </table>
+<div id='righ'>
+    {{ if pag !=1 : }}
+    <a class='link' href={{=URL(vars={'page':int(request.vars.page)-1})}}><img src="/resume/static/images/left.jpg" style="width:50px; height:50px;"/></a>
+    {{pass}}
+    {{ if ret == 0:}}
+    <a class='link' href={{=URL(vars={'page':int(request.vars.page)+1})}}><img src="/resume/static/images/right.jpg" style="width:50px; height:50px;"/></a>
+    {{pass}}
+    <br><b>Page No . {{=request.vars.page}}</b></div>
+<div>
 <style>
     table,td,th,tr{
         padding:15px;

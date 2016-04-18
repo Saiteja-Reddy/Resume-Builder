@@ -59,9 +59,18 @@ def call():
 
 @auth.requires_login()
 def myresume():
-    f=db(db.namess.uploadedby==auth.user.id).select(db.namess.ALL);
-    return dict(message=T('Your Resumes'),f=f)
-
+    if not request.vars.page:
+        redirect(URL(vars={'page':1}))
+    else:
+        page = int(request.vars.page)
+    start = (page-1)*10
+    end = page*10
+    dat=db(db.namess.uploadedby==auth.user.id).select(db.namess.ALL,limitby=(start,end));
+    if db.namess[ end + 1 ]:
+        response.flash = T("All Recipes")
+        return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=0)
+    response.flash = T("All Resumes")
+    return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=1)
 @auth.requires_login()
 def uploadresume():
     return locals()
@@ -90,8 +99,18 @@ def deleteresume():
 
 #@auth.requires_login()
 def allresume():
-    f=db(db.namess.id>0).select(db.namess.ALL);
-    return dict(message=T('All Resumes'),f=f)
+    if not request.vars.page:
+        redirect(URL(vars={'page':1}))
+    else:
+        page = int(request.vars.page)
+    start = (page-1)*10
+    end = page*10
+    dat=db(db.namess.id>0).select(db.namess.ALL,limitby=(start,end))
+    if db.namess[ end + 1 ]:
+        response.flash = T("All Recipes")
+        return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=0)
+    response.flash = T("All Resumes")
+    return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=1)
 
 #@auth.requires_login()
 def moreresume():
@@ -121,10 +140,22 @@ def markresume():
         response.flash="UNmarked The Resume!"
     return "Sucess"
 
+
+
 @auth.requires_login()
 def markedresume():
-    f=db( (db.mark.userid==auth.user.id) & (db.namess.id==db.mark.resumeid) ).select(db.namess.ALL)
-    return locals()
+    if not request.vars.page:
+        redirect(URL(vars={'page':1}))
+    else:
+        page = int(request.vars.page)
+    start = (page-1)*10
+    end = page*10
+    dat=db( (db.mark.userid==auth.user.id) & (db.namess.id==db.mark.resumeid) ).select(db.namess.ALL,limitby=(start,end))
+    if db.namess[ end + 1 ]:
+        response.flash = T("All Recipes")
+        return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=0)
+    response.flash = T("All Resumes")
+    return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=1)
 
 @auth.requires_login()
 def unmark():
