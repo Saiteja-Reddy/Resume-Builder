@@ -21,7 +21,7 @@ timestamp: 2016-04-01T17:34:10.292012
 CREATE TABLE auth_membership(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
-    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
 );
 success!
 timestamp: 2016-04-01T17:34:10.415186
@@ -936,6 +936,65 @@ timestamp: 2016-04-17T21:41:24.300018
 ALTER TABLE namess ADD gpa TEXT;
 timestamp: 2016-04-17T21:41:24.444062
 ALTER TABLE namess ADD phone TEXT;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
 success!
 success!
 success!

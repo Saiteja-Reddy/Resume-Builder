@@ -1457,6 +1457,7 @@
 [2016-04-18 18:06:46] EDIT resume/views/default/moreresume.html: 0
 [2016-04-18 18:07:22] EDIT resume/views/default/moreresume.html: 1
 [2016-04-18 18:07:32] EDIT resume/views/default/moreresume.html: 0
+<<<<<<< Updated upstream
 [2016-04-18 18:40:40] EDIT resume/controllers/default.py: 0
 [2016-04-18 18:40:44] EDIT resume/controllers/default.py: 0
 [2016-04-18 18:41:13] EDIT resume/controllers/default.py: 0
@@ -1556,3 +1557,7 @@
 [2016-04-18 19:33:36] EDIT resume/views/default/findresume.html: 0
 [2016-04-18 19:34:18] EDIT resume/views/default/findresume.html: 0
 [2016-04-18 19:34:20] EDIT resume/controllers/default.py: 0
+[2016-04-18 20:10:26] EDIT Resume_Builder/models/menu.py: 0
+[2016-04-18 20:10:31] EDIT Resume_Builder/models/menu.py: -1
+[2016-04-18 20:10:38] EDIT Resume_Builder/models/menu.py: 0
+[2016-04-18 20:10:38] EDIT Resume_Builder/models/menu.py: 0

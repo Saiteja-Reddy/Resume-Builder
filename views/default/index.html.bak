@@ -2,25 +2,18 @@
 {{extend 'layout.html'}}
 
 {{block header}}
-    <header class="container-fluid background">
+    <header class="container-fluid" id="background">
       <div class="jumbotron text-center">
         {{if response.title:}}
-        <h1>{{=response.title}}
-          <small>{{=response.subtitle or ''}}</small></h1>
-        {{pass}}
+        <h1>{{=response.title}}</h1><br>
+         <h3 style="color:white">{{=response.subtitle or ''}}</h3>
+        {{pass}}<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
       </div>
     </header>
 {{end}}
-<a href={{=URL('default','templates')}}>Fill a resume</a>
-<br>
-<a href={{=URL('default','findresume')}}>Search for a resume</a>
-<br>
-<a href={{=URL('default','myresume')}}>My Resumes</a>
-<br>
-<a href={{=URL('default','markedresume')}}>Marked Resumes</a>
-<br>
-<a href={{=URL('default','allresume')}}>All Resumes</a>
-<br>
+<marquee><h1 style="color:black">
+    Welcome to Resume Builder
+    </h1></marquee>
 
 {{if 'message' in globals():}}
 <h2>{{=message}}</h2>

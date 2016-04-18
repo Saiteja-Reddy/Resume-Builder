@@ -2,17 +2,16 @@
 {{extend 'layout.html'}}
 
 {{block header}}
-    <header class="container-fluid background">
+    <header class="container-fluid" id="back">
       <div class="jumbotron text-center">
-        <h1>Search For A Resume</h1>
-      </div>
+      </div><br><br><br><br><br><br><br><br><br>
     </header>
 {{end}}
-<h2>Enter Your Desired Details: </h2>
+<div style="background-color:#ffffff">
+<h2>Search By: </h2>
 <hr>
 {{if 'message' in globals():}}
 <!--<h2 class="middle">{{=message}}</h2>-->
-<h2>Your Liked Recipes</h2>
 <hr>
 {{elif 'content' in globals():}}
 {{=content}}
@@ -22,7 +21,7 @@
     <table>
         <tr>
             <th>By Name</th>
-            <th>By Email:</th>
+            <th>By Email</th>
         </tr>
         <tr>
             <td><input type='text' id='keyword' name='keyword' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','task'],'target');" ></td>
@@ -32,26 +31,27 @@
         </tr>
     </table>
 </form>
-<input type='text' id="task" name='task' >
+<!--<input type='text' id="task" name='task' >
+<<<<<<< Updated upstream
 <div id="target"></div>
+=======
+>>>>>>> Stashed changes-->
 {{pass}}
 
 {{block right_sidebar}}
 
 {{end}}
+</div>
 <style>
-      body{
-         background-color:   #FFF8DC;
-    }
     hr {
     display: block;
     height: 1px;
     border: 0;
     border-top: 1px solid black;
     margin: 1em 0;
-    padding: 0; 
+    padding: 0;
 }
-    table,tr,td 
+    table,tr,td
     {
      padding:5px;
     }
@@ -64,5 +64,5 @@
         padding:5px;
         display:inline;
     }
-    
+
 </style>
