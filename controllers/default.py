@@ -154,7 +154,9 @@ def callback():
          pages = db(query & query1).select(orderby=db.namess.name)
      else:
         pages = db(query & query1).select(orderby=~db.namess.name)
-     links = [A(p.name, _href=URL('moreresume',args=p.id)) for p in pages]
+     links=[]
+     for p in pages:
+         links += [ [ DIV( A(p.name, _href=URL('moreresume',args=p.id)),XML('&nbsp &nbsp'),DIV(p.email),DIV(p.gpa)) ] ]
      return UL(*links)
 
 @auth.requires_login()
