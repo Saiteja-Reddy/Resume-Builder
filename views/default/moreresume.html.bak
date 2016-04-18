@@ -18,6 +18,8 @@
         <td>{{=i.works}}</td>
         <td>{{=i.education}}</td>
         <td>{{=i.addinfo}}</td>
+         <td>{{=A('Know More',_href=URL('default', 'markresume', args=[i.]), _class="btn btn-default")}}</td>
+        
     </tr>
      {{more=i.id}}
     <tr><td>{{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-default")}}</td></tr>
@@ -29,7 +31,7 @@
 <br>
 {{ for i in commenta:}}
     <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> :
-  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id]))}} {{pass}}<br> 
+  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more]))}} {{pass}}<br> 
 {{pass}}
 {{pass}}
 <br>

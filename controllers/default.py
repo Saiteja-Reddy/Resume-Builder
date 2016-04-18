@@ -156,3 +156,15 @@ def callback():
         pages = db(query & query1).select(orderby=~db.namess.name)
      links = [A(p.name, _href=URL('moreresume',args=p.id)) for p in pages]
      return UL(*links)
+
+@auth.requires_login()
+def seeprofile():
+    dat=db(db.auth_user.id==auth.user.id).select()
+    response.flash = T("My Profile")
+    return dict(message=T('Viewing my Profile!'),dat=dat)
+
+@auth.requires_login() 
+def info():
+    dat=db( db.auth_user.id ==  request.args(0)  ).select()
+    response.flash = T("Requested Profile")
+    return dict(message=T('Viewing requested Profile!'),dat=dat)

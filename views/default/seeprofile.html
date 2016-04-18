@@ -1,0 +1,40 @@
+{{extend 'layout.html'}}
+<h1>This is the default/seeprofile.html template</h1>
+
+{{for i in dat: }}
+{{if i.Account_Type=="Individual":}}
+<div class="maindiv">
+<table>
+    <tr><td id="names">{{=i.first_name}} {{=i.last_name}}</td> 
+    <td colspan='2'><img src="{{=URL('default', 'download', args=i.Profile_Photo)}}"></td></tr>
+</table>
+<table>
+    <tr><td>Account : {{=i.Account_Type}}</td></tr>  
+    <tr><td>Gender : {{=i.gender}}</td></tr>    
+    <tr><td>Nationality : {{=i.Nationality}}</td></tr>
+    <tr><td>Contact No : {{=i.Contact_Number}}</td></tr>
+    <tr><td>DOB : {{=i.Date_of_Birth}}</td></tr>
+    <tr><td>Email ID : {{=i.email}}</td></tr>
+ </table>
+</div>
+{{pass}}
+{{else:}}
+<div class="maindiv">
+<table>
+    <tr><td id="names">{{=i.first_name}} {{=i.last_name}}</td> 
+    <td colspan='2'><img src="{{=URL('default', 'download', args=i.Profile_Photo)}}"></td></tr>
+</table>
+<table>
+    <tr><td>Account : {{=i.Account_Type}}</td></tr>  
+        <tr><td>Company Name : {{=i.Company_Name}}</td></tr>  
+            <tr><td>Company Location : {{=i.Company_Location}}</td></tr> 
+          <tr><td>City : {{=i.City}}</td></tr> 
+    <tr><td>Country : {{=i.Country}}</td></tr>
+        <tr><td>Account : {{=i.Account_Type}}</td></tr>    
+    <tr><td>Contact No : {{=i.Contact_Number}}</td></tr>
+    <tr><td>Email ID : {{=i.email}}</td></tr>
+ </table>
+</div>
+{{pass}}
+{{pass}}
+Note: Edit Your Profile in Welcome tab on the Nav Bar.

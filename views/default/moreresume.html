@@ -18,6 +18,8 @@
         <td>{{=i.works}}</td>
         <td>{{=i.education}}</td>
         <td>{{=i.addinfo}}</td>
+         <td>{{=A('Know More',_href=URL('default', 'info', args=[i.uploadedby]), _class="btn btn-default")}}</td>
+        
     </tr>
      {{more=i.id}}
     <tr><td>{{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-default")}}</td></tr>
