@@ -23,12 +23,15 @@
         <tr>
             <th>By Name</th>
             <th>By Email:</th>
+            <th>By Skills:</th>
         </tr>
         <tr>
-            <td><input type='text' id='keyword' name='keyword' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','task'],'target');" ></td>
-            <td><input type='text' id='keyword1' name='keyword1' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','task'],'target');" ></td>
-            <td><a onclick="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','task'],'target');">Sort Ascending</a></td>
-            <td><a onclick="document.getElementById('task').value='des' ; ajax('callback',['keyword','keyword1','task'],'target');">Sort Descending</a></td>
+            <td><input type='text' id='keyword' name='keyword' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');" ></td>
+            <td><input type='text' id='keyword1' name='keyword1' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');" ></td>
+             <td><input type='text' id='keyword2' name='keyword2' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');" ></td>
+            <td><a onclick="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');">Sort Ascending</a></td>
+            <td><a onclick="document.getElementById('task').value='des' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');">Sort Descending</a></td>
+            <td><a onclick="document.getElementById('task').value='sortcg' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');">Sort Descending</a></td>
         </tr>
     </table>
 </form>

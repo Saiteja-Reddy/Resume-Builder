@@ -150,10 +150,13 @@ def callback():
      "an ajax callback that returns a <ul> of links to wiki pages"
      query = db.namess.name.contains(request.vars.keyword)
      query1 = db.namess.email.contains(request.vars.keyword1)
+     query2 = db.namess.skills.contains(request.vars.keyword2)
      if request.vars.task == "as":
-         pages = db(query & query1).select(orderby=db.namess.name)
-     else:
-        pages = db(query & query1).select(orderby=~db.namess.name)
+         pages = db(query & query1 & query2 ).select(orderby=db.namess.name)
+     elif request.vars.task=="des":
+        pages = db(query & query1 & query2 ).select(orderby=~db.namess.name)
+     elif request.vars.task=="sortcg":
+        pages = db(query & query1 & query2 ).select(orderby=db.namess.gpa)
      links=[]
      for p in pages:
          links += [ [ DIV( A(p.name, _href=URL('moreresume',args=p.id)),XML('&nbsp &nbsp'),DIV(p.email),DIV(p.gpa)) ] ]
