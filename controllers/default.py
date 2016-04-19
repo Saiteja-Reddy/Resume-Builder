@@ -16,8 +16,8 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-    response.flash = T("Hello World")
-    return dict(message=T('Welcome to web2py!'))
+    response.flash = T("Welcome")
+    return dict(message=T(''))
 
 
 def user():
@@ -79,7 +79,7 @@ def uploadresume():
 @auth.requires_login()
 def my_action():
     db.namess.insert(name=request.vars.name,email=request.vars.email,summary=request.vars.summ,works=request.vars.works,education=request.vars.edu,addinfo=request.vars.addinfo,skills=request.vars.works2,phone=request.vars.phone,gpa=request.vars.edu2,uploadedby=auth.user.id);
-    return "Sucess"
+    return "Success"
 
 def findresume():
     return locals()
@@ -139,7 +139,7 @@ def markresume():
         already_liked = (db.mark.userid==auth.user.id)&(db.mark.resumeid==request.args(0))
         db(already_liked).delete()
         response.flash="UNmarked The Resume!"
-    return "Sucess"
+    return "Success"
 
 
 

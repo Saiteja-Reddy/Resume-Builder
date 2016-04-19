@@ -1,18 +1,18 @@
 {{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
 {{extend 'layout.html'}}
-
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 {{block header}}
-    <header class="container-fluid background">
-      <div class="jumbotron text-center">
-        <h1>Search For A Resume</h1>
+    <header class="container-fluid" id="back">
+     <div class="jumbotron text-center">
       </div>
     </header>
 {{end}}
-<h2>Enter Your Desired Details: </h2>
+<div style="background-color:#ffffff">
+<h2 class="text-info">Search By: </h2>
 <hr>
 {{if 'message' in globals():}}
 <!--<h2 class="middle">{{=message}}</h2>-->
-<h2>Your Liked Recipes</h2>
 <hr>
 {{elif 'content' in globals():}}
 {{=content}}
@@ -21,31 +21,30 @@
 <form>
     <table>
         <tr>
-            <th>By Name</th>
-            <th>By Email:</th>
-            <th>By Skills:</th>
+            <th class="text-info">By Name</th>
+            <th class="text-info">By Email</th>
+            <th class="text-info">By Skills</th>
         </tr>
         <tr>
-            <td><input type='text' id='keyword' name='keyword' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');" ></td>
-            <td><input type='text' id='keyword1' name='keyword1' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');" ></td>
-             <td><input type='text' id='keyword2' name='keyword2' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');" ></td>
-            <td><a onclick="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');">Sort Ascending</a></td>
-            <td><a onclick="document.getElementById('task').value='des' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');">Sort Descending</a></td>
-            <td><a onclick="document.getElementById('task').value='sortcg' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');">Sort Descending</a></td>
+            <td><br><input class="form-group" type='text' id='keyword' name='keyword' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');" ></td>
+            <td><br><input class="form-group" type='text' id='keyword1' name='keyword1' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');" ></td>
+            <td><br><input class="form-group" type='text' id='keyword2' name='keyword2' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');" ></td>
+            <td><a onclick="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');"><button class="btn btn-primary">Sort Ascending <i class="fa fa-sort-asc"></i></button></a></td>
+            <td><a onclick="document.getElementById('task').value='des' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');"><button class="btn btn-info">Sort Descending <i class="fa fa-sort-desc"></i></button></a></td>
+            <td><a onclick="document.getElementById('task').value='sortcg' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');"><button class="btn btn-danger">Sort By GPA <i class="icon-sort-by-order-alt"></i></button></a></td>
         </tr>
     </table>
 </form>
-<input type='text' id="task" name='task' >
+<input class="form-group" type='hidden' id="task" name='task' >
 <div id="target"></div>
 {{pass}}
 
 {{block right_sidebar}}
 
 {{end}}
+</div>
 <style>
-      body{
-         background-color:   #FFF8DC;
-    }
+   
     hr {
     display: block;
     height: 1px;
