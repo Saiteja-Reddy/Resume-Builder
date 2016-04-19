@@ -1,24 +1,21 @@
 {{extend 'layout.html'}}
 <h1>This is the default/markedresume.html template</h1>
+<span id="searh"><b>Can't Find your desired resume : </b> <a href="{{=URL('default','findresume')}}">Search Here :)</a></span>
+<br><br>
+<table id="tab">
 
-
-<table>
     <tr>
         <th>Name</th>
         <th>Email</th>
         <th>Summary</th>
         <th>More Info</th>
-        <th>More Info(beta)</th>
-        <th>Remove Mark</th>
     </tr>
-    {{for i in dat:}}
+    {{for i in dat: }}
     <tr>
         <td>{{=i.name}}</td>
         <td>{{=i.email}}</td>
         <td>{{=i.summary}}</td>
-        <td>{{=A("MORE", _href=URL('moreresume', args=[ i.id ]))}}</td>
         <td>{{=A("MORE", _href=URL('templates1', args=[ i.id ]))}}</td>
-        <td>{{=A('UNmark Resume',_href=URL('unmark',args=[i.id]))}}</td>
     </tr>
     {{pass}}
 </table>
@@ -32,7 +29,60 @@
     <br><b>Page No . {{=request.vars.page}}</b></div>
 <div>
 <style>
-    table,td,th,tr{
-        padding:15px;
+        #righ{
+        position:fixed;
+        bottom:0vw;
+        width:90vw;
+        text-align:center;
+        z-index:10000;
+        color:orange;
     }
+    #tab{
+        width:95vw;
+    }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: center;
+    padding: 20px;
+}
+    caption{
+        text-align:center;
+        font-size:20px;
+    }
+tr:nth-child(even){background-color: #f2f2f2}
+    img {
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+        hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid black;
+    margin: 1em 0;
+    padding: 0; 
+}
+            #searh{
+        position:absolute;
+        right:0;
+        margin-right:20px;
+    }
+        img{
+     -webkit-border-radius: 64px;
+    -moz-border-radius: 64px;
+    -ms-border-radius: 64px;
+    -o-border-radius: 64px;
+    border-radius: 64px;
+    }
+img:hover {
+    transform: scale(1.5);
+}
 </style>

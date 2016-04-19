@@ -67,10 +67,11 @@ def myresume():
     end = page*10
     dat=db(db.namess.uploadedby==auth.user.id).select(db.namess.ALL,limitby=(start,end));
     if db.namess[ end + 1 ]:
-        response.flash = T("All Recipes")
-        return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=0)
-    response.flash = T("All Resumes")
-    return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=1)
+        response.flash = T("My Resumes")
+        return dict(message=T('My Resumes!'),dat=dat,pag=page,ret=0)
+    response.flash = T("My Resumes")
+    return dict(message=T('My Resumes!'),dat=dat,pag=page,ret=1)
+
 @auth.requires_login()
 def uploadresume():
     return locals()
@@ -107,7 +108,7 @@ def allresume():
     end = page*10
     dat=db(db.namess.id>0).select(db.namess.ALL,limitby=(start,end))
     if db.namess[ end + 1 ]:
-        response.flash = T("All Recipes")
+        response.flash = T("All Resumes")
         return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=0)
     response.flash = T("All Resumes")
     return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=1)
@@ -152,10 +153,10 @@ def markedresume():
     end = page*10
     dat=db( (db.mark.userid==auth.user.id) & (db.namess.id==db.mark.resumeid) ).select(db.namess.ALL,limitby=(start,end))
     if db.namess[ end + 1 ]:
-        response.flash = T("All Recipes")
-        return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=0)
-    response.flash = T("All Resumes")
-    return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=1)
+        response.flash = T("Marked Resumes")
+        return dict(message=T('My Marked Resumes!'),dat=dat,pag=page,ret=0)
+    response.flash = T("Marked Resumes")
+    return dict(message=T('My Marked Resumes!'),dat=dat,pag=page,ret=1)
 
 @auth.requires_login()
 def unmark():

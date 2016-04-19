@@ -1179,6 +1179,25 @@
     </div>
 </div>
 </div>
+    <div id="buttons">
+    <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
+    <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
+                 {{more=i.id}}
+    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-default")}}
+    <br>
+</div>
+
+{{ if commenta:}}
+<h3>Comments</h3>
+<br>
+{{ for i in commenta:}}
+    <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> :
+  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more]))}} {{pass}}<br> 
+{{pass}}
+{{pass}}
+<br>
+<h3>Post A Comment: </h3>
+{{=form}}
 {{elif request.args(1)=='7' or request.args(1)=='8' or request.args(1)=='9':}}
 <div class="form" id="JSFiddle">
 <table class="wide">
@@ -1270,7 +1289,25 @@
         </div>
     </div>
 </div>
+    <div id="buttons">
+    <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
+    <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
+                 {{more=i.id}}
+    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-default")}}
+    <br>
+</div>
 
+{{ if commenta:}}
+<h3>Comments</h3>
+<br>
+{{ for i in commenta:}}
+    <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> :
+  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more]))}} {{pass}}<br> 
+{{pass}}
+{{pass}}
+<br>
+<h3>Post A Comment: </h3>
+{{=form}}
 
 {{else:}}
 
@@ -1365,11 +1402,27 @@
         </div>
     </div>
 </div>
-{{pass}}
-{{pass}}
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="http://www.cloudformatter.com/Resources/Pages/CSS2Pdf/Script/xepOnline.jqPlugin.js"></script>
-<div id="buttons">
+    <div id="buttons">
     <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
     <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
+                 {{more=i.id}}
+    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-default")}}
+    <br>
 </div>
+
+{{ if commenta:}}
+<h3>Comments</h3>
+<br>
+{{ for i in commenta:}}
+    <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> :
+  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more]))}} {{pass}}<br> 
+{{pass}}
+{{pass}}
+<br>
+<h3>Post A Comment: </h3>
+{{=form}}
+{{pass}}
+{{pass}}
+
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="http://www.cloudformatter.com/Resources/Pages/CSS2Pdf/Script/xepOnline.jqPlugin.js"></script>
