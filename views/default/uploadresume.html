@@ -1126,6 +1126,28 @@
 {{pass}}
 </style>
 {{if request.args(0)=='2':}}
+<div class="container">
+  <div class="progress">
+    <div id='bar' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+    </div>
+  </div>
+</div>
+        
+    <div class="container text-center">
+  <div class="btn-group">
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myname">My Name</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myemail">My Email</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myphone">My Phone</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mysummary">My Summary</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myworks">My Work</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myskills">My Skills</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myeducation">My Education</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myaddinfo">My Additional Info</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mygpa">My GPA</button>
+  </div>
+</div>
+    <br><br>
+
 <div class="form" id="JSFiddle">
 <table class="wide">
     <tbody>
@@ -1180,6 +1202,27 @@
 </div>
 </div>
 {{elif request.args(0)=='7' or request.args(0)=='8' or request.args(0)=='9':}}
+    <div class="container">
+  <div class="progress">
+    <div id='bar' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+    </div>
+  </div>
+</div>
+        
+    <div class="container text-center">
+  <div class="btn-group">
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myname">My Name</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myemail">My Email</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myphone">My Phone</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mysummary">My Summary</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myworks">My Work</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myskills">My Skills</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myeducation">My Education</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myaddinfo">My Additional Info</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mygpa">My GPA</button>
+  </div>
+</div>
+    <br><br>
 <div class="form" id="JSFiddle">
 <table class="wide">
         <tbody>
@@ -1274,7 +1317,27 @@
     
 {{else:}}
     
+<div class="container">
+  <div class="progress">
+    <div id='bar' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+    </div>
+  </div>
+</div>
     
+    <div class="container text-center">
+  <div class="btn-group">
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myname">My Name</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myemail">My Email</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myphone">My Phone</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mysummary">My Summary</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myworks">My Work</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myskills">My Skills</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myeducation">My Education</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myaddinfo">My Additional Info</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mygpa">My GPA</button>
+  </div>
+</div>
+    <br><br>
 <div class="form" id="JSFiddle">
     <table class="wide">
         <tbody>
@@ -1367,75 +1430,177 @@
 </div>
 {{pass}}
 </div>
-<div class="formname">
-    <form id="formname" class="panel">
-        <input name='name' id="chname" type="text" onkeyup=changes("chname","nam")>
-        <a href="#">back</a>
-        <br>
-    </form>
+<br><br>
+<div class="container text-center">
+<div class="btn-group" >
+        <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
+    <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
+    <button class="btn btn-info" id="sav" onclick="myFunction();">Save</button>
+    <button  class="btn btn-info" onclick="printDiv('JSFiddle');">Print</button>
 </div>
-<div class="formemail">
-    <form id="formemail" class="panel">
-        <input name='email' id="chemail" type="text" onkeyup=changes("chemail","emai")>
-        <a href="#">back</a>
-    </form>
 </div>
-<div class="formph">
-    <form id="formph" class="panel">
-        <input name='phone' id="cheph" type="text" onkeyup=changes("cheph","ph")>
-        <a href="#">back</a>
-    </form>
-</div>
-<div class="formsumm">
-    <form id="formsumm" class="panel">
-        <textarea name='summ' id="chesumm" type="text" onkeyup=changes("chesumm","su1")></textarea>
-        <a href="#">back</a>
-    </form>
-</div>
-<div class="formwo">
-    <form id="formwo" class="panel">
-        <textarea name="works" id="chewo" type="text" onkeyup=changes("chewo","wo1")></textarea>
-        <a href="#">back</a>
-    </form>
-</div>
-<div class="formwo2">
-    <form id="formwo2" class="panel">
-        <textarea name="works2" id="chewo2" type="text" onkeyup=changes("chewo2","wo2")></textarea>
-        <a href="#">back</a>
-    </form>
-</div>
-<div class="formed">
-    <form id="formed" class="panel">
-        <textarea name="edu" id="cheed" type="text" onkeyup=changes("cheed","ed1")></textarea>
-        <a href="#">back</a>
-    </form>
-</div>
-<div class="formad">
-    <form id="formad" class="panel">
-        <textarea name="addinfo" id="chead" type="text" onkeyup=changes("chead","ad1")></textarea>
-        <a href="#">back</a>
-    </form>
-</div>
-<div class="formed2">
-    <form id="formed2" class="panel">
-        <textarea name="edu2" id="cheed2" type="text" onkeyup=changes("cheed2","ed2")></textarea>
-        <a href="#">back</a>
 
-    </form>
+
+  <div class="modal fade" id="myname" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Name:</h4>
+        </div>
+        <div class="modal-body">
+         <input class="form-control" name='name' id="chname" type="text" onkeyup=changes("chname","nam")>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<a href="#formname">My Name</a>
-<a href="#formemail">My Email</a>
-<a href="#formph">My Phone</a>
-<a href="#formsumm">My Summary</a>
-<a href="#formwo">My Work</a>
-<a href="#formwo2">My Skills</a>
-<a href="#formed">My Education</a>
-<a href="#formad">My Additional Info</a>
-<a href="#formed2">My GPA</a>
-<button id="sav" onclick="myFunction();">Save</button>
-<br>
+  <div class="modal fade" id="myemail" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Email:</h4>
+        </div>
+        <div class="modal-body">
+          <input class="form-control" name='email' id="chemail" type="text" onkeyup=changes("chemail","emai")>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="myphone" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Contact No.:</h4>
+        </div>
+        <div class="modal-body">
+        <input class="form-control" name='phone' id="cheph" type="text" onkeyup=changes("cheph","ph")>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="mysummary" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Summary:</h4>
+        </div>
+        <div class="modal-body">
+          <textarea class="form-control" name='summ' id="chesumm" type="text" onkeyup=changes("chesumm","su1")></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="myworks" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Works:</h4>
+        </div>
+        <div class="modal-body">
+          <textarea class="form-control" name="works" id="chewo" type="text" onkeyup=changes("chewo","wo1")></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="myaddinfo" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Additional Info:</h4>
+        </div>
+        <div class="modal-body">
+        <textarea class="form-control" name="addinfo" id="chead" type="text" onkeyup=changes("chead","ad1")></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="myskills" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Skill Set:</h4>
+        </div>
+        <div class="modal-body">
+        <textarea class="form-control" name="works2" id="chewo2" type="text" onkeyup=changes("chewo2","wo2")></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="myeducation" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Education:</h4>
+        </div>
+        <div class="modal-body">
+         <textarea class="form-control" name="edu" id="cheed" type="text" onkeyup=changes("cheed","ed1")></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="mygpa" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Enter your GPA:</h4>
+        </div>
+        <div class="modal-body">
+          <input class="form-control" name="edu2" id="cheed2" type="text" onkeyup=changes("cheed2","ed2")>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script>
+    
+    var abcd=0;
+    var a1=0;var a2=0;var a3=0;var a4=0;var a5=0;var a6=0;var a7=0;var a8=0;var a9=0;
+    
     document.getElementById('cheph').value = document.getElementById('ph').innerHTML;
     document.getElementById('chname').value = document.getElementById('nam').innerHTML;
     document.getElementById('chemail').value = document.getElementById('emai').innerHTML;
@@ -1453,6 +1618,51 @@
         } else {
             document.getElementById(str2).innerHTML = "Not Provided";
         }
+        if(str1=='cheph'){ if(!a1) { a1=1 ,abcd+=1; } }
+        if(str1=='chname'){ if(!a2) { a2=1 ,abcd+=1; } }
+        if(str1=='chemail'){ if(!a3) { a3=1 ,abcd+=1; } }
+        if(str1=='chesum'){ if(!a4) { a4=1 ,abcd+=1; } }
+        if(str1=='chewo'){ if(!a5) { a5=1 ,abcd+=1; } }
+        if(str1=='chewo2'){ if(!a6) { a6=1 ,abcd+=1; } }
+        if(str1=='cheed'){ if(!a7) { a7=1 ,abcd+=1; } }
+        if(str1=='chead'){ if(!a8) { a8=1 ,abcd+=1; } }
+        if(str1=='cheed2'){ if(!a9) { a9=1 ,abcd+=1; } }
+        prog(abcd);
+    }
+    function prog(abc)
+    {
+        switch (abc) {
+    case 0:
+           document.getElementById('bar').style.width='0%';
+        break;
+    case 1:
+             document.getElementById('bar').style.width='10%';
+        break;
+    case 2:
+             document.getElementById('bar').style.width='20%';
+        break;
+    case 3:
+             document.getElementById('bar').style.width='30%';
+        break;
+    case 4:
+             document.getElementById('bar').style.width='40%';
+        break;
+    case 5:
+             document.getElementById('bar').style.width='50%';
+        break;
+    case 6:
+             document.getElementById('bar').style.width='60%';
+        break;
+    case 7:
+             document.getElementById('bar').style.width='70%';
+        break;
+    case 8:
+             document.getElementById('bar').style.width='100%';
+        break;
+    }
+    }
+    function printDiv(divName) {
+        window.print();
     }
 </script>
 <style>
@@ -1486,7 +1696,3 @@
 
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="http://www.cloudformatter.com/Resources/Pages/CSS2Pdf/Script/xepOnline.jqPlugin.js"></script>
-<div id="buttons">
-    <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
-    <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
-</div>
