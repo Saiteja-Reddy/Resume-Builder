@@ -1,8 +1,7 @@
 {{extend 'layout.html'}}
-<h1>This is the default/markedresume.html template</h1>
 <span id="searh"><b>Can't Find your desired resume : </b> <a href="{{=URL('default','findresume')}}">Search Here :)</a></span>
 <br><br>
-<table id="tab">
+<table id="tab" class="table-hover table-responsive">
 
     <tr>
         <th>Name</th>
