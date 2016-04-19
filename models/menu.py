@@ -6,7 +6,7 @@
 #########################################################################
 
 response.logo = A(B('Resume Builder'),XML('&trade;&nbsp;'),
-                  _class="navbar-brand",_href="http://127.0.0.1:8000/Resume_Builder/default/index",
+                  _class="navbar-brand",_href=URL('default','index'),
                   _id="web2py-logo")
 response.title = 'Job Hunting?'
 response.subtitle = 'Create an impressive resume in minutes!'

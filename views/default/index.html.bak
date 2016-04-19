@@ -1,19 +1,25 @@
-{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
 {{extend 'layout.html'}}
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-{{block header}}
-    <header class="container-fluid" id="background">
-      <div class="jumbotron text-center">
-        {{if response.title:}}
-          <h1 class="railway"><b>{{=response.title}}</b></h1><br>
+<link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
+<link rel="stylesheet" href="{{=URL('static','css/web2py-bootstrap3.css')}}"/>
+<body>
+    <div id='c1' class='text-center'>
+           <h1 class="railway"><b>{{=response.title}}</b></h1><br>
           <h2 class="railway"><b>{{=response.subtitle or ''}}</b></h2>
-        {{pass}}
-   <br><br>
-          <a href="http://127.0.0.1:8000/Resume_Builder/default/templates"> <button class="btn btn-info btn-lg" id="but">Create Resume <i class="fa fa-plus"></i></button></a>
-     
-      </div>
-    </header>
-{{end}}
-
-{{block right_sidebar}}
-{{end}}
+        <br><br>
+  <a href="{{=URL('default','templates')}}"> <button class="btn btn-info btn-lg" id="but">Create Resume <i class="fa fa-plus"></i></button></a>
+    </div>
+</body>
+<style>
+    body
+    {
+        margin-top:100px;
+        background: transparent url("{{=URL('static','images/jobfinder1.jpg')}}") no-repeat scroll center center / cover;
+        width:100vw;
+        height:100vh;
+        overflow-x: hidden;
+    }
+    h1{
+        font-size:90px;
+    }
+</style>

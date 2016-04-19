@@ -2,7 +2,7 @@
 <h1>This is the default/seeprofile.html template</h1>
 
 {{for i in dat: }}
-{{if i.Account_Type=="Individual":}}
+{{if i.Account_Type == ['Individual']:}}
 <div class="maindiv">
 <table>
     <tr><td id="names">{{=i.first_name}} {{=i.last_name}}</td> 
@@ -17,24 +17,71 @@
     <tr><td>Email ID : {{=i.email}}</td></tr>
  </table>
 </div>
-{{pass}}
 {{else:}}
 <div class="maindiv">
 <table>
-    <tr><td id="names">{{=i.first_name}} {{=i.last_name}}</td> 
+    <tr><td id="names">{{=i.Company_Name}}</td> 
     <td colspan='2'><img src="{{=URL('default', 'download', args=i.Profile_Photo)}}"></td></tr>
 </table>
 <table>
-    <tr><td>Account : {{=i.Account_Type}}</td></tr>  
-        <tr><td>Company Name : {{=i.Company_Name}}</td></tr>  
+    <tr><td>Account : {{=i.Account_Type}}</td></tr>   
             <tr><td>Company Location : {{=i.Company_Location}}</td></tr> 
           <tr><td>City : {{=i.City}}</td></tr> 
     <tr><td>Country : {{=i.Country}}</td></tr>
-        <tr><td>Account : {{=i.Account_Type}}</td></tr>    
     <tr><td>Contact No : {{=i.Contact_Number}}</td></tr>
     <tr><td>Email ID : {{=i.email}}</td></tr>
  </table>
 </div>
 {{pass}}
+
 {{pass}}
 Note: Edit Your Profile in Welcome tab on the Nav Bar.
+<style>
+    img{
+        width:250px;
+        height:250px;
+     -webkit-border-radius: 1000px;
+    -moz-border-radius: 1000px;
+    -ms-border-radius: 1000px;
+    -o-border-radius: 1000px;
+    border-radius: 1000px;
+    }
+    #names{
+        font-size:50px;
+    }
+    table
+    {
+            width:90vw;
+            text-align:center;
+        font-size:30px
+
+
+    }
+table, th, td {
+    border-collapse: collapse;
+            padding:10px;
+
+}
+    body{
+            background-color:	#FFF8DC;
+                        font-weight:1000;
+    }
+        img {
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+        }
+img:hover {
+    transform: scale(1.1);
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid black;
+    margin: 1em 0;
+    padding: 0; 
+}
+</style>

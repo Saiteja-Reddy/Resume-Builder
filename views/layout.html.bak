@@ -101,8 +101,7 @@
 
     </div>
 
-    {{block footer}} <!-- this is default footer -->      
-    
+    {{block footer}} <!-- this is default footer -->
     {{end}}
     <!-- The javascript =============================== -->
     <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
