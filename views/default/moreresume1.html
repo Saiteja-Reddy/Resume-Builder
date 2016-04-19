@@ -1,5 +1,6 @@
 {{extend 'layout.html'}}
 <style>
+    {{temp=request.args(1)}}
 {{if request.args(1)=='1':}}
 #JSFiddle div.block p {
     line-height: 1.4em;
@@ -1401,21 +1402,22 @@
             </div>
         </div>
     </div>
+<br>
+<div class="container text-center">
+<div class="btn-group" >
+        <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
+    <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
+    {{more=i.id}}
+    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-info")}}
+    <button  class="btn btn-info" onclick="printDiv('JSFiddle');">Print</button>
 </div>
-    <div id="buttons">
-    <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
-    <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
-                 {{more=i.id}}
-    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-default")}}
-    <br>
 </div>
-
 {{ if commenta:}}
 <h3>Comments</h3>
 <br>
 {{ for i in commenta:}}
     <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> :
-  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more]))}} {{pass}}<br> 
+  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more,temp]))}} {{pass}}<br><br>
 {{pass}}
 {{pass}}
 <br>

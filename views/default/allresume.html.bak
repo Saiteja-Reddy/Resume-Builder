@@ -48,7 +48,7 @@ table {
 
 th, td {
     text-align: center;
-    padding: 15px;
+    padding: 20px;
 }
     caption{
         text-align:center;

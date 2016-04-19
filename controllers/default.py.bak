@@ -168,7 +168,7 @@ def unmark():
 def deletecomment():
     already_liked = (db.comments.id==request.args(0))
     db(already_liked).delete()
-    redirect(URL('moreresume',args=request.args(1)))
+    redirect(URL('moreresume1',args=[request.args(1),request.args(2)]))
     
 @auth.requires_login()
 def findresume():
@@ -222,5 +222,5 @@ def moreresume1():
     form = SQLFORM(db.comments)
     if form.process().accepted:
         response.flash="response recorded"
-        redirect(URL('moreresume1',args=request.args(0)))
+        redirect(URL('moreresume1',args=[request.args(0),request.args(1)]))
     return dict(message=T('More Info'),f=f,commenta=commenta,form=form)
