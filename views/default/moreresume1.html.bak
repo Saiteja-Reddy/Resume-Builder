@@ -1180,12 +1180,14 @@
     </div>
 </div>
 </div>
-    <div id="buttons">
-    <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
-    <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
-                 {{more=i.id}}
-    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-default")}}
-    <br>
+<div class="container text-center">
+<div class="btn-group" >
+        <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
+    <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
+    {{more=i.id}}
+    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-info")}}
+    <button  class="btn btn-info" onclick="printDiv('JSFiddle');">Print</button>
+</div>
 </div>
 
 {{ if commenta:}}
@@ -1290,12 +1292,14 @@
         </div>
     </div>
 </div>
-    <div id="buttons">
-    <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
-    <button onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
-                 {{more=i.id}}
-    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-default")}}
-    <br>
+<div class="container text-center">
+<div class="btn-group" >
+        <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
+    <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
+    {{more=i.id}}
+    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-info")}}
+    <button  class="btn btn-info" onclick="printDiv('JSFiddle');">Print</button>
+</div>
 </div>
 
 {{ if commenta:}}
