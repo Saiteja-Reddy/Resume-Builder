@@ -19,10 +19,16 @@
         <td>{{=i.education}}</td>
         <td>{{=i.addinfo}}</td>
          <td>{{=A('Know More',_href=URL('default', 'info', args=[i.uploadedby]), _class="btn btn-default")}}</td>
-        
+
     </tr>
      {{more=i.id}}
-    <tr><td>{{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-default")}}</td></tr>
+    <tr><td>
+      <div class="btn-group" >
+        {{more=i.id}}
+        {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button3")}}
+        {{=A('Unmark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button2")}}
+    </div>
+  </td></tr>
     {{pass}}
 </table>
 <br>
@@ -31,7 +37,7 @@
 <br>
 {{ for i in commenta:}}
     <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> :
-  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more]))}} {{pass}}<br> 
+  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more]))}} {{pass}}<br>
 {{pass}}
 {{pass}}
 <br>
@@ -42,4 +48,44 @@
     table,td,th,tr{
         padding:15px;
     }
+    .button {
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    #button3 {
+        background-color: white;
+        color: black;
+        border: 2px solid #f44336;
+    }
+
+    #button3:hover {
+        text-decoration:none;
+        background-color: #f44336;
+        color: white;
+    }
+
+    #button2{
+            text-decoration:none;
+            background-color: #f44336;
+            color: white;
+            border: 2px solid #f44336;
+    }
 </style>
+<script>
+    {{if (check==True):}}
+        jQuery('#button3').hide();
+    {{else:}}
+        jQuery('#button2').hide();
+    {{pass}}
+    jQuery('#button3').click(function(){jQuery('#button3').hide();jQuery('#button2').show()});
+    jQuery('#button2').click(function(){jQuery('#button2').hide();jQuery('#button3').show()});
+</script>

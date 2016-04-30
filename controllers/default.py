@@ -115,6 +115,7 @@ def allresume():
 
 #@auth.requires_login()
 def moreresume():
+    check=db((db.mark.resumeid==request.args(0)) & (db.mark.userid==auth.user.id)).count()
     f=db(db.namess.id==request.args(0)).select(db.namess.ALL);
     commenta=db(db.comments.resumeid==request.args(0)).select()
     db.comments.userid.default=auth.user.id
@@ -127,7 +128,7 @@ def moreresume():
     if form.process().accepted:
         response.flash="response recorded"
         redirect(URL('moreresume',args=request.args(0)))
-    return dict(message=T('More Info'),f=f,commenta=commenta,form=form)
+    return dict(message=T('More Info'),f=f,commenta=commenta,form=form,check=check)
 
 @auth.requires_login()
 def markresume():
@@ -138,7 +139,7 @@ def markresume():
     else:
         already_liked = (db.mark.userid==auth.user.id)&(db.mark.resumeid==request.args(0))
         db(already_liked).delete()
-        response.flash="UNmarked The Resume!"
+        response.flash="Unmarked The Resume!"
     return "Success"
 
 
@@ -169,17 +170,17 @@ def deletecomment():
     already_liked = (db.comments.id==request.args(0))
     db(already_liked).delete()
     redirect(URL('moreresume1',args=[request.args(1),request.args(2)]))
-    
+
 @auth.requires_login()
 def findresume():
         return locals()
 
 def templates():
         return locals()
-    
+
 def templates1():
         return locals()
-        
+
 
 @auth.requires_login()
 def callback():
@@ -204,13 +205,14 @@ def seeprofile():
     response.flash = T("My Profile")
     return dict(message=T('Viewing my Profile!'),dat=dat)
 
-@auth.requires_login() 
+@auth.requires_login()
 def info():
     dat=db( db.auth_user.id ==  request.args(0)  ).select()
     response.flash = T("Requested Profile")
     return dict(message=T('Viewing requested Profile!'),dat=dat)
 
 def moreresume1():
+    check=db((db.mark.resumeid==request.args(0)) & (db.mark.userid==auth.user.id)).count()
     f=db(db.namess.id==request.args(0)).select(db.namess.ALL);
     commenta=db(db.comments.resumeid==request.args(0)).select()
     db.comments.userid.default=auth.user.id
@@ -223,4 +225,4 @@ def moreresume1():
     if form.process().accepted:
         response.flash="response recorded"
         redirect(URL('moreresume1',args=[request.args(0),request.args(1)]))
-    return dict(message=T('More Info'),f=f,commenta=commenta,form=form)
+    return dict(message=T('More Info'),f=f,commenta=commenta,form=form,check=check)

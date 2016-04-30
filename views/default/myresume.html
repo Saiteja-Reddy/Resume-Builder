@@ -24,10 +24,10 @@
 
 <div id='righ'>
     {{ if pag !=1 : }}
-    <a class='link' href={{=URL(vars={'page':int(request.vars.page)-1})}}><img src="/resume/static/images/left.jpg" style="width:50px; height:50px;"/></a>
+    <a class='link' href={{=URL(vars={'page':int(request.vars.page)-1})}}><img src="{{=URL('static','images/left.jpg')}}" style="width:50px; height:50px;"/></a>
     {{pass}}
     {{ if ret == 0:}}
-    <a class='link' href={{=URL(vars={'page':int(request.vars.page)+1})}}><img src="/resume/static/images/right.jpg" style="width:50px; height:50px;"/></a>
+    <a class='link' href={{=URL(vars={'page':int(request.vars.page)+1})}}><img src="{{=URL('static','images/right.jpg')}}" style="width:50px; height:50px;"/></a>
     {{pass}}
     <br><b>Page No . {{=request.vars.page}}</b></div>
 <div>
@@ -70,7 +70,7 @@ th, td {
     border: 0;
     border-top: 1px solid black;
     margin: 1em 0;
-    padding: 0; 
+    padding: 0;
 }
             #searh{
         position:absolute;
