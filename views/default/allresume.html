@@ -10,12 +10,13 @@
         <th>Summary</th>
         <th>More Info</th>
     </tr>
-
+    {{j=0}}
     {{for i in dat: }}
     <tr>
         <td>{{=i.name}}</td>
         <td>{{=i.email}}</td>
         <td>{{=i.summary}}</td>
+        {{j+=1}}
         <td><a class='btn btn-primary' href="{{=URL('templates1', args=[ i.id ])}}">MORE <i class="fa fa-list"></i></a></td>
     </tr>
     {{pass}}
@@ -24,7 +25,7 @@
     {{ if pag !=1 : }}
     <a class='link' href={{=URL(vars={'page':int(request.vars.page)-1})}}><img src="{{=URL('static','images/left.jpg')}}" style="width:50px; height:50px;"/></a>
     {{pass}}
-    {{ if ret == 0:}}
+    {{ if ret == 0 and j==10 :}}
     <a class='link' href={{=URL(vars={'page':int(request.vars.page)+1})}}><img src="{{=URL('static','images/right.jpg')}}" style="width:50px; height:50px;"/></a>
     {{pass}}
     <br><b>Page No . {{=request.vars.page}}</b></div>

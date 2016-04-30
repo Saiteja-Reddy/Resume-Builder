@@ -60,12 +60,18 @@ def call():
 @auth.requires_login()
 def myresume():
     if not request.vars.page:
+        page=0
         redirect(URL(vars={'page':1}))
     else:
         page = int(request.vars.page)
     start = (page-1)*10
     end = page*10
     dat=db(db.namess.uploadedby==auth.user.id).select(db.namess.ALL,limitby=(start,end));
+    start1 = page*10
+    end1 = (page+1)*10
+    dat1=db(db.namess.uploadedby==auth.user.id).select(db.namess.ALL,limitby=(start1,end1));
+    if not dat1:
+        return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=1)
     if db.namess[ end + 1 ]:
         response.flash = T("My Resumes")
         return dict(message=T('My Resumes!'),dat=dat,pag=page,ret=0)
@@ -106,7 +112,12 @@ def allresume():
         page = int(request.vars.page)
     start = (page-1)*10
     end = page*10
+    start1 = (page)*10
+    end1 = (page+1)*10
     dat=db(db.namess.id>0).select(db.namess.ALL,limitby=(start,end))
+    dat1=db(db.namess.id>0).select(db.namess.ALL,limitby=(start1,end1))
+    if not dat1:
+        return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=1)
     if db.namess[ end + 1 ]:
         response.flash = T("All Resumes")
         return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=0)
@@ -153,6 +164,11 @@ def markedresume():
     start = (page-1)*10
     end = page*10
     dat=db( (db.mark.userid==auth.user.id) & (db.namess.id==db.mark.resumeid) ).select(db.namess.ALL,limitby=(start,end))
+    start1 = page*10
+    end1 = (page+1)*10
+    dat1=db( (db.mark.userid==auth.user.id) & (db.namess.id==db.mark.resumeid) ).select(db.namess.ALL,limitby=(start1,end1))
+    if not dat1:
+        return dict(message=T('My Marked Resumes!'),dat=dat,pag=page,ret=1)
     if db.namess[ end + 1 ]:
         response.flash = T("Marked Resumes")
         return dict(message=T('My Marked Resumes!'),dat=dat,pag=page,ret=0)
