@@ -98,7 +98,7 @@ def deleteresume():
     db(res).delete()
     redirect(URL('myresume'));
 
-#@auth.requires_login()
+@auth.requires_login()
 def allresume():
     if not request.vars.page:
         redirect(URL(vars={'page':1}))
@@ -113,7 +113,7 @@ def allresume():
     response.flash = T("All Resumes")
     return dict(message=T('All Resumes!'),dat=dat,pag=page,ret=1)
 
-#@auth.requires_login()
+@auth.requires_login()
 def moreresume():
     f=db(db.namess.id==request.args(0)).select(db.namess.ALL);
     commenta=db(db.comments.resumeid==request.args(0)).select()

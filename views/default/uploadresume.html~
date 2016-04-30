@@ -1,38 +1,7 @@
 {{extend 'layout.html'}}
+{{=BEAUTIFY(response._vars)}}
 <style>
-.button {
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-#button3 {
-    background-color: white;
-    color: black;
-    border: 2px solid #f44336;
-}
-
-#button3:hover {
-    text-decoration:none;
-    background-color: #f44336;
-    color: white;
-}
-
-#button2{
-        text-decoration:none;
-        background-color: #f44336;
-        color: white;
-        border: 2px solid #f44336;
-}
-    {{temp=request.args(1)}}
-{{if request.args(1)=='1':}}
+{{if request.args(0)=='1':}}
 #JSFiddle div.block p {
     line-height: 1.4em;
     margin: 0 0 .6em
@@ -107,7 +76,7 @@
 
 
 
-{{if request.args(1)=='2':}}
+{{if request.args(0)=='2':}}
 #JSFiddle div.block p {
     line-height: 1.4em;
     margin: 0 0 .6em
@@ -222,7 +191,7 @@
 
 
 
-{{if request.args(1)=='3':}}
+{{if request.args(0)=='3':}}
 #JSFiddle table.person {
     margin-left: -0.3em
 }
@@ -313,7 +282,7 @@
 
 
 
-{{if request.args(1)=='4':}}
+{{if request.args(0)=='4':}}
 #JSFiddle div.block p {
     line-height: 1.4em;
     margin: 0 0 .6em
@@ -395,7 +364,7 @@
 
 
 
-{{if request.args(1)=='5':}}
+{{if request.args(0)=='5':}}
 #JSFiddle div.block p {
     line-height: 1.4em;
     margin: 0 0 .6em
@@ -477,7 +446,7 @@
 
 
 
-{{if request.args(1)=='6':}}
+{{if request.args(0)=='6':}}
 #JSFiddle div.block p {
     line-height: 1.4em;
     margin: 0 0 .6em
@@ -575,7 +544,7 @@
 
 
 
-{{if request.args(1)=='7':}}
+{{if request.args(0)=='7':}}
 #JSFiddle div.block p {
     line-height: 1.4em;
     margin: .5em 0 .6em
@@ -662,7 +631,7 @@
 
 
 
-{{if request.args(1)=='8':}}
+{{if request.args(0)=='8':}}
 #JSFiddle div.block p {
     line-height: 1.4em;
     margin: 0 0 .6em
@@ -753,7 +722,7 @@
 
 
 
-{{if request.args(1)=='9':}}
+{{if request.args(0)=='9':}}
 #JSFiddle div.block p {
     line-height: 1.4em;
     margin: .5em 0 .6em
@@ -844,7 +813,7 @@
 
 
 
-{{if request.args(1)=='10':}}
+{{if request.args(0)=='10':}}
 #JSFiddle div.block p {
     line-height: 1.4em;
     margin: 0 0 .6em
@@ -944,7 +913,7 @@
 
 
 
-{{if request.args(1)=='11':}}
+{{if request.args(0)=='11':}}
 #JSFiddle div.block p {
     line-height: 1.4em;
     margin: 0 0 .6em
@@ -1053,7 +1022,7 @@
 
 
 
-{{if request.args(1)=='12':}}
+{{if request.args(0)=='12':}}
 #JSFiddle div.block p {
     line-height: 1.4em;
     margin: 0 0 .6em
@@ -1156,21 +1125,42 @@
 }
 {{pass}}
 </style>
-{{for i in f:}}
-{{if request.args(1)=='2':}}
+{{if request.args(0)=='2':}}
+<div class="container">
+  <div class="progress">
+    <div id='bar' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+    </div>
+  </div>
+</div>
+        
+    <div class="container text-center">
+  <div class="btn-group">
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myname">My Name</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myemail">My Email</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myphone">My Phone</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mysummary">My Summary</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myworks">My Work</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myskills">My Skills</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myeducation">My Education</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myaddinfo">My Additional Info</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mygpa">My GPA</button>
+  </div>
+</div>
+    <br><br>
+
 <div class="form" id="JSFiddle">
 <table class="wide">
     <tbody>
         <tr>
             <td class="left">
                 <div style="font-family: Roboto Condensed; margin-bottom: 1em;" class="block person" data-category="person">
-                    <p class="person nam1" id="nam" style="text-align:left;">{{=i.name}}</p>
+                    <p class="person nam1" id="nam" style="text-align:left;">Your Name</p>
                 </div>
             </td>
             <td class="right">
                 <div style="margin-bottom: 1em;" class="block contact" data-category="contact">
-                    <div class="html-content e1" id="emai">{{=i.email}}</div>
-                        <br><span class="html-content ph1" id="ph">{{=i.phone}}</span>
+                    <div class="html-content e1" id="emai">your.name@example.com</div>
+                        <br><span class="html-content ph1" id="ph">111-222-3333</span>
                 </div>
             </td>
         </tr>
@@ -1180,80 +1170,73 @@
     <div style="margin-bottom: 1em;" class="block" data-category="text" data-children="" data-id="0">
         <p style="font-family: Roboto Condensed;" class="title">Summary</p>
         <div class="block-inner">
-            <div class="html-content sum1" id="su1">{{=i.summary}}</div>
+            <div class="html-content sum1" id="su1">List here your top selling points, including your most relevant strengths, skills and core competencies.</div>
         </div>
     </div>
     <div style="margin-bottom: 1em;" class="block" data-category="experience" data-children="2" data-id="1">
         <p style="font-family: Roboto Condensed;" class="title">Work Experience</p>
         <div class="block-inner">
             <div style="margin-bottom: 1em;" class="child" data-id="1c0" data-category="experience">
-                <div class="html-content work1" id="wo1">{{=i.works}}</div>
+                <div class="html-content work1" id="wo1">Describe your job responsibilities, accomplishments and technologies you have used. It is highly recommended that you use bullet points to describe your experience.</div>
             </div>
-            <div class="html-content"><b>Skill Set -</b><span class="html-content work2" id="wo2">{{=i.skills}}</span></div>
+            <div class="html-content"><b>Skill Set -</b><span class="html-content work2" id="wo2">Mention your skills -- programming , sports , etc..</span></div>
         </div>
     </div>
     <div style="margin-bottom: 1em;" class="block" data-category="education" data-children="1" data-id="2">
         <p style="font-family: Roboto Condensed;" class="title">Education</p>
         <div class="block-inner">
             <div style="margin-bottom: 1em;" class="last-child" data-id="2c0" data-category="education">
-                <div class="html-content edu1" id="ed1">{{=i.education}}</div>
+                <div class="html-content edu1" id="ed1">(Optional) GPA, Awards, Honors</div>
                 <br>
                 <div class="html-content">
-                Your GPA -<b><span class="html-content edu2" id="ed2">{{=i.gpa}}</span></b>
+                Your GPA -<b><span class="html-content edu2" id="ed2">10.0</span></b>
             </div>
         </div>
     </div>
     <div style="margin-bottom: 1em;" class="block" data-category="text" data-children="" data-id="3">
         <p style="font-family: Roboto Condensed;" class="title">Additional Information</p>
         <div class="block-inner">
-            <div class="html-content add1" id="ad1">{{=i.addinfo}}</div>
+            <div class="html-content add1" id="ad1">Include other relevant information that employers should know about. This may include activities, experiences and interests that you have that relate to the position you are trying to get.</div>
         </div>
     </div>
 </div>
 </div>
-<div class="container text-center">
-  <div>
-<div class="btn-group" >
-  {{more=i.id}}
-  {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button3")}}
-  {{=A('Unmark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button2")}}
+{{elif request.args(0)=='7' or request.args(0)=='8' or request.args(0)=='9':}}
+    <div class="container">
+  <div class="progress">
+    <div id='bar' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+    </div>
+  </div>
 </div>
+        
+    <div class="container text-center">
+  <div class="btn-group">
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myname">My Name</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myemail">My Email</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myphone">My Phone</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mysummary">My Summary</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myworks">My Work</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myskills">My Skills</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myeducation">My Education</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myaddinfo">My Additional Info</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mygpa">My GPA</button>
+  </div>
 </div>
-<br />
-<div class="btn-group" >
-        <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
-    <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
-    {{more=i.id}}
-    <button  class="btn btn-info" onclick="printDiv('JSFiddle');">Print</button>
-</div>
-</div>
-
-{{ if commenta:}}
-<h3>Comments</h3>
-<br>
-{{ for i in commenta:}}
-    <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> :
-  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more,temp]))}} {{pass}}<br>
-{{pass}}
-{{pass}}
-<br>
-<h3>Post A Comment: </h3>
-{{=form}}
-{{elif request.args(1)=='7' or request.args(1)=='8' or request.args(1)=='9':}}
+    <br><br>
 <div class="form" id="JSFiddle">
 <table class="wide">
         <tbody>
             <tr>
                 <td class="left">
                     <div style="font-family: Roboto Condensed; margin-bottom: 1em;" class="block person" data-category="person">
-                        <p class="person nam1" id="nam">{{=i.name}}</p>
+                        <p class="person nam1" id="nam">Your Name</p>
                     </div>
                 </td>
                 <td class="right">
                     <div style="margin-bottom: 1em;" class="block contact" data-category="contact">
-                        <div class="html-content e1" id="emai">{{=i.email}}</div>
+                        <div class="html-content e1" id="emai">your.name@example.com</div>
                         <br>
-                        <span class="html-content ph1" id="ph">{{=i.phone}}</span>
+                        <span class="html-content ph1" id="ph">111-222-3333</span>
                     </div>
                 </td>
             </tr>
@@ -1269,7 +1252,7 @@
                         </td>
                         <td class="right0">
                             <div class="block-inner">
-                                <div class="html-content sum1" id="su1">{{=i.summary}}</div>
+                                <div class="html-content sum1" id="su1">List here your top selling points, including your most relevant strengths, skills and core competencies.</div>
                             </div>
                         </td>
                     </tr>
@@ -1285,9 +1268,9 @@
                         </td>
                         <td class="right0">
                             <div class="block-inner">
-                                <div class="html-content work1" id="wo1">{{=i.works}}</div>
+                                <div class="html-content work1" id="wo1">Describe your job responsibilities, accomplishments and technologies you have used. It is highly recommended that you use bullet points to describe your experience.</div>
                     <br>
-                    <div class="html-content"><b>Skill Set -</b><span class="html-content work2" id="wo2">{{=i.skills}}</span></div>
+                    <div class="html-content"><b>Skill Set -</b><span class="html-content work2" id="wo2">Mention your skills -- programming , sports , etc..</span></div>
                             </div>
                         </td>
                     </tr>
@@ -1303,9 +1286,9 @@
                         </td>
                         <td class="right0">
                             <div class="block-inner">
-                                <div class="html-content edu1" id="ed1">{{=i.education}}</div>
+                                <div class="html-content edu1" id="ed1">(Optional) GPA, Awards, Honors</div>
                     <br>
-                    <div class="html-content">Your GPA -<b><span class="html-content edu2" id="ed2">{{=i.gpa}}</span></b></div>
+                    <div class="html-content">Your GPA -<b><span class="html-content edu2" id="ed2">10.0</span></b></div>
                             </div>
                         </td>
                     </tr>
@@ -1321,7 +1304,7 @@
                         </td>
                         <td class="right0">
                             <div class="block-inner">
-                                <div class="html-content add1" id="ad1">{{=i.addinfo}}</div>
+                                <div class="html-content add1" id="ad1">Include other relevant information that employers should know about. This may include activities, experiences and interests that you have that relate to the position you are trying to get.</div>
                             </div>
                         </td>
                     </tr>
@@ -1330,52 +1313,45 @@
         </div>
     </div>
 </div>
-<div class="container text-center">
-  <div>
-<div class="btn-group" >
-  {{more=i.id}}
-  {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button3")}}
-  {{=A('Unmark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button2")}}
-</div>
-</div>
-<br />
-<div class="btn-group" >
-        <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
-    <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
-    {{more=i.id}}
-    <button  class="btn btn-info" onclick="printDiv('JSFiddle');">Print</button>
-</div>
-</div>
-
-{{ if commenta:}}
-<h3>Comments</h3>
-<br>
-{{ for i in commenta:}}
-    <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> :
-  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more,temp]))}} {{pass}}<br>
-{{pass}}
-{{pass}}
-<br>
-<h3>Post A Comment: </h3>
-{{=form}}
-
+    
+    
 {{else:}}
-
-
+    
+<div class="container">
+  <div class="progress">
+    <div id='bar' class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+    </div>
+  </div>
+</div>
+    
+    <div class="container text-center">
+  <div class="btn-group">
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myname">My Name</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myemail">My Email</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myphone">My Phone</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mysummary">My Summary</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myworks">My Work</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myskills">My Skills</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myeducation">My Education</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myaddinfo">My Additional Info</button>
+<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mygpa">My GPA</button>
+  </div>
+</div>
+    <br><br>
 <div class="form" id="JSFiddle">
     <table class="wide">
         <tbody>
             <tr>
                 <td class="left">
                     <div class="block person" data-category="person" style="font-family: 'Roboto Condensed'; margin-bottom: 1em;">
-                        <p class="person nam1" id="nam">{{=i.name}}</p>
+                        <p class="person nam1" id="nam">Your Name</p>
                     </div>
                 </td>
                 <td class="right">
                     <div class="block contact" data-category="contact" style="margin-bottom: 1em;">
-                        <div class="html-content e1" id="emai">{{=i.email}}</div>
+                        <div class="html-content e1" id="emai">your.name@example.com</div>
                         <br>
-                        <span class="html-content ph1" id="ph">{{=i.phone}}</span>
+                        <span class="html-content ph1" id="ph">111-222-3333</span>
                     </div>
                 </td>
             </tr>
@@ -1394,7 +1370,7 @@
                 </tbody>
             </table>
             <div class="block-inner">
-                <div class="html-content sum1" id="su1">{{=i.summary}}</div>
+                <div class="html-content sum1" id="su1">List here your top selling points, including your most relevant strengths, skills and core competencies.</div>
             </div>
         </div>
         <div class="block" data-category="experience" data-children="2" data-id="1" style="margin-bottom: 1em;">
@@ -1410,9 +1386,9 @@
             </table>
             <div class="block-inner">
                 <div class="child" data-id="1c0" data-category="experience" style="margin-bottom: 1em;">
-                    <div class="html-content work1" id="wo1">{{=i.works}}</div>
+                    <div class="html-content work1" id="wo1">Describe your job responsibilities, accomplishments and technologies you have used. It is highly recommended that you use bullet points to describe your experience.</div>
                     <br>
-                    <div class="html-content"><b>Skill Set -</b><span class="html-content work2" id="wo2">{{=i.skills}}</span></div>
+                    <div class="html-content"><b>Skill Set -</b><span class="html-content work2" id="wo2">Mention your skills -- programming , sports , etc..</span></div>
                 </div>
             </div>
         </div>
@@ -1429,9 +1405,9 @@
             </table>
             <div class="block-inner">
                 <div class="last-child" data-id="2c0" data-category="education" style="margin-bottom: 1em;">
-                    <div class="html-content edu1" id="ed1">{{=i.education}}</div>
+                    <div class="html-content edu1" id="ed1">(Optional) GPA, Awards, Honors</div>
                     <br>
-                    <div class="html-content">Your GPA -<b><span class="html-content edu2" id="ed2">{{=i.gpa}}</span></b></div>
+                    <div class="html-content">Your GPA -<b><span class="html-content edu2" id="ed2">10.0</span></b></div>
                 </div>
             </div>
         </div>
@@ -1447,51 +1423,276 @@
                 </tbody>
             </table>
             <div class="block-inner">
-                <div class="html-content add1" id="ad1">{{=i.addinfo}}</div>
+                <div class="html-content add1" id="ad1">Include other relevant information that employers should know about. This may include activities, experiences and interests that you have that relate to the position you are trying to get.</div>
             </div>
         </div>
     </div>
-<br>
+</div>
+{{pass}}
+</div>
+<br><br>
 <div class="container text-center">
-    <div>
-<div class="btn-group" >
-    {{more=i.id}}
-    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button3")}}
-    {{=A('Unmark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button2")}}
-</div>
-</div>
-<br />
 <div class="btn-group" >
         <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
     <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
+    <button class="btn btn-info" id="sav" onclick="myFunction();">Save</button>
     <button  class="btn btn-info" onclick="printDiv('JSFiddle');">Print</button>
 </div>
 </div>
-{{ if commenta:}}
-<h3>Comments</h3>
-<br>
-{{ for i in commenta:}}
-    {{ if db.auth_user[i.userid].Company_Name :}}
-    <b>{{=db.auth_user[i.userid].Company_Name}}</b> :{{else:}}
-    <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> : {{pass}}
 
-  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more,temp]))}} {{pass}}<br><br>
-{{pass}}
-{{pass}}
-<br>
-<h3>Post A Comment: </h3>
-{{=form}}
-{{pass}}
-{{pass}}
+
+  <div class="modal fade" id="myname" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Name:</h4>
+        </div>
+        <div class="modal-body">
+         <input class="form-control" name='name' id="chname" type="text" onkeyup=changes("chname","nam")>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="myemail" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Email:</h4>
+        </div>
+        <div class="modal-body">
+          <input class="form-control" name='email' id="chemail" type="text" onkeyup=changes("chemail","emai")>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="myphone" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Contact No.:</h4>
+        </div>
+        <div class="modal-body">
+        <input class="form-control" name='phone' id="cheph" type="text" onkeyup=changes("cheph","ph")>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="mysummary" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Summary:</h4>
+        </div>
+        <div class="modal-body">
+          <textarea class="form-control" name='summ' id="chesumm" type="text" onkeyup=changes("chesumm","su1")></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="myworks" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Works:</h4>
+        </div>
+        <div class="modal-body">
+          <textarea class="form-control" name="works" id="chewo" type="text" onkeyup=changes("chewo","wo1")></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="myaddinfo" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Additional Info:</h4>
+        </div>
+        <div class="modal-body">
+        <textarea class="form-control" name="addinfo" id="chead" type="text" onkeyup=changes("chead","ad1")></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="myskills" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Skill Set:</h4>
+        </div>
+        <div class="modal-body">
+        <textarea class="form-control" name="works2" id="chewo2" type="text" onkeyup=changes("chewo2","wo2")></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="myeducation" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Education:</h4>
+        </div>
+        <div class="modal-body">
+         <textarea class="form-control" name="edu" id="cheed" type="text" onkeyup=changes("cheed","ed1")></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="mygpa" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Enter your GPA:</h4>
+        </div>
+        <div class="modal-body">
+          <input class="form-control" name="edu2" id="cheed2" type="text" onkeyup=changes("cheed2","ed2")>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    
+    var abcd=0;
+    var a1=0;var a2=0;var a3=0;var a4=0;var a5=0;var a6=0;var a7=0;var a8=0;var a9=0;
+    
+    document.getElementById('cheph').value = document.getElementById('ph').innerHTML;
+    document.getElementById('chname').value = document.getElementById('nam').innerHTML;
+    document.getElementById('chemail').value = document.getElementById('emai').innerHTML;
+    document.getElementById('chesumm').value = document.getElementById('su1').innerHTML;
+    document.getElementById('chewo').value = document.getElementById('wo1').innerHTML;
+    document.getElementById('chewo2').value = document.getElementById('wo2').innerHTML;
+    document.getElementById('cheed').value = document.getElementById('ed1').innerHTML;
+    document.getElementById('chead').value = document.getElementById('ad1').innerHTML;
+    document.getElementById('cheed2').value = document.getElementById('ed2').innerHTML;
+
+    function changes(str1, str2) {
+        var a = document.getElementById(str1).value;
+        if (a) {
+            document.getElementById(str2).innerHTML = a;
+        } else {
+            document.getElementById(str2).innerHTML = "Not Provided";
+        }
+        if(str1=='cheph'){ if(!a1) { a1=1 ,abcd+=1; } }
+        if(str1=='chname'){ if(!a2) { a2=1 ,abcd+=1; } }
+        if(str1=='chemail'){ if(!a3) { a3=1 ,abcd+=1; } }
+        if(str1=='chesum'){ if(!a4) { a4=1 ,abcd+=1; } }
+        if(str1=='chewo'){ if(!a5) { a5=1 ,abcd+=1; } }
+        if(str1=='chewo2'){ if(!a6) { a6=1 ,abcd+=1; } }
+        if(str1=='cheed'){ if(!a7) { a7=1 ,abcd+=1; } }
+        if(str1=='chead'){ if(!a8) { a8=1 ,abcd+=1; } }
+        if(str1=='cheed2'){ if(!a9) { a9=1 ,abcd+=1; } }
+        prog(abcd);
+    }
+    function prog(abc)
+    {
+        switch (abc) {
+    case 0:
+           document.getElementById('bar').style.width='0%';
+        break;
+    case 1:
+             document.getElementById('bar').style.width='10%';
+        break;
+    case 2:
+             document.getElementById('bar').style.width='20%';
+        break;
+    case 3:
+             document.getElementById('bar').style.width='30%';
+        break;
+    case 4:
+             document.getElementById('bar').style.width='40%';
+        break;
+    case 5:
+             document.getElementById('bar').style.width='50%';
+        break;
+    case 6:
+             document.getElementById('bar').style.width='60%';
+        break;
+    case 7:
+             document.getElementById('bar').style.width='70%';
+        break;
+    case 8:
+             document.getElementById('bar').style.width='100%';
+        break;
+    }
+    }
+    function printDiv(divName) {
+        window.print();
+    }
+</script>
+<style>
+    .panel {
+        padding-top: 5vh;
+        font-size: 3vh;
+        position: absolute;
+        top: 5vh;
+        background-color: aqua;
+        height: 80vh;
+        width: 90vw;
+        margin-left: -150%;
+        -webkit-transition: all .8s ease-in-out;
+        -moz-transition: all .8s ease-in-out;
+        -o-transition: all .8s ease-in-out;
+        transition: all .8s ease-in-out;
+    }
+
+    .panel:target {
+        margin-left: 0;
+    }
+</style>
+
+<script type="text/javascript">
+    function myFunction() {
+        ajax('{{=URL('default', 'my_action')}}', ['name', 'addinfo', 'works', 'edu', 'summ', 'email', 'works2', 'phone', 'edu2'], 'target');
+    }
+</script>
+
+<div id="target"></div>
 
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="http://www.cloudformatter.com/Resources/Pages/CSS2Pdf/Script/xepOnline.jqPlugin.js"></script>
-<script>
-    {{if (check==True):}}
-        jQuery('#button3').hide();
-    {{else:}}
-        jQuery('#button2').hide();
-    {{pass}}
-    jQuery('#button3').click(function(){jQuery('#button3').hide();jQuery('#button2').show()});
-    jQuery('#button2').click(function(){jQuery('#button2').hide();jQuery('#button3').show()});
-</script>

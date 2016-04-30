@@ -1,4 +1,5 @@
 {{extend 'layout.html'}}
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <span id="searh"><b>Can't Find your desired resume : </b> <a href="{{=URL('default','findresume')}}">Search Here :)</a></span>
 <br><br>
 <table id="tab" class="table-hover table-responsive">
@@ -14,7 +15,7 @@
         <td>{{=i.name}}</td>
         <td>{{=i.email}}</td>
         <td>{{=i.summary}}</td>
-        <td>{{=A("MORE", _href=URL('templates1', args=[ i.id ]))}}</td>
+        <td><a class='btn btn-primary' href="{{=URL('templates1', args=[ i.id ])}}">MORE <i class="fa fa-list"></i></a></td>
     </tr>
     {{pass}}
 </table>
@@ -53,7 +54,6 @@ th, td {
         text-align:center;
         font-size:20px;
     }
-tr:nth-child(even){background-color: #f2f2f2}
     img {
     -ms-transition: all 0.1s ease-in-out;
     -o-transition: all 0.1s ease-in-out;
