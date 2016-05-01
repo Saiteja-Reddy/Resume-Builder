@@ -1,4 +1,6 @@
 {{extend 'layout.html'}}
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <body>
     <div id='c1' class='text-center'>
@@ -22,5 +24,12 @@
     }
     h1{
         font-size:90px;
+    }
+</style>
+<div class="help text-right"><h3 class="railway aa">Worried what to do ? Try This -> </h3><a href="{{=URL('default','helping')}}"> <button class="btn btn-danger" id="but">HELP</button></a></div>
+<style>
+    .aa
+    {
+        display:inline-block;
     }
 </style>

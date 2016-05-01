@@ -252,3 +252,6 @@ def moreresume1():
 def manage():
         form = SQLFORM.grid(db.auth_user)
         return dict(form=form)
+    
+def helping():
+    return dict(message="sasa")
