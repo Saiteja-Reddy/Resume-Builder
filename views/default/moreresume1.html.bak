@@ -1,5 +1,37 @@
 {{extend 'layout.html'}}
+
 <style>
+.button {
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+#button3 {
+    background-color: white;
+    color: black;
+    border: 2px solid #f44336;
+}
+
+#button3:hover {
+    text-decoration:none;
+    background-color: #f44336;
+    color: white;
+}
+
+#button2{
+        text-decoration:none;
+        background-color: #f44336;
+        color: white;
+        border: 2px solid #f44336;
+}
     {{temp=request.args(1)}}
 {{if request.args(1)=='1':}}
 #JSFiddle div.block p {
@@ -1181,11 +1213,18 @@
 </div>
 </div>
 <div class="container text-center">
+  <div>
+<div class="btn-group" >
+  {{more=i.id}}
+  {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button3")}}
+  {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button2")}}
+</div>
+</div>
+<br />
 <div class="btn-group" >
         <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
     <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
     {{more=i.id}}
-    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-info")}}
     <button  class="btn btn-info" onclick="printDiv('JSFiddle');">Print</button>
 </div>
 </div>
@@ -1195,7 +1234,7 @@
 <br>
 {{ for i in commenta:}}
     <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> :
-  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more,temp]))}} {{pass}}<br> 
+  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more,temp]))}} {{pass}}<br>
 {{pass}}
 {{pass}}
 <br>
@@ -1293,11 +1332,18 @@
     </div>
 </div>
 <div class="container text-center">
+  <div>
+<div class="btn-group" >
+  {{more=i.id}}
+  {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button3")}}
+  {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button2")}}
+</div>
+</div>
+<br />
 <div class="btn-group" >
         <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
     <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
     {{more=i.id}}
-    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-info")}}
     <button  class="btn btn-info" onclick="printDiv('JSFiddle');">Print</button>
 </div>
 </div>
@@ -1307,7 +1353,7 @@
 <br>
 {{ for i in commenta:}}
     <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> :
-  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more,temp]))}} {{pass}}<br> 
+  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more,temp]))}} {{pass}}<br>
 {{pass}}
 {{pass}}
 <br>
@@ -1408,11 +1454,17 @@
     </div>
 <br>
 <div class="container text-center">
+    <div>
+<div class="btn-group" >
+    {{more=i.id}}
+    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button3")}}
+    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="button", _id="button2")}}
+</div>
+</div>
+<br />
 <div class="btn-group" >
         <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
     <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
-    {{more=i.id}}
-    {{=A('Mark Resume',callback=URL('default', 'markresume', args=[i.id]),target='change', _class="btn btn-info")}}
     <button  class="btn btn-info" onclick="printDiv('JSFiddle');">Print</button>
 </div>
 </div>
@@ -1435,3 +1487,18 @@
 
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="http://www.cloudformatter.com/Resources/Pages/CSS2Pdf/Script/xepOnline.jqPlugin.js"></script>
+<script>
+    {{if (check==True):}}
+        jQuery('#button3').hide();
+    {{else:}}
+        jQuery('#button2').hide();
+    {{pass}}
+    jQuery('#button3').click(function(){jQuery('#button3').hide();jQuery('#button2').show()});
+    jQuery('#button2').click(function(){jQuery('#button2').hide();jQuery('#button3').show()});
+</script>
+<style>
+        body
+    {
+        overflow-x:hidden;
+    }
+    </style>

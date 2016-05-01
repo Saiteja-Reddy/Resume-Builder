@@ -16,7 +16,6 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-    response.flash = T("Welcome")
     return dict(message=T(''))
 
 
@@ -92,6 +91,7 @@ def findresume():
 
 def editresume():
    record = db.namess(request.args(0)) or redirect(URL('index'))
+   db.namess.id.readable=False
    form = SQLFORM(db.namess, record)
    if form.process().accepted:
        response.flash = 'form accepted'
@@ -218,7 +218,6 @@ def callback():
 @auth.requires_login()
 def seeprofile():
     dat=db(db.auth_user.id==auth.user.id).select()
-    response.flash = T("My Profile")
     return dict(message=T('Viewing my Profile!'),dat=dat)
 
 @auth.requires_login()
@@ -242,3 +241,8 @@ def moreresume1():
         response.flash="response recorded"
         redirect(URL('moreresume1',args=[request.args(0),request.args(1)]))
     return dict(message=T('More Info'),f=f,commenta=commenta,form=form,check=check)
+
+@auth.requires_membership('admin')
+def manage():
+        form = SQLFORM.grid(db.auth_user)
+        return dict(form=form)

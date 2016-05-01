@@ -1,8 +1,10 @@
 {{extend 'layout.html'}}
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-
 <body>
     <div id='c1' class='text-center'>
+        {{if auth.has_membership('admin'):}}
+<b>Welcome System Admin : {{=A("Manage Database", _href=URL('manage', args=[]))}}</b>
+{{pass}}
            <h1 class="railway"><b>{{=response.title}}</b></h1><br>
           <h2 class="railway"><b>{{=response.subtitle or ''}}</b></h2>
         <br><br>
