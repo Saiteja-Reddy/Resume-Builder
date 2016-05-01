@@ -95,6 +95,7 @@ def editresume():
    form = SQLFORM(db.namess, record)
    if form.process().accepted:
        response.flash = 'form accepted'
+       redirect(URL('default','myresume'))
    elif form.errors:
        response.flash = 'form has errors'
    return dict(req=request.args(0),form=form)

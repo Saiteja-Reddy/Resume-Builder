@@ -65,8 +65,8 @@ TYPE=('Individual','Organization')
 auth.settings.extra_fields['auth_user']= [ Field('Company_Name','string'), Field('Company_Location','string') , Field('Account_Type','list:string',requires=IS_IN_SET(TYPE)) , Field('gender','list:string',requires=IS_IN_SET(GENDER)) ,Field("Date_of_Birth",'date') , Field("Contact_Number",'string',length=10) , Field("Profile_Photo",'upload') , Field("Nationality",'list:string',requires=IS_IN_SET(COUNTRIES)) ,Field("City",'string'), Field("Country",'list:string',requires=IS_IN_SET(COUNTRIES))]
 
 auth.define_tables(username=False, signature=False)
-db.auth_user.first_name.default="First Name"
-db.auth_user.last_name.default="Last Name"
+db.auth_user.first_name.default=":"
+db.auth_user.last_name.default=")"
 db.auth_user.first_name.show_if = (db.auth_user.Account_Type == "Individual")
 db.auth_user.last_name.show_if = (db.auth_user.Account_Type == "Individual")
 db.auth_user.gender.show_if = (db.auth_user.Account_Type == "Individual")

@@ -1442,7 +1442,6 @@
     <button  class="btn btn-danger" onclick="printDiv('JSFiddle');">Print</button>
 </div>
 </div>
-<br>
 
 
   <div class="modal fade" id="myname" role="dialog">
@@ -1717,6 +1716,7 @@
         if ( x=="" )
         {
         ajax('{{=URL('default', 'my_action')}}', ['name', 'addinfo', 'works', 'edu', 'summ', 'email', 'works2', 'phone', 'edu2'], 'target');
+        window.location.href="{{=URL('default','myresume')}}"
         }
         else
         {

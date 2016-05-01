@@ -1,4 +1,7 @@
 {{extend 'layout.html'}}
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<h1>Usage Tutorial</h1>
+<div class="text-center">
+    <h1 class="text-primary" >Usage Tutorial</h1>
+    <br>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/RCSxql-A-hs" frameborder="0" allowfullscreen></iframe>
+</div>
