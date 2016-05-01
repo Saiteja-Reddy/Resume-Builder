@@ -9,17 +9,17 @@
         <th>Email</th>
         <th>Summary</th>
         <th>Edit</th>
-        <th>Delete</th>
         <th>More Info</th>
+        <th>Delete</th>
     </tr>
     {{for i in dat: }}
     <tr>
         <td>{{=i.name}}</td>
         <td>{{=i.email}}</td>
         <td>{{=i.summary}}</td>
-        <td><a class='btn btn-danger' href="{{=URL('deleteresume', args=[ i.id ])}}">DELETE <i class="fa fa-trash"></i></a></td>
         <td><a class='btn btn-primary' href="{{=URL('editresume', args=[ i.id ])}}">EDIT <i class="fa fa-pencil-square-o"></i></a></td>
         <td><a class='btn btn-info' href="{{=URL('templates1', args=[ i.id ])}}">MORE <i class="fa fa-list"></i></a></td>
+        <td><a class='btn btn-danger' href="{{=URL('deleteresume', args=[ i.id ])}}">DELETE <i class="fa fa-trash"></i></a></td>
     </tr>
     {{pass}}
 </table>

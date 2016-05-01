@@ -209,7 +209,7 @@ def callback():
      elif request.vars.task=="des":
         pages = db(query & query1 & query2 ).select(orderby=~db.namess.name)
      elif request.vars.task=="sortcg":
-        pages = db(query & query1 & query2 ).select(orderby=db.namess.gpa)
+        pages = db(query & query1 & query2 ).select(orderby=~db.namess.gpa)
      links=[[ TR( TH(B("NAME")),TH(B("EMAIL",_style="padding:100px;")),TH(B("GPA",_style="padding:100px;")) ) ]]
      for p in pages:
          links += [ [ TR( TD(A(p.name, _href=URL('templates1',args=p.id))),TD(DIV(p.email,_style="padding:100px;")),TD(DIV(p.gpa,_style="padding:100px;")) ) ] ]

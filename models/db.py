@@ -107,7 +107,7 @@ auth.settings.reset_password_requires_verification = True
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
 
-db.define_table('namess',Field('name','string'),Field('email','string'),Field('summary','text'),Field('works','text'),Field('education','text'),Field('addinfo','text'),Field('uploadedby','integer'),Field('skills','text'),Field('phone','string'),Field('gpa','string'));
+db.define_table('namess',Field('name','string'),Field('email','string'),Field('summary','text'),Field('works','text'),Field('education','text'),Field('addinfo','text'),Field('uploadedby','integer'),Field('skills','text'),Field('phone','string'),Field('gpa','float'));
 
 db.define_table('mark',Field('resumeid','integer'),Field('userid','integer'));
 

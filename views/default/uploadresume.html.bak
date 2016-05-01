@@ -1128,7 +1128,7 @@
 {{if request.args(0)=='2':}}
 <div class="container">
   <div class="progress">
-    <div id='bar' class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+    <div id='bar' class="progress-bar  progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
     </div>
   </div>
 </div>
@@ -1696,8 +1696,28 @@
 </style>
 
 <script type="text/javascript">
+    var x=""
+    function validate()
+    {
+        a=document.getElementById('ed2').innerHTML;
+        b=parseFloat(a);
+        x="";
+        if ( b > 10)
+            x+='\u2022 Invalid GPA - Enter value between 0 to 10 \n';
+       a=document.getElementById('nam').innerHTML;
+       if ( a == "Not Provided" )
+           x+='\u2022 Please Enter A Name . Cannot be None \n';
+    }
     function myFunction() {
+        validate();
+        if ( x=="" )
+        {
         ajax('{{=URL('default', 'my_action')}}', ['name', 'addinfo', 'works', 'edu', 'summ', 'email', 'works2', 'phone', 'edu2'], 'target');
+        }
+        else
+        {
+            alert(x);
+        }
     }
 </script>
 
