@@ -1327,15 +1327,15 @@
     
     <div class="container text-center">
   <div class="btn-group">
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myname">My Name</button>
-<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myemail">My Email</button>
-<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myphone">My Phone</button>
-<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mysummary">My Summary</button>
-<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myworks">My Work</button>
-<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myskills">My Skills</button>
-<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myeducation">My Education</button>
-<button type="button" class="btn btn-info " data-toggle="modal" data-target="#myaddinfo">My Additional Info</button>
-<button type="button" class="btn btn-info " data-toggle="modal" data-target="#mygpa">My GPA</button>
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myname">My Name</button>
+<button type="button" class="btn btn-default " data-toggle="modal" data-target="#myemail">My Email</button>
+<button type="button" class="btn btn-default " data-toggle="modal" data-target="#myphone">My Phone</button>
+<button type="button" class="btn btn-default " data-toggle="modal" data-target="#mysummary">My Summary</button>
+<button type="button" class="btn btn-default " data-toggle="modal" data-target="#myworks">My Work</button>
+<button type="button" class="btn btn-default " data-toggle="modal" data-target="#myskills">My Skills</button>
+<button type="button" class="btn btn-default " data-toggle="modal" data-target="#myeducation">My Education</button>
+<button type="button" class="btn btn-default " data-toggle="modal" data-target="#myaddinfo">My Additional Info</button>
+<button type="button" class="btn btn-default " data-toggle="modal" data-target="#mygpa">My GPA</button>
   </div>
 </div>
     <br><br>
@@ -1433,13 +1433,16 @@
 </div>
 <br><br>
 <div class="container text-center">
+    <br>
 <div class="btn-group" >
-        <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
-    <button class="btn btn-info" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
-    <button class="btn btn-info" id="sav" onclick="myFunction();">Save</button>
-    <button  class="btn btn-info" onclick="printDiv('JSFiddle');">Print</button>
+    <br>
+        <button class="btn btn-danger" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'download'})">Generate PDF</button>
+    <button class="btn btn-danger" onclick="return xepOnline.Formatter.Format('JSFiddle', {render:'embed', mimeType:'image/png'})">PNG @120dpi</button>
+    <button class="btn btn-danger" id="sav" onclick="myFunction();">Save</button>
+    <button  class="btn btn-danger" onclick="printDiv('JSFiddle');">Print</button>
 </div>
 </div>
+<br>
 
 
   <div class="modal fade" id="myname" role="dialog">
@@ -1450,7 +1453,7 @@
           <h4 class="modal-title">Name:</h4>
         </div>
         <div class="modal-body">
-         <input class="form-control" name='name' id="chname" type="text" onkeyup=changes("chname","nam")>
+         <input class="form-group form-control" name='name' id="chname" type="text" onkeyup=changes("chname","nam")>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1467,7 +1470,7 @@
           <h4 class="modal-title">Email:</h4>
         </div>
         <div class="modal-body">
-          <input class="form-control" name='email' id="chemail" type="text" onkeyup=changes("chemail","emai")>
+          <input class="form-control form-group" name='email' id="chemail" type="text" onkeyup=changes("chemail","emai")>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1484,7 +1487,7 @@
           <h4 class="modal-title">Contact No.:</h4>
         </div>
         <div class="modal-body">
-        <input class="form-control" name='phone' id="cheph" type="text" onkeyup=changes("cheph","ph")>
+        <input class="form-control form-group" name='phone' id="cheph" type="text" onkeyup=changes("cheph","ph")>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1501,7 +1504,7 @@
           <h4 class="modal-title">Summary:</h4>
         </div>
         <div class="modal-body">
-          <textarea class="form-control" name='summ' id="chesumm" type="text" onkeyup=changes("chesumm","su1")></textarea>
+          <textarea class="form-control form-group"  name='summ' id="chesumm" type="text" onkeyup=changes("chesumm","su1")></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1518,7 +1521,7 @@
           <h4 class="modal-title">Works:</h4>
         </div>
         <div class="modal-body">
-          <textarea class="form-control" name="works" id="chewo" type="text" onkeyup=changes("chewo","wo1")></textarea>
+          <textarea class="form-control form-group" name="works" id="chewo" type="text" onkeyup=changes("chewo","wo1")></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1535,7 +1538,7 @@
           <h4 class="modal-title">Additional Info:</h4>
         </div>
         <div class="modal-body">
-        <textarea class="form-control" name="addinfo" id="chead" type="text" onkeyup=changes("chead","ad1")></textarea>
+        <textarea class="form-control form-group" name="addinfo" id="chead" type="text" onkeyup=changes("chead","ad1")></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1552,7 +1555,7 @@
           <h4 class="modal-title">Skill Set:</h4>
         </div>
         <div class="modal-body">
-        <textarea class="form-control" name="works2" id="chewo2" type="text" onkeyup=changes("chewo2","wo2")></textarea>
+        <textarea class="form-control form-group" name="works2" id="chewo2" type="text" onkeyup=changes("chewo2","wo2")></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1569,7 +1572,7 @@
           <h4 class="modal-title">Education:</h4>
         </div>
         <div class="modal-body">
-         <textarea class="form-control" name="edu" id="cheed" type="text" onkeyup=changes("cheed","ed1")></textarea>
+         <textarea class="form-control form-group" name="edu" id="cheed" type="text" onkeyup=changes("cheed","ed1")></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1586,7 +1589,7 @@
           <h4 class="modal-title">Enter your GPA:</h4>
         </div>
         <div class="modal-body">
-          <input class="form-control" name="edu2" id="cheed2" type="text" onkeyup=changes("cheed2","ed2")>
+          <input class="form-control form-group" name="edu2" id="cheed2" type="text" onkeyup=changes("cheed2","ed2")>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1721,7 +1724,7 @@
         }
     }
 </script>
-
+<br><br>
 <div id="target"></div>
 
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>

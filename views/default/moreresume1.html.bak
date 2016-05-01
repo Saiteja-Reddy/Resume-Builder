@@ -1,4 +1,5 @@
 {{extend 'layout.html'}}
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 <style>
 .button {
@@ -1233,8 +1234,11 @@
 <h3>Comments</h3>
 <br>
 {{ for i in commenta:}}
-    <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> :
-  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more,temp]))}} {{pass}}<br>
+    {{ if db.auth_user[i.userid].Company_Name :}}
+    <b>{{=db.auth_user[i.userid].Company_Name}}</b> :{{else:}}
+    <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> : {{pass}}
+
+  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more,temp]))}} {{pass}}<br><br>
 {{pass}}
 {{pass}}
 <br>
@@ -1331,6 +1335,7 @@
         </div>
     </div>
 </div>
+        </div>
 <div class="container text-center">
   <div>
 <div class="btn-group" >
@@ -1352,8 +1357,11 @@
 <h3>Comments</h3>
 <br>
 {{ for i in commenta:}}
-    <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> :
-  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more,temp]))}} {{pass}}<br>
+    {{ if db.auth_user[i.userid].Company_Name :}}
+    <b>{{=db.auth_user[i.userid].Company_Name}}</b> :{{else:}}
+    <b>{{=db.auth_user[i.userid].first_name}} {{=db.auth_user[i.userid].last_name}}</b> : {{pass}}
+
+  {{=i.body}} {{if i.userid == auth.user.id:}} : {{=A('Delete',_href=URL('deletecomment',args=[i.id,more,temp]))}} {{pass}}<br><br>
 {{pass}}
 {{pass}}
 <br>
@@ -1453,6 +1461,7 @@
         </div>
     </div>
 <br>
+</div>
 <div class="container text-center">
     <div>
 <div class="btn-group" >

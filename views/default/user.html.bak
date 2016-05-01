@@ -43,7 +43,6 @@
      body{
         background: transparent url("{{=URL('static','images/jobfinder2.jpg')}}") no-repeat scroll center center / cover;
         width:100vw;
-        height:100vh;
         overflow-x: hidden;
     }
 </style>

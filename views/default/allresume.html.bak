@@ -6,12 +6,14 @@
 <h1 class="text-center text-info">All Resumes
 </h1>
 <br>
+{{if dat:}}
 <table id="tab" class="table-hover table-responsive">
 
     <tr>
         <th>Name</th>
         <th>Email</th>
         <th>Summary</th>
+        <th>Uploaded By</th>
         <th>More Info</th>
     </tr>
     {{j=0}}
@@ -20,6 +22,7 @@
         <td>{{=i.name}}</td>
         <td>{{=i.email}}</td>
         <td>{{=i.summary}}</td>
+        <td><a class='btn btn-info' href="{{=URL('morepro',args = [ i.uploadedby ])}}">Contact <i class="fa fa-user"></i></td>
         {{j+=1}}
         <td><a class='btn btn-info' href="{{=URL('templates1', args=[ i.id ])}}">MORE <i class="fa fa-list"></i></a></td>
     </tr>
@@ -34,6 +37,14 @@
     {{pass}}
     <br><b>Page No . {{=request.vars.page}}</b></div>
 <div>
+    {{else:}}
+    <div class="vertical-center">
+     <h2 class="container text-center text-muted">
+        <br><br><br>
+        No resumes to be displayed here.<br>
+    </h2>
+    </div>
+    {{pass}}
 <style>
         #righ{
         position:fixed;
@@ -90,5 +101,9 @@ th, td {
 img:hover {
     transform: scale(1.5);
 }
+    body
+    {
+        overflow-x:hidden;
+    }
 </style>
 <br><br>

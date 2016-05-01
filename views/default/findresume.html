@@ -34,12 +34,12 @@
             <td><a class="btn btn-primary" onclick="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','keyword3','task'],'target');">Sort Ascending <i class="fa fa-sort-asc"></i></a></td>
             <td><a class="btn btn-info" onclick="document.getElementById('task').value='des' ; ajax('callback',['keyword','keyword1','keyword2','keyword3','task'],'target');">Sort Descending <i class="fa fa-sort-desc"></i></a></td>
             <td><a class="btn btn-danger" onclick="document.getElementById('task').value='sortcg' ; ajax('callback',['keyword','keyword1','keyword2','keyword3','task'],'target');">Sort By GPA<i class="icon-sort-by-order-alt"></i></a></td>-->
-            <td><br><input class="form-group" type='text' id='keyword' name='keyword' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');" ></td>
-            <td><br><input class="form-group" type='text' id='keyword1' name='keyword1' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');" ></td>
-            <td><br><input class="form-group" type='text' id='keyword2' name='keyword2' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');" ></td>
-            <td><a class="btn btn-primary" onclick="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');">Sort Ascending <i class="fa fa-sort-asc"></i></a></td>
-            <td><a class="btn btn-info" onclick="document.getElementById('task').value='des' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');">Sort Descending <i class="fa fa-sort-desc"></i></a></td>
-            <td><a class="btn btn-danger" onclick="document.getElementById('task').value='sortcg' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');">Sort By GPA<i class="icon-sort-by-order-alt"></i></a></td>
+            <td><br><input class="form-group form-control" type='text' id='keyword' name='keyword' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');myfunc();" ></td>
+            <td><br><input class="form-group form-control" type='text' id='keyword1' name='keyword1' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');myfunc();" ></td>
+            <td><br><input class="form-group form-control" type='text' id='keyword2' name='keyword2' onkeyup="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');myfunc();" ></td>
+            <td><a class="btn btn-primary" onclick="document.getElementById('task').value='as' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');myfunc();">Sort Ascending <i class="fa fa-sort-asc"></i></a></td>
+            <td><a class="btn btn-info" onclick="document.getElementById('task').value='des' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');myfunc();">Sort Descending <i class="fa fa-sort-desc"></i></a></td>
+            <td><a class="btn btn-danger" onclick="document.getElementById('task').value='sortcg' ; ajax('callback',['keyword','keyword1','keyword2','task'],'target');myfunc();">Sort By GPA<i class="icon-sort-by-order-alt"></i></a></td>
         </tr>
     </table>
 </form>
@@ -84,3 +84,9 @@
     }
     
 </style>
+<script>
+    function myfunc()
+    {
+     document.getElementsByClassName("myclass").innerHTML+='<i class="fa fa-user"></i>';
+    }
+</script>

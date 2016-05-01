@@ -13,6 +13,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Summary</th>
+        <th>Uploaded By</th>
         <th>More Info</th>
     </tr>
     {{j=0}}
@@ -21,6 +22,7 @@
         <td>{{=i.name}}</td>
         <td>{{=i.email}}</td>
         <td>{{=i.summary}}</td>
+        <td><a class='btn btn-info' href="{{=URL('morepro',args = [ i.uploadedby ])}}">Contact <i class="fa fa-user"></i></td>
         {{j+=1}}
         <td><a class='btn btn-info' href="{{=URL('templates1', args=[ i.id ])}}">MORE <i class="fa fa-list"></i></a></td>
     </tr>
@@ -100,5 +102,9 @@ th, td {
 img:hover {
     transform: scale(1.5);
 }
+    body
+    {
+        overflow-x:hidden;
+    }
 </style>
     <br><br>

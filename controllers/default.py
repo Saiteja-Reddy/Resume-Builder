@@ -211,14 +211,19 @@ def callback():
         pages = db(query & query1 & query2 ).select(orderby=~db.namess.name)
      elif request.vars.task=="sortcg":
         pages = db(query & query1 & query2 ).select(orderby=~db.namess.gpa)
-     links=[[ TR( TH(B("NAME")),TH(B("EMAIL",_style="padding:100px;")),TH(B("GPA",_style="padding:100px;")) ) ]]
+     links=[[ TR( TH(B("NAME")),TH(B("EMAIL",_style="padding:100px;")),TH(B("GPA",_style="padding:100px;")),TH(B("Upload By")) ) ]]
      for p in pages:
-         links += [ [ TR( TD(A(p.name, _href=URL('templates1',args=p.id))),TD(DIV(p.email,_style="padding:100px;")),TD(DIV(p.gpa,_style="padding:100px;")) ) ] ]
+         links += [ [ TR( TD(A(p.name, _href=URL('templates1',args=p.id))),TD(DIV(p.email,_style="padding:100px;")),TD(DIV(p.gpa,_style="padding:100px;")),TD(A('Contact',_class="btn btn-primary myclass",_href=URL('morepro',args = [ p.uploadedby ]))) ) ] ]
      return TABLE(*links)
 
 @auth.requires_login()
 def seeprofile():
     dat=db(db.auth_user.id==auth.user.id).select()
+    return dict(message=T('Viewing my Profile!'),dat=dat)
+
+@auth.requires_login()
+def morepro():
+    dat=db(db.auth_user.id==request.args(0)).select()
     return dict(message=T('Viewing my Profile!'),dat=dat)
 
 @auth.requires_login()

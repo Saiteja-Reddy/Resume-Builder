@@ -31,9 +31,18 @@
 <br>
 <br>
 <script>
+    
+
+function alertWithoutNotice(message){
+    setTimeout(function(){
+        confirm(message);
+    }, 1000);
+}
+
+
     function myfunc(link)
     {
-        var a=confirm("Do you really want to delete ?");
+        var a=alertWithoutNotice("Do you really want to delete ?");
         if (a)
                 window.location.href = link;
     }
@@ -111,4 +120,7 @@ th, td {
 img:hover {
     transform: scale(1.5);
 }
+    body{
+        overflow-x:hidden;
+    }
 </style>

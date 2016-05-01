@@ -101,7 +101,17 @@
 
     </div>
 
-    {{block footer}} <!-- this is default footer -->
+{{block footer}} <!-- this is default footer -->    
+    <br><br><br>
+    <footer class="footer" style="background-color:#F0F0F0">
+      <div class="container-fluid site-footer-container">
+          <div class="copyright pull-left">{{=B('Copyright')}} &#169; <a href="http://www.iiit.ac.in/"><b>IIIT-H</b></a></div>
+          <div id="poweredBy" class="pull-right">
+            {{=B('Powered by')}}
+              <a href="http://www.web2py.com/"><b>Web2py</b></a>
+          </div>
+      </div>
+    </footer>
     {{end}}
     <!-- The javascript =============================== -->
     <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
