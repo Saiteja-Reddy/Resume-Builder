@@ -9,6 +9,7 @@
         <th>Email</th>
         <th>Summary</th>
         <th>Edit</th>
+        <th>Delete</th>
         <th>More Info</th>
     </tr>
     {{for i in dat: }}
@@ -16,8 +17,9 @@
         <td>{{=i.name}}</td>
         <td>{{=i.email}}</td>
         <td>{{=i.summary}}</td>
+        <td><a class='btn btn-danger' href="{{=URL('deleteresume', args=[ i.id ])}}">DELETE <i class="fa fa-trash"></i></a></td>
         <td><a class='btn btn-primary' href="{{=URL('editresume', args=[ i.id ])}}">EDIT <i class="fa fa-pencil-square-o"></i></a></td>
-        <td><a class='btn btn-primary' href="{{=URL('templates1', args=[ i.id ])}}">MORE <i class="fa fa-list"></i></a></td>
+        <td><a class='btn btn-info' href="{{=URL('templates1', args=[ i.id ])}}">MORE <i class="fa fa-list"></i></a></td>
     </tr>
     {{pass}}
 </table>
@@ -26,10 +28,10 @@
 
 <div id='righ'>
     {{ if pag !=1 : }}
-    <a class='link' href={{=URL(vars={'page':int(request.vars.page)-1})}}><img src="/resume/static/images/left.jpg" style="width:50px; height:50px;"/></a>
+    <a class='link' href={{=URL(vars={'page':int(request.vars.page)-1})}}><img src="{{=URL('static','images/left.jpg')}}" style="width:50px; height:50px;"/></a>
     {{pass}}
     {{ if ret == 0:}}
-    <a class='link' href={{=URL(vars={'page':int(request.vars.page)+1})}}><img src="/resume/static/images/right.jpg" style="width:50px; height:50px;"/></a>
+    <a class='link' href={{=URL(vars={'page':int(request.vars.page)+1})}}><img src="{{=URL('static','images/right.jpg')}}" style="width:50px; height:50px;"/></a>
     {{pass}}
     <br><b>Page No . {{=request.vars.page}}</b></div>
 <div>
@@ -72,7 +74,7 @@ th, td {
     border: 0;
     border-top: 1px solid black;
     margin: 1em 0;
-    padding: 0; 
+    padding: 0;
 }
             #searh{
         position:absolute;
