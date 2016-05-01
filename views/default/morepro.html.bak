@@ -1,7 +1,7 @@
 {{extend 'layout.html'}}
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-<h1 class="text-center">My Profile</h1>
+<h1 class="text-center">Profile</h1>
 
 {{for i in dat: }}
 {{if i.Account_Type == ['Individual']:}}
@@ -37,7 +37,6 @@
 {{pass}}
 
 {{pass}}
-Note: Edit Your Profile in Welcome tab on the Nav Bar.
 <style>
     img{
         width:250px;

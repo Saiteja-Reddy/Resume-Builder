@@ -1,7 +1,7 @@
 {{extend 'layout.html'}}
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-<span id="searh"><b>Can't Find your desired resume : </b> <a href="{{=URL('default','findresume')}}">Search Here :)</a></span>
+<span id="searh"><b>Can't Find your desired resume : </b> <a href="{{=URL('default','findresume')}}">Search Here</a></span>
 <br>
 <h1 class="text-center text-info">My Resumes
 </h1>
@@ -54,7 +54,7 @@ function alertWithoutNotice(message){
     {{ if ret == 0:}}
     <a class='link' href={{=URL(vars={'page':int(request.vars.page)+1})}}><img src="{{=URL('static','images/right.jpg')}}" style="width:50px; height:50px;"/></a>
     {{pass}}
-    <br><b>Page No . {{=request.vars.page}}</b></div>
+    <br><b>Page No . {{=request.vars.page}}</b></div><br><br>
 <div>
     {{else:}}
     <div class="vertical-center">
@@ -62,7 +62,7 @@ function alertWithoutNotice(message){
         <br><br><br>
         No resumes to be displayed here.<br>
     </h2>
-    </div>
+    </div><br><br>
     {{pass}}
 <style>
         #righ{
