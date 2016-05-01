@@ -2,7 +2,11 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <span id="searh"><b>Can't Find your desired resume : </b> <a href="{{=URL('default','findresume')}}">Search Here :)</a></span>
-<br><br>
+<br>
+<h1 class="text-center text-info">My Resumes
+</h1>
+<br>
+{{if dat:}}
 <table id="tab" class="table-hover table-responsive">
 
     <tr>
@@ -20,13 +24,20 @@
         <td>{{=i.summary}}</td>
         <td><a class='btn btn-primary' href="{{=URL('editresume', args=[ i.id ])}}">EDIT <i class="fa fa-pencil-square-o"></i></a></td>
         <td><a class='btn btn-info' href="{{=URL('templates1', args=[ i.id ])}}">MORE <i class="fa fa-list"></i></a></td>
-        <td><a class='btn btn-danger' href="{{=URL('deleteresume', args=[ i.id ])}}">DELETE <i class="fa fa-trash"></i></a></td>
+        <td><a class='btn btn-danger' onclick='if(confirm("Do you really want to delete?")){window.location.href ="{{=URL('deleteresume', args=[ i.id ])}}"}' >DELETE <i class="fa fa-trash"></i></a></td>
     </tr>
     {{pass}}
 </table>
 <br>
 <br>
-
+<script>
+    function myfunc(link)
+    {
+        var a=confirm("Do you really want to delete ?");
+        if (a)
+                window.location.href = link;
+    }
+</script>
 <div id='righ'>
     {{ if pag !=1 : }}
     <a class='link' href={{=URL(vars={'page':int(request.vars.page)-1})}}><img src="{{=URL('static','images/left.jpg')}}" style="width:50px; height:50px;"/></a>
@@ -36,6 +47,14 @@
     {{pass}}
     <br><b>Page No . {{=request.vars.page}}</b></div>
 <div>
+    {{else:}}
+    <div class="vertical-center">
+     <h2 class="container text-center text-muted">
+        <br><br><br>
+        No resumes to be displayed here.<br>
+    </h2>
+    </div>
+    {{pass}}
 <style>
         #righ{
         position:fixed;

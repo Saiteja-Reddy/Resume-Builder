@@ -204,6 +204,7 @@ def callback():
      query = db.namess.name.contains(request.vars.keyword)
      query1 = db.namess.email.contains(request.vars.keyword1)
      query2 = db.namess.skills.contains(request.vars.keyword2)
+   #  query3 = db.namess.gpa >= request.vars.keyword3
      if request.vars.task == "as":
          pages = db(query & query1 & query2 ).select(orderby=db.namess.name)
      elif request.vars.task=="des":
