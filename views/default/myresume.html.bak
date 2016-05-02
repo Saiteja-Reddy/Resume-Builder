@@ -118,7 +118,7 @@ th, td {
     border-radius: 64px;
     }
 img:hover {
-    transform: scale(1.5);
+    transform: scale(1.15);
 }
     body{
         overflow-x:hidden;

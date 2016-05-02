@@ -1,4 +1,4 @@
-timestamp: 2016-05-01T14:42:31.347166
+timestamp: 2016-05-02T19:08:18.749453
 CREATE TABLE auth_user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name CHAR(128),
@@ -20,21 +20,21 @@ CREATE TABLE auth_user(
     Country TEXT
 );
 success!
-timestamp: 2016-05-01T14:42:33.220630
+timestamp: 2016-05-02T19:08:18.870703
 CREATE TABLE auth_group(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role CHAR(512),
     description TEXT
 );
 success!
-timestamp: 2016-05-01T14:42:33.377597
+timestamp: 2016-05-02T19:08:19.005135
 CREATE TABLE auth_membership(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-05-01T14:42:33.522865
+timestamp: 2016-05-02T19:08:19.139502
 CREATE TABLE auth_permission(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  ,
@@ -43,7 +43,7 @@ CREATE TABLE auth_permission(
     record_id INTEGER
 );
 success!
-timestamp: 2016-05-01T14:42:33.693308
+timestamp: 2016-05-02T19:08:19.275447
 CREATE TABLE auth_event(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     time_stamp TIMESTAMP,
@@ -53,7 +53,7 @@ CREATE TABLE auth_event(
     description TEXT
 );
 success!
-timestamp: 2016-05-01T14:42:33.858440
+timestamp: 2016-05-02T19:08:19.409510
 CREATE TABLE auth_cas(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
@@ -63,7 +63,7 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
-timestamp: 2016-05-01T14:42:34.137413
+timestamp: 2016-05-02T19:08:19.556486
 CREATE TABLE namess(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name CHAR(512),
@@ -78,14 +78,14 @@ CREATE TABLE namess(
     gpa DOUBLE
 );
 success!
-timestamp: 2016-05-01T14:42:34.380477
+timestamp: 2016-05-02T19:08:19.688907
 CREATE TABLE mark(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     resumeid INTEGER,
     userid INTEGER
 );
 success!
-timestamp: 2016-05-01T14:42:34.526663
+timestamp: 2016-05-02T19:08:19.823579
 CREATE TABLE comments(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     body TEXT,
