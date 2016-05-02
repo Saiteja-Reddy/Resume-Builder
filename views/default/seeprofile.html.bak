@@ -1,6 +1,5 @@
 {{extend 'layout.html'}}
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<h1 class="text-center text-muted" style="color:white">Profile</h1>
 {{for i in dat: }}
 {{if i.Account_Type == ['Individual']:}}
 <div class="maindiv">
@@ -66,10 +65,10 @@ body
         margin-top:100px;
         background: transparent url("{{=URL('static','images/night.png')}}") no-repeat scroll center center / cover;
         width:100vw;
-        height:100vh;
+
         overflow-x: hidden;
     }
-    }
+    
         img {
     -ms-transition: all 0.1s ease-in-out;
     -o-transition: all 0.1s ease-in-out;

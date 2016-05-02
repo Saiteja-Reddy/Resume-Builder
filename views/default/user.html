@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 <h2>
-{{=T('Sign Up') if request.args(0) == 'register' else T('Log In') if request.args(0) == 'login' else T(request.args(0).replace('_',' ').title())}}
+{{=B('Sign Up') if request.args(0) == 'register' else B('Log In') if request.args(0) == 'login' else T(request.args(0).replace('_',' ').title())}}
 </h2>
 
 <div class="container">
@@ -41,7 +41,7 @@
         visibility:hidden;
     }
      body{
-        background: transparent url("{{=URL('static','images/jobfinder2.jpg')}}") no-repeat scroll center center / cover;
+        background: transparent url("{{=URL('static','images/office3.jpg')}}") no-repeat scroll center center / cover;
         width:100vw;
 
         overflow-x: hidden;

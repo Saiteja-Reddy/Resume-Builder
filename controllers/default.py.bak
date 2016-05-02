@@ -215,7 +215,9 @@ def callback():
      links=[[ TR( TH(B("NAME")),TH(B("EMAIL",_style="padding:100px;")),TH(B("GPA",_style="padding:100px;")),TH(B("Upload By")) ) ]]
      for p in pages:
          links += [ [ TR( TD(A(p.name, _href=URL('templates1',args=p.id))),TD(DIV(p.email,_style="padding:100px;")),TD(DIV(p.gpa,_style="padding:100px;")),TD(A('Contact',_class="btn btn-primary myclass",_href=URL('morepro',args = [ p.uploadedby ]))) ) ] ]
-     return TABLE(*links)
+     if len(links) > 1 :
+         return TABLE(*links)
+     return "<h2 class='text-primary text-center'>No Records Found</h2>"
 
 @auth.requires_login()
 def seeprofile():

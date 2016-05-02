@@ -54,7 +54,7 @@ function alertWithoutNotice(message){
     {{ if ret == 0:}}
     <a class='link' href={{=URL(vars={'page':int(request.vars.page)+1})}}><img src="{{=URL('static','images/right.jpg')}}" style="width:50px; height:50px;"/></a>
     {{pass}}
-    <br><b>Page No . {{=request.vars.page}}</b></div>
+    <br><b>Page No . {{=request.vars.page}}</b></div><br><br>
 <div>
     {{else:}}
     <div class="vertical-center">
@@ -62,7 +62,7 @@ function alertWithoutNotice(message){
         <br><br><br>
         No resumes to be displayed here.<br>
     </h2>
-    </div>
+    </div><br><br>
     {{pass}}
 <style>
         #righ{
