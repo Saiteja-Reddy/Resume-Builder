@@ -1,7 +1,9 @@
 {{extend 'layout.html'}}
+ <link rel="shortcut icon" href="{{=URL('static','css/paper.jpg')}}">
+
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <div class="text-center">
         <h1 class="text-primary" >Usage Tutorial</h1>
     <br>
-    <iframe width="600" height="350" src="https://www.youtube.com/embed/RCSxql-A-hs" frameborder="0" allowfullscreen></iframe>
+    <iframe width="600" height="350" src="https://www.youtube.com/embed/yeJXMtci-5E?vq=hd720" frameborder="0" allowfullscreen ></iframe>
 </div>
